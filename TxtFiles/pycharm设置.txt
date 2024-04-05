@@ -1,0 +1,180 @@
+pycharm设置.txt
+
+# 插件：
+1. Chinese                              汉化编译器
+2. activate-power-mode                  炫酷的编码特效 有点骚
+3. AIXcoder Code Completer              AI写代码，让写代码更容易
+4. tabnine                              代码补全，同3
+5. atom Material Icons                  改变那些丑陋的图标，变成彩色
+6. codeGlance pro                       代码快速浏览 编译器右侧可以看到
+7. dark purple Theme                    我比较喜欢的主题 更多主题可以找Material themeUI
+8. key Promoter X                       远离鼠标 加快操作 珍惜时间
+9. Notebook                             记代码 怕忘掉是代码是干嘛的，这个能够和注释一样方便
+10. Rainbow Brackets                    让你的括号看起来有层次，相同层次的括号一个颜色
+11. Translation                         翻译插件 极其好用
+12. Statistic                           统计你的代码有啥
+13. github dark theme                   主题
+14. github theme                        主题
+15. IDEA Theme - javierSC               主题
+
+# pip下载镜像源
+阿里  https://mirrors.aliyun.com/pypi/simple/
+百度  https://mirror.baidu.com/pypi/simple/
+豆瓣  http://pypi.douban.com/simple/
+搜狐  http://mirrors.sohu.com/Python/
+清华  https://pypi.tuna.tsinghua.edu.cn/simple/
+中科大 https://pypi.mirrors.ustc.edu.cn/simple/
+
+# 翻译API
+有道翻译API：
+20577f2b60f63328    
+0efhd0Xvwe4L32MBekRKuI2nOXfezFrK 
+百度翻译API：
+20220212001081190
+rsUzzB6Q_r5_9yBhfnVs
+
+# 文件模板：
+
+$ {PROJECT_NAME} # 当前项目名
+$ {NAME} #当前文件名
+${PRODUCT_NAME} #当前集成开发环境
+$ {USER}#当前用户的登录名
+$ {DATE}#当前系统日期
+$ {TIME}#当前系统时间
+$ {YEAR} #当年
+$ {MONTH}#当月
+$ {DAY} #当天
+$ {HOUR} #当前小时
+$ {MINUTE} #当前分钟
+$ {SECOND} #当前秒
+$ {MONTH_NAME_SHORT}#月份名称的前三个字母
+$ {MONTH_NAME_FULL}# 一个月的全名
+
+以下为最终配置：2023.05.02
+******************************************************************
+# -*- coding: utf-8 -*-
+# @CreateTime : ${DATE} ${TIME}
+# @Author : 瑾瑜@${USER}
+# @IDE : ${PRODUCT_NAME}
+# @File : ${PROJECT_NAME}/${NAME}.py
+# @Description : 
+# @Interpreter : python 3.10
+# @Motto : You must take your place in the circle of life!
+# @Site : https://github.com/JinYu-2023?tab=repositories
+
+# END
+
+******************************************************************
+
+============================================================================================================
+# _*_coding:utf-8_*_
+#@Time:${DATE} ${TIME}
+# @Author: 20866
+# @Version: V3.9
+# @File: ${NAME}.py
+**********************************
+# -*- coding = utf-8 -*-
+# @CreateTime : ${DATE} ${TIME}
+# @Author : ${USER}
+# @Project: ${PROJECT_NAME}
+# @File : ${NAME}.py
+# @Software : ${PRODUCT_NAME}
+# @InterpreterLocation : !C:\Windows.old\Users\20866\AppData\Local\Programs\Python\Python310\python.exe
+# @Site : https://gitee.com/qiongjulingjun
+ *********************** 以上完全OK 
+ ***********************************
+${PROJECT_NAME}
+${NAME} 
+${USER} 
+${DATE}  
+${TIME}  
+${YEAR}   
+${MONTH}  
+${DAY} 
+${HOUR} 
+${MINUTE} 
+${PRODUCT_NAME}   
+${MONTH_NAME_SHORT}   
+${MONTH_NAME_FULL} 
+
+------------------------------------
+
+# -*- coding: utf-8 -*-
+# @Author : @20866
+# @File : ${NAME}.py
+# @Project: ${PROJECT_NAME}
+# @CreateTime : ${DATE} ${TIME}:${SECOND}
+
+-----------------------------------------
+
+# -*- codeing = utf-8 -*-
+# @CreateTime : ${DATE} ${TIME}
+# @Auther : ${USER}
+# @Site : ${SITE}
+# @Project: ${PROJECT_NAME}
+# @File : ${NAME}.py
+# @Software : ${PRODUCT_NAME}
+
+
+$ {PROJECT_NAME} # 当前项目名
+$ {NAME} #当前文件名
+
+${PRODUCT_NAME} #当前集成开发环境
+
+$ {USER}#当前用户的登录名
+
+$ {DATE}#当前系统日期
+$ {TIME}#当前系统时间
+$ {YEAR} #当年
+$ {MONTH}#当月
+$ {DAY} #当天
+$ {HOUR} #当前小时
+$ {MINUTE} #当前分钟
+$ {SECOND} #当前秒
+$ {MONTH_NAME_SHORT}#月份名称的前三个字母
+$ {MONTH_NAME_FULL}# 一个月的全名
+————————————————
+版权声明：本文为CSDN博主「文档_搬运工」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_33999977/article/details/119106103
+
+--------------------------------------------------------------------------------------------------
+
+
+# 图标存放地址：C:\WINDOWS\system32\imageres.dll
+
+
+以下为最终配置：2023.05.02
+******************************************************************
+# -*- coding: utf-8 -*-
+# @CreateTime : ${DATE} ${TIME}
+# @Author : 瑾瑜@${USER}
+# @IDE : ${PRODUCT_NAME}
+# @File : ${PROJECT_NAME}/${NAME}.py
+# @Description : 
+# @Interpreter : python 3.10
+# @Motto : You must take your place in the circle of life!
+# @Site : https://github.com/wephiles or https://gitee.com/wephiles
+
+# --END--
+
+******************************************************************
+1. Chinese 汉化编译器
+2. activate-power-mode 炫酷的编码特效 有点骚
+3. AIXcoder Code Completer  AI写代码，让写代码更容易
+4. tabnine 代码补全，同3
+5. atom Material Icons 改变那些丑陋的图标，变成彩色
+6. codeGlance 代码快速浏览 编译器右侧可以看到
+7. dark purple Theme 我比较喜欢的主题 更多主题可以找Material themeUI
+8. key Promoter X 远离鼠标 加快操作 珍惜时间
+9. Notebook  记代码 怕忘掉是代码是干嘛的，这个能够和注释一样方便
+10. Rainbow Brackets 让你的括号看起来有层次，相同层次的括号一个颜色
+11. Translation 翻译插件 极其好用
+12. Statistic  统计你的代码有啥
+
+有道翻译API：
+20577f2b60f63328    
+0efhd0Xvwe4L32MBekRKuI2nOXfezFrK 
+
+百度翻译API：
+20220212001081190
+rsUzzB6Q_r5_9yBhfnVs
