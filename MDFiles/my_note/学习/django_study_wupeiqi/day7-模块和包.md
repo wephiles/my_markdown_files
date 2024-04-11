@@ -177,7 +177,7 @@ print(res)  # 21232f297a57a5a743894a0e4a801fc3
 
 以后的开发时，**不要用明文存储信息**，要存储加密之后的值，防止数据库泄露，导致用户的用户名和密码泄露。
 
-![image-20240226110719813](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226110719813.png)
+![image-20240226110719813](.\assets\image-20240226110719813.png)
 
 `md5`加密不可反解。
 
@@ -283,7 +283,7 @@ def run():
 run()
 ```
 
-![image-20240226113119413](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226113119413.png)
+![image-20240226113119413](.\assets\image-20240226113119413.png)
 
 ### 2.2 random模块
 
@@ -409,9 +409,9 @@ for item in data_list:
 
 -   序列化与反序列化
 
-![image-20240226181221945](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226181221945.png)
+![image-20240226181221945](.\assets\image-20240226181221945.png)
 
-![image-20240226181843795](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226181843795.png)
+![image-20240226181843795](.\assets\image-20240226181843795.png)
 
 `json`格式
 
@@ -493,9 +493,7 @@ res = json.dumps(info, ensure_ascii=False)
 print(res)
 ```
 
-
-
-![image-20240226184834019](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226184834019.png)
+![image-20240226184834019](.\assets\image-20240226184834019.png)
 
 ```python
 +-------------------+---------------+
@@ -538,7 +536,7 @@ for item in data_dict["subjects"]:
     print(item["title"], item["url"])
 ```
 
-![image-20240226191652532](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226191652532.png)
+![image-20240226191652532](.\assets\image-20240226191652532.png)
 
 #### 案例2:
 
@@ -583,9 +581,9 @@ if __name__ == "__main__":
     app.run()
 ```
 
-![image-20240226192647414](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226192647414.png)
+![image-20240226192647414](.\assets\image-20240226192647414.png)
 
-![image-20240226192802403](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226192802403.png)
+![image-20240226192802403](.\assets\image-20240226192802403.png)
 
 ### 2.4 time模块
 
@@ -632,7 +630,7 @@ print(str_date)
 ctime_string = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 ```
 
-![image-20240305214052685](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240305214052685.png)
+![image-20240305214052685](.\assets\image-20240305214052685.png)
 
 #### 案例
 
