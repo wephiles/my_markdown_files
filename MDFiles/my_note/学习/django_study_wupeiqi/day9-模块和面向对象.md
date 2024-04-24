@@ -1345,21 +1345,168 @@ sheet_0["D3"] = "=sum(A3,B3)"
 # sheet_0.delete_rows(idx=2, amount=1)  # 从第二行开始删除 删除的行数为1
 # sheet_0.delete_columns(idx=3, amount=1)  # 从第三列开始删除 删除的列数为1
 
-sheet_0.insert_rows(idx=1, amount=3)  # 从第二行开始删除 删除的行数为1
-sheet_0.insert_cols(idx=1, amount=2)  # 从第三列开始删除 删除的列数为1
+sheet_0.insert_rows(idx=1, amount=3)
+sheet_0.insert_cols(idx=1, amount=2)
 
 workbook_obj.save("./files/equal_excel.xlsx")
 ```
 
 ![Clip_2024-04-15_22-20-00](./assets/Clip_2024-04-15_22-20-00.png)
 
+- 追加
+
+> [!Caution]
+>
+> 注意，这里面最大行`max_row`这个参数，如果元`Excel`没有数据，那么`max_row`的值为`1`，如果有`n(n>=1)`行数据，那么`max_row`的值为`n`，这一点要额外注意，下面的代码演示了如何通过条件判断来避免产生错误。
+
 ```python
-#TODO: day09-2 3:00:47
+import os
+from openpyxl import load_workbook, Workbook
+
+
+def write_excel(user_name, password):
+    """
+    将用户名和密码写入excel文件。
+    Args:
+        user_name (str): 用户名
+        password (str): 密码
+
+    Returns:
+
+    """
+    # 1. 文件是否存在
+    file_path = os.path.join("files", "db.xlsx")
+    if os.path.exists(file_path):
+        # 2. 打开文件
+        workbook_obj = load_workbook(file_path)
+    else:
+        # 3. 创建文件
+        workbook_obj = Workbook()
+    sheet_obj = workbook_obj.worksheets[0]
+
+    # 4. 写入数据
+    first_row_data = sheet_obj.cell(row=1, column=1).value
+    if not first_row_data:  # 第一行没有数据
+        row_index = 1
+    else:  # 第一行有数据
+        row_index = sheet_obj.max_row + 1
+
+    sheet_obj.cell(row=row_index, column=1).value = user_name
+    sheet_obj.cell(row=row_index, column=2).value = password
+    workbook_obj.save(file_path)
+
+
+def run():
+    """
+    程序入口。
+    Returns:
+
+    """
+    while True:
+        print("输入用户名和密码，输入q/Q退出:")
+        user_name = input("用户名 >>> ")
+        password = input("密  码 >>> ")
+        if user_name == "q" or user_name == "q":
+            break
+        write_excel(user_name, password)
+
+
+if __name__ == '__main__':
+    run()
 ```
 
+> [!Important]
+>
+> 如果在开发过程中遇到不知道的问题，有下列一些方法：
+>
+> - 搜索
+>     ```python
+>     - 百度(最不可信)
+>     - Google
+>     - stackoverflow
+>     ```
+>
+> - 官方文档和源码(需要知道面向对象等知识)
 
+### 2.3.2 `Word`操作
 
+```python
+pip install python-docx
+```
 
+- `.docx`文件 -- 本质上是一个压缩包
+
+- `.docx`文件 -- 底层存储:`xml`格式 `python-docx`本质上就是去解析`xml`文件
+
+    ```
+    <x1>fesdj9fjw0efsk</x1>
+    <xx>
+    	<mm>fewgregrthytjuykdgtr<mm>
+    <xx>
+    ```
+
+    1. 读
+
+    - 段落对象 -- `pragraph`
+    - 小段 -- `run`
+
+    ```python
+    import docx
+    
+    doc_obj = docx.Document("./docx_files/demo.docx")
+    
+    # 获取某一个段落
+    p1 = doc_obj.paragraphs[1]
+    
+    # 获取段落文本
+    print(p1.text)
+    
+    # 获取段落样式
+    print(p1.style.name)
+    
+    # # 获取段落中所有的runs -- run对象
+    # runs = p1.runs
+    
+    run_0 = p1.runs[3]
+    print(run_0.text)  # 文本是什么
+    print(run_0.bold)  # 是否加粗
+    print(run_0.italic)  # 是否斜体
+    print(run_0.underline)  # 是否下划线
+    print(run_0.font.color.rgb)  # 字体颜色
+    print(run_0.font.name)  # 字体名称
+    print(run_0.font)  # 字体对象
+    print(run_0.font.size)  # 字体大小
+    ```
+
+    ```python
+    import docx
+    
+    doc_obj = docx.Document("./docx_files/demo.docx")
+    
+    # 获取所有段落
+    paragraph = doc_obj.paragraphs
+    
+    for p in paragraph:
+        print(p.text)
+    ```
+
+    ![Clip_2024-04-16_15-37-36](./assets/Clip_2024-04-16_15-37-36.png)
+
+    下图是`word`的样式:
+
+![Clip_2024-04-16_15-54-26](./assets/Clip_2024-04-16_15-54-26.png)
+
+问题 -- `paragraph`无法读取图片，只能获取普通编写的文本。 -- 解决方法(难 需要进一步分析`xml`文档)
+
+问题 -- `paragraph`无法读取表格，只能获取普通编写的文本。 -- 解决方法(简单 + 难) 
+
+```python
+# 简单：段落和表格独立操作
+for data in doc_obj.tables:
+    print(data)
+    
+# 难：逐行读取，需要进一步分析xml文档
+```
 
 
 
