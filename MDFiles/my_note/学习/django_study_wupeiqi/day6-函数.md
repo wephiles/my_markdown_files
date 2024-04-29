@@ -101,7 +101,7 @@ else:
     func_object()
 ```
 
-![image-20240224213612430](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240224213612430.png)
+![image-20240224213612430](.\assets\image-20240224213612430.png)
 
 稍微改进一下：
 
@@ -497,7 +497,7 @@ for item in url_list:
 
 完成后，在自己的问价根目录下面找images文件夹，打开文件夹就能看到自己下载的图片啦。
 
-![image-20240225173040986](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225173040986.png)
+![image-20240225173040986](.\assets\image-20240225173040986.png)
 
 ```python
 # 下载视频
@@ -539,7 +539,7 @@ for item in url_list:
     i += 1
 ```
 
-![image-20240225173430002](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225173430002.png)
+![image-20240225173430002](.\assets\image-20240225173430002.png)
 
 好吧，可能是下载视频的格式问题，我的视频下载下来无法播放，下载的时候要注意，看好文件格式是什么。
 
@@ -791,7 +791,7 @@ res = data_list.append(44)
 print(res)  # None
 ```
 
-![image-20240225180351332](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225180351332.png)
+![image-20240225180351332](.\assets\image-20240225180351332.png)
 
 ```python
 def func(data_list):
@@ -959,7 +959,7 @@ if __name__ == "__main__":
     main()
 ```
 
-![image-20240225185159464](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225185159464.png)
+![image-20240225185159464](.\assets\image-20240225185159464.png)
 
 ```python
 # 老师的
@@ -976,7 +976,7 @@ print(num)
 
 还得是老师牛逼！！！简洁而又逻辑清晰。
 
-![image-20240225185709003](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225185709003.png)
+![image-20240225185709003](.\assets\image-20240225185709003.png)
 
 ### 4.4 第四组(2)
 
@@ -1108,7 +1108,7 @@ print("".join(char_list))
     print(new_data)  # 根据unicode编码排序 -- 因为是字符串！！！
     `````
 
-    ![image-20240225210023939](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225210023939.png)
+    ![image-20240225210023939](.\assets\image-20240225210023939.png)
     ```python
     data_list = ["1 哈哈好", "2 嗯嗯", "3 哈哈哈", "10 嗯嗯呢", "12 哈哈好"]
     # 自定义排序规则 函数返回什么 那就按照返回的值进行排序
@@ -1119,7 +1119,7 @@ print("".join(char_list))
     print(new_data)
     ```
 
-    ![image-20240225210924149](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225210924149.png)
+    ![image-20240225210924149](.\assets\image-20240225210924149.png)
     ```python
     data_list = ["1 哈哈好", "2 嗯嗯", "3 哈哈哈", "10 嗯嗯呢", "12 哈哈好"]
     func = lambda arg: int(arg.split(" ")[0])
@@ -1127,7 +1127,7 @@ print("".join(char_list))
     print(new_data)
     ```
 
-    ![image-20240225211102702](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225211102702.png)
+    ![image-20240225211102702](.\assets\image-20240225211102702.png)
 
 ## 5. 推导式
 
@@ -1192,16 +1192,16 @@ result = [i for i in data_list if isinstance(i, int)]
 
 注意下面两张图：
 
-![image-20240225212717413](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225212717413.png)
+![image-20240225212717413](.\assets\image-20240225212717413.png)
 
-![image-20240225212830158](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225212830158.png)
+![image-20240225212830158](.\assets\image-20240225212830158.png)
 
 ```python
 data_list = [1, True, "com", "sci", [11, 22], 99, 123, (45,)]
 result = [i for i in data_list if type(data_list) is int]
 ```
 
-![image-20240225213457703](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240225213457703.png)
+![image-20240225213457703](.\assets\image-20240225213457703.png)
 
 ### 5.2 字典推导式
 
@@ -1367,13 +1367,13 @@ pip是一个专门用于帮助我们安装第三方库的工具。
     pip install -r requirements.txt
     ```
 
-    ![image-20240226085607046](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226085607046.png)
+    ![image-20240226085607046](.\assets\image-20240226085607046.png)
 
 -   在同一个`python`环境中，无法同时安装多个版本的包，只能同时有一个。即：你如果安装了`requests2.1`，那么你就无法安装另外的`requests`包。
 
 ### 6.3 配置
 
-![image-20240226091153323](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226091153323.png)
+![image-20240226091153323](.\assets\image-20240226091153323.png)
 
 ```python
 # 成为开源作者，发布包：
@@ -1400,10 +1400,10 @@ https://www.bilibili.com/video/BV17541187de
         https://files.pythonhosted.org/packages/9d/be/10918a2eac4ae9f02f6cfe6414b7a155ccd8f7f9d4380d62fd5b955065c3/requests-2.31.0.tar.gz
         ```
 
-        ![image-20240226092926438](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226092926438.png)
+        ![image-20240226092926438](.\assets\image-20240226092926438.png)
 
     -   解压
-        ![image-20240226093236374](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226093236374.png)
+        ![image-20240226093236374](.\assets\image-20240226093236374.png)
 
     -   安装【终端】
 
@@ -1420,9 +1420,9 @@ https://www.bilibili.com/video/BV17541187de
             >>> python setup.py install
             ```
 
-            ![image-20240226093703433](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226093703433.png)
+            ![image-20240226093703433](.\assets\image-20240226093703433.png)
 
-            ![image-20240226093759216](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226093759216.png)
+            ![image-20240226093759216](.\assets\image-20240226093759216.png)
 
     -   安装 `wheel`包
         源码开发者提前将代码打包成`wheel`包，到时候不需要`build`只需要`install`即可。
@@ -1430,12 +1430,12 @@ https://www.bilibili.com/video/BV17541187de
         -   `pip install wheel`
         -   下载wheel包 
             `https://files.pythonhosted.org/packages/70/8e/0e2d847013cb52cd35b38c009bb167a1a26b2ce6cd6965bf26b47bc0bf44/requests-2.31.0-py3-none-any.whl`
-            ![image-20240226094312650](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226094312650.png)
+            ![image-20240226094312650](.\assets\image-20240226094312650.png)
 
         -   进入终端进行安装
             -   打开终端 进入wheel包目录
             -   直接安装
-                ![image-20240226094709543](D:\TextFiles\MDFiles\my_note\学习\django\assets\image-20240226094709543.png)
+                ![image-20240226094709543](.\assets\image-20240226094709543.png)
 
 -   注意事项，无论通过什么方式安装的第三方包，都是安装在`site-packages`目录下面。卸载直接通过`pip uninstall 包名称`
 

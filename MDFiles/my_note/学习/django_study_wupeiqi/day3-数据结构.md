@@ -259,9 +259,9 @@ data_list.append(1)
 
 ### 2.3 公共功能
 
--   长度 len(list_name)
--   索引 从0开始 获取值 列表是可变类型
--   删除 del user_list[2]
+-   长度 `len(list_name)`
+-   索引 从`0`开始 获取值 列表是可变类型
+-   删除 `del user_list[2]`
 
 -   切片 
 

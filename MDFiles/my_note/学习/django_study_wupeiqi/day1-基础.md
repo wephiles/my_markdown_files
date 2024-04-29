@@ -1,17 +1,17 @@
 # Python基础-day1
 
-Python入门、系统性地学习Python+HTML+Django
+`Python`入门、系统性地学习`Python+HTML+Django`
 
 ## 1. 文档工具
 
-typora
+`typora`
 
 ## 2. 环境搭建
 
-1.   安装Python解释器
+1.   安装`Python`解释器
 
-2.   学习Python语法
-3.   Python解释器以及文件结构、文件功能
+2.   学习`Python`语法
+3.   `Python`解释器以及文件结构、文件功能
 
 ```
 D:\PythonCompiler\python310
@@ -23,9 +23,9 @@ D:\PythonCompiler\python310
 		- site-packages   通过pip安装的第三方包存放的地方
 ```
 
-## 3. Python解释器
+## 3. `Python`解释器
 
-使用Python解释器，需要在终端操作
+使用`Python`解释器，需要在终端操作
 
 -   交互式
 -   文件的形式
@@ -41,7 +41,7 @@ D:\PythonCompiler\python310
 
 配置环境变量，减轻工作量
 
-## 5. Python基础语法
+## 5. `Python`基础语法
 
 ### 5.1 编码
 
@@ -51,10 +51,10 @@ D:\PythonCompiler\python310
 哈哈yyds666   ->    010101000110101010100010
 ```
 
--   在计算机中不只有一套编码，有多套编码 比如UTF-8
+-   在计算机中不只有一套编码，有多套编码 比如`UTF-8`
 -   文件一定要记住保存时是什么编码，打开时使用同样的编码
--   在Python开发过程中这种规则也要遵循
--   Python3.x版本会默认使用`UTF-8`编码去打开文件——以`UTF-8`编码保存文件
+-   在`Python`开发过程中这种规则也要遵循
+-   `Python3.x`版本会默认使用`UTF-8`编码去打开文件——以`UTF-8`编码保存文件
 
 ### 5.2 输出
 
@@ -85,7 +85,7 @@ for item in os.listdir("这里是路径名称"):
 -   字母 数字 汉字 成语 文言文
 -   文本 数字 真假等等
 
-#### 5.3.1 整型（数字） int
+#### 5.3.1 整型（数字） `int`
 
 表示我们生活中的数字 19 18 520
 
@@ -95,7 +95,7 @@ for item in os.listdir("这里是路径名称"):
 print(19)
 ```
 
-#### 5.3.2 字符串 str
+#### 5.3.2 字符串 `str`
 
 表示生活中的文本信息：
 
@@ -113,7 +113,7 @@ print(19)
 #### 5.3.3 布尔类型
 
 真/假
-True/False
+`True/False`
 
 ```python
 print(int(True))

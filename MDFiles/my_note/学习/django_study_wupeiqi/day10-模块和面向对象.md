@@ -2005,7 +2005,7 @@ func(12345)  // ×
 
 > [!Tip]
 >
-> 这部分是观看视频所记的笔记，视频链接为：https://www.bilibili.com/video/BV18E411V7ku
+> 这部分是观看另外的一个视频所记的笔记，视频链接为：https://www.bilibili.com/video/BV18E411V7ku
 
 内容概要：
 
@@ -2990,31 +2990,1835 @@ if __name__ == '__main__':
     main()
 ```
 
-## 3.6 嵌套
+## 3.6 组合(嵌套)
+
+对象和对象之间可以进行嵌套。
+
+```python
+class School(object):
+
+    def __init__(self, name, address):
+        self.name = name
+        self.address = address
+
+    def speech(self):
+        print("讲课")
+        pass
 
 
+obj1 = School("computer", "address-a")
+obj2 = School("science", "address-b")
+obj3 = School("technology", "address-c")
 
 
+class Teacher(object):
+
+    def __init__(self, name, age, __salary):
+        self.name = name
+        self.age = age
+        self.__salary = __salary
+        self.school = None
 
 
+T1 = Teacher("a", 40, 15000)
+T2 = Teacher("b", 64, 25000)
+T3 = Teacher("c", 67, 35000)
+
+T1.school = obj1
+T2.school = obj1
+T3.school = obj2
+
+# 查看T1这个老师的学校的信息
+
+print(T1.school.name)
+print(T1.school.address)
+
+# 查看老师的信息
+print(T1.name)
+print(T1.age)
+
+T1.school.speech()
+```
+
+### 3.6.1 组合(嵌套)的补充
+
+- 类/对象能否做字典的key？ -- 可以的
+    ```python
+    class Foo(object):
+        pass
+    
+    
+    userinfo = {Foo: 1, Foo(): 2}
+    print(userinfo)
+    ```
+
+- 对象中到底有什么？ -- 此处要十分注意打印出的那个`None`
+    ```python
+    class Foo(object):
+    
+        def __init__(self, age):
+            self.age = age
+    
+        def display(self):
+            print("age is:", self.age)
+    
+    
+    data_list = [Foo(8), Foo(9)]
+    
+    for item in data_list:
+        print("年龄是:", item.age, )
+        print(item.display())
+    ```
+
+    ![Clip_2024-04-24_21-18-20](./assets/Clip_2024-04-24_21-18-20.png)
+
+- 封装 -- 注意，虽然子类没有`__init__`方法，但是继承了父类的`__init__`方法，于是有了下面的输出。
+
+    ```python
+    class StartConfig(object):
+        def __init__(self, num):
+            self.num = num
+    
+        def change_list(self, request):
+            print(self.num, request)
+    
+    
+    class RoleConfig(StartConfig):
+    
+        def change_list(self, request):
+            print(666)
+    
+    
+    config_obj_list = [StartConfig(1), StartConfig(2), RoleConfig(3)]
+    for item in config_obj_list:
+        print(item.num)
+    ```
+
+    ![Clip_2024-04-24_21-32-02](./assets/Clip_2024-04-24_21-32-02.png)
+
+- 函数的执行 -- 注意，还是前面讲的，去自己跌对象空间里面找，找不到再去父类找
+
+    ```python
+    class StartConfig(object):
+        def __init__(self, num):
+            self.num = num
+    
+        def change_list(self, request):
+            print(self.num, request)
+    
+    
+    class RoleConfig(StartConfig):
+    
+        pass
+    
+    
+    config_obj_list = [StartConfig(1), StartConfig(2), RoleConfig(3)]
+    for item in config_obj_list:
+        print(item.change_list(168))
+    ```
+
+    ![Clip_2024-04-24_21-37-09](./assets/Clip_2024-04-24_21-37-09.png)
+
+- 还有
+
+    ```python
+    class StartConfig(object):
+        def __init__(self, num):
+            self.num = num
+    
+        def change_list(self, request):
+            print(self.num, request)
+    
+    
+    class RoleConfig(StartConfig):
+    
+        def change_list(self, request):
+            print(666)
+    
+    
+    config_obj_list = [StartConfig(1), StartConfig(2), RoleConfig(3)]
+    for item in config_obj_list:
+        print(item.change_list(168))
+    ```
+
+    ![Clip_2024-04-24_21-42-08](./assets/Clip_2024-04-24_21-42-08.png)
+
+    ```python
+    class StartConfig(object):
+        def __init__(self, num):
+            self.num = num
+    
+        def change_list(self, request):
+            print(self.num, request)
+    
+    
+    class RoleConfig(StartConfig):
+    
+        def change_list(self, request):
+            print(666, self.num)
+    
+    
+    config_obj_list = [StartConfig(1), StartConfig(2), RoleConfig(3)]
+    for item in config_obj_list:
+        print(item.change_list(168))
+    ```
+
+    ![Clip_2024-04-24_21-44-02](./assets/Clip_2024-04-24_21-44-02.png)
+
+- 还有
+    ```python
+    class StartConfig(object):
+        def __init__(self, num):
+            self.num = num
+    
+        def change_list(self, request):
+            print(self.num, request)
+    
+        def run(self):
+            print(self.change_list(999))
+    
+    
+    class RoleConfig(StartConfig):
+    
+        def change_list(self, request):
+            print(666, self.num)
+    
+    
+    config_obj_list = [StartConfig(1), StartConfig(2), RoleConfig(3)]
+    for item in config_obj_list:
+        item.run()
+    ```
+
+    ![Clip_2024-04-24_21-50-00](./assets/Clip_2024-04-24_21-50-00.png)
+
+- 还有
+    ```python
+    class AdminSite(object):
+        def __init__(self):
+            self._registry = dict()
+    
+        def register(self, k, v):
+            self._registry[k] = v
+    
+    
+    site = AdminSite()
+    print(len(site._registry))
+    
+    site.register("a", 666)
+    site.register("b", 123)
+    print(len(site._registry))
+    ```
+
+    ![Clip_2024-04-24_22-02-27](./assets/Clip_2024-04-24_22-02-27.png)
+
+    ```python
+    class StartConfig(object):
+        def __init__(self, num):
+            self.num = num
+    
+        def change_list(self, request):
+            print(self.num, request)
+    
+        def run(self):
+            self.change_list(999)
+    
+    
+    class RoleConfig(StartConfig):
+    
+        def change_list(self, request):
+            print(666, self.num)
+    
+    
+    class AdminSite(object):
+        def __init__(self):
+            self._registry = dict()
+    
+        def register(self, k, v):
+            self._registry[k] = v
+    
+    
+    site = AdminSite()
+    
+    site.register("c", StartConfig(1999))
+    site.register("d", StartConfig(20))
+    site.register("e", RoleConfig(333))
+    
+    print(len(site._registry))  # 3
+    
+    for k, row in site._registry.items():
+        print(k, row, row.change_list(5))
+    ```
+
+    ![Clip_2024-04-24_22-09-41](./assets/Clip_2024-04-24_22-09-41.png)
+
+- 还有
+    ```python
+    class StartConfig(object):
+        def __init__(self, num):
+            self.num = num
+    
+        def change_list(self, request):
+            print(self.num, request)
+    
+        def run(self):
+            self.change_list(999)
+    
+    
+    class RoleConfig(StartConfig):
+    
+        def change_list(self, request):
+            print(666, self.num)
+    ```
+
+    ![Clip_2024-04-24_22-12-22](./assets/Clip_2024-04-24_22-12-22.png)
+
+- 最后一个
+    ```python
+    class UserInfo(object):
+        pass
+    
+    class Department(object):
+        pass
+    
+    class StartConfig(object):
+        def __init__(self, num):
+            self.num = num
+    
+        def change_list(self, request):
+            print(self.num, request)
+    
+        def run(self):
+            self.change_list(999)
+    
+    
+    class RoleConfig(StartConfig):
+    
+        def change_list(self, request):
+            print(666, self.num)
+    
+    
+    class AdminSite(object):
+        def __init__(self):
+            self._registry = dict()
+    
+        def register(self, k, v):
+            self._registry[k] = v(k)
+    
+    
+    # config_obj_list = [StartConfig(1), StartConfig(2), RoleConfig(3)]
+    # for item in config_obj_list:
+    #     item.run()
+    
+    site = AdminSite()
+    
+    site.register(UserInfo, StartConfig)
+    site.register(Department, StartConfig)
+    
+    for k, row in site._registry.items():
+        # {UserInfo: StartConfig(UserInfo), Department: StartConfig(Department)}
+        row.run()
+    ```
+
+    ![Clip_2024-04-24_22-22-47](./assets/Clip_2024-04-24_22-22-47.png)
+
+## 3.7 主动调用其他类的成员
+
+```python
+# 如果有下面的程序：
+class Base(object):
+
+    def f1(self):
+        print("Base.f1, 实现三个功能")
 
 
+# 注意这个地方，如果我们要用类名调用函数，需要手动传参
+obj = Base()
+Base.f1(obj)
+
+# 但是我们一般情况下不像上面那样写，因为上面的代码Base调用f1的时候Python内部不会自动帮我们传self参数，
+# 所以要手动传参，所以我们要使用下面的方式
+# 上面那种方式和下面这种方式是一样的
+obj = Base()
+obj.f1()
+```
+
+```python
+class Base(object):
+
+    def f1(self):
+        print("Base.f1, 实现三个功能")
 
 
+class Foo(object):
+
+    def f1(self):
+        print("Foo.f1, 实现五个功能")
+        Base.f1(self)  # 主动调用 方式一
 
 
+# 如果要执行八个功能 如上
+obj = Foo()
+obj.f1()
+```
+
+![Clip_2024-04-24_22-44-37](./assets/Clip_2024-04-24_22-44-37.png)
+
+但是上述代码和继承没有半毛钱关系！！！ 因为两个类没有继承关系！！！
+
+```python
+# 主动调用 方式二
+
+class Base(object):
+
+    def f1(self):
+        print("Base.f1, 实现三个功能")
 
 
+class Foo(Base):
+
+    def f1(self):
+        print("Foo.f1, 实现五个功能")
+        super().f1()  # 按照类的继承顺序去找
 
 
+# 如果要执行八个功能 如上
+obj = Foo()
+obj.f1()
+```
+
+![Clip_2024-04-24_22-48-42](./assets/Clip_2024-04-24_22-48-42.png)
+
+```python
+class Base(object):
+
+    def f1(self):
+        print("Base.f1, 实现三个功能")
 
 
+class Foo(object):
+
+    def f1(self):
+        super().f1()  # 按照类的继承顺序去找 找下一个！！！ 是找下一个！！！
+        print("Foo.f1, 实现五个功能")
 
 
+class Bar(object):
+    def f1(self):
+        print("Base.f1, 实现六个功能！")
 
 
+class Info(Foo, Bar):
+    pass
 
 
+# 如果要执行八个功能 如上
+obj = Info()
+obj.f1()
+```
+
+![Clip_2024-04-24_22-55-14](./assets/Clip_2024-04-24_22-55-14.png)
+
+> [!Important]
+>
+> 下面这个很重要，多看！！！
+
+```python
+class Base(object):
+
+    def f1(self):
+        print("Base.f1, 实现三个功能")
+
+
+class Foo(object):
+
+    def f1(self):
+        super().f1()  # self传进来的是哪个对象 就按照哪个对象的继承顺序去找下一个 找下一个！！！ 是找下一个！！！
+        print("Foo.f1, 实现五个功能")
+
+
+class Bar(object):
+    def f1(self):
+        print("Base.f1, 实现六个功能！")
+
+
+class Info(Foo, Bar):
+    pass
+
+
+# 如果要执行八个功能 如上
+obj = Foo()
+obj.f1()
+```
+
+![Clip_2024-04-24_22-56-38](./assets/Clip_2024-04-24_22-56-38.png)
+
+## 3.8 特殊成员
+
+> [!Note]
+>
+> 注意：谁创建对象，谁就是构造方法！！！在`python`中一般认为是`__new__`方法 -- 因为其创建了空的对象，只是在`__init__`方法中进行
+
+### 3.8.1 一些特殊方法
+
+```python
+class Foo(object):
+
+    def __new__(cls, *args, **kwargs):
+        """
+        创建一个空的对象，然后返回这个对象，在__init__方法中进行初始化
+        必须设置返回值，否则执行完__new__后不会自动执行__init__方法 并且，返回值必须是object.__new__(cls)
+        Args:
+            *args ():
+            **kwargs ():
+        """
+        # 那么问题来了，这个v1和obj = Foo(1, 2) 是不是同一个对象？
+        # 答案是：内存地址是一样的，但是里面的值是不一样的，因为object.__new__(cls)是空的 但是v1是真正有值的对象 -- 内存地址是一样的
+        return object.__new__(cls)  # python内部创建一个当前类的对象(初始时内部是空的) 在__init__里面才进行初始化，使变得不空
+
+    def __init__(self, a1, a2):
+        """
+        为空对象进行数据初始化。
+        Args:
+            a1 ():
+            a2 ():
+        """
+        self.a1 = a1
+        self.a2 = a2
+
+    def __call__(self, *args, **kwargs):
+        """
+
+        Args:
+            *args ():
+            **kwargs ():
+
+        Returns:
+
+        """
+        print(1111, args, kwargs)
+        return 123
+
+    def __getitem__(self, item):
+        """
+
+        Args:
+            item ():
+
+        Returns:
+
+        """
+        print(item)
+        return 8
+
+    def __setitem__(self, key, value):
+        """
+        这种的是没有返回值的。
+        Args:
+            key ():
+            value ():
+
+        Returns:
+
+        """
+
+        print(key, value, 123)
+
+    def __delitem__(self, key):
+        """
+        这种的是没有返回值的。
+        Args:
+            key ():
+        Returns:
+
+        """
+        print(key)
+
+    def __add__(self, other):
+        """
+
+        Args:
+            other ():
+
+        Returns:
+
+        """
+        return self.a1 + other.a1
+
+    def __enter__(self):
+        """
+
+        Returns:
+
+        """
+        print(111)
+        return 132456
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """
+
+        Args:
+            exc_type ():
+            exc_val ():
+            exc_tb ():
+
+        Returns:
+
+        """
+        print(222)
+
+
+# 类名() 自动执行__init__方法
+obj = Foo(1, 2)
+
+# 对象() 自动执行__call__方法
+res = obj(1, 2, 3, k1=1, k2=2)
+print(res)
+
+# 对象[] 自动执行__getitem__方法
+res = obj['yu']
+print(res)
+
+# 对象[xxxx] = xxx 自动执行__setitem__方法
+obj["computer"] = "science"
+
+# del 对象[xxx] 自动执行__delitem__方法
+del obj["xxx"]
+
+# 还有很多的方法 自己查看源码
+
+
+# 对象 + 对象 自动执行__add__方法
+obj1 = Foo(1, 2)
+obj2 = Foo(3, 4)
+
+res = obj1 + obj2  # 这里会报错 因为没有实现__add__方法
+print(res)
+
+# with 对象.方法 自动执行__enter__方法
+with obj as f:
+    print("内部的代码！")
+    print(f)  # 这个f就是__enter__方法的返回值
+
+# 真正的构造方法  __new__ 在实例化对象的时候，先执行__new__方法 再执行__init__方法
+
+
+# print(对象) 自动执行__str__方法
+# 对象 * 对象 自动执行__mul__方法
+# 对象 in 对象 自动执行__contains__方法
+# 对象 == 对象 自动执行__eq__方法
+# 对象 != 对象 自动执行__ne__方法
+# 对象 < 对象 自动执行__lt__方法
+# 对象 <= 对象 自动执行__le__方法
+# 对象 > 对象 自动执行__gt__方法
+# 对象 >= 对象 自动执行__ge__方法
+# 对象 | 对象 自动执行__or__方法
+# 对象 & 对象 自动执行__and__方法
+# 对象 ^ 对象 自动执行__xor__方法
+# 对象 << 对象 自动执行__lshift__方法
+# 对象 >> 对象 自动执行__rshift__方法
+# 对象 ** 对象 自动执行__pow__方法
+# 对象 // 对象 自动执行__floordiv__方法
+# 对象 / 对象 自动执行__truediv__方法
+# 对象 % 对象 自动执行__mod__方法
+# 对象() 自动执行__call__方法
+# 对象[xxx] 自动执行__getitem__方法
+# 对象[xxx] = xxx 自动执行__setitem__方法
+# del 对象[xxx] 自动执行__delitem__方法
+# 对象 += 对象 自动执行__iadd__方法
+# 对象 *= 对象 自动执行__imul__方法
+# 对象 |= 对象 自动执行__ior__方法
+# 对象 &= 对象 自动执行__iand__方法
+# 对象 ^= 对象 自动执行__ixor__方法
+# ...
+```
+
+### 3.8.2 重点
+
+1. 组合练习题 `******`
+2. 主动调用其他类的成员 `***`
+3. 特殊成员 `***`
+4. `isinstance/issubclass/type` `***`
+
+## 3.9 练习题
+
+- 第一题：
+
+```python
+class StarkConfig(object):
+    list_display = []
+
+    def __init__(self):
+        pass
+
+    def get_list_display(self):
+        self.list_display.insert(0, 3)
+        return self.list_display
+
+
+class RoleConfig(object):
+    list_display = [11, 22]
+
+    def __init__(self):
+        pass
+
+
+s1 = StarkConfig()
+
+res1 = s1.get_list_display()
+print(res1) # [3]
+
+res2 = s1.get_list_display()
+print(res2)  # [3, 3]
+```
+
+- 第二题：
+
+```python
+class StarkConfig(object):
+    list_display = []
+
+    def __init__(self):
+        pass
+
+    def get_list_display(self):
+        self.list_display.insert(0, 3)
+        return self.list_display
+
+
+class RoleConfig(StarkConfig):
+    list_display = [11, 22]
+
+    def __init__(self):
+        pass
+
+
+s1 = StarkConfig()
+s2 = StarkConfig()
+
+res1 = s1.get_list_display()
+print(res1)  # [3]
+
+res2 = s2.get_list_display()
+print(res2)  # [3]
+```
+
+- 第三题：
+
+```python
+class StarkConfig(object):
+    list_display = []
+
+    def __init__(self):
+        pass
+
+    def get_list_display(self):
+        self.list_display.insert(0, 3)
+        return self.list_display
+
+
+class RoleConfig(StarkConfig):
+    list_display = [11, 22]
+
+    def __init__(self):
+        pass
+
+
+s1 = StarkConfig()
+s2 = RoleConfig()
+
+res1 = s1.get_list_display()
+print(res1)  # [3]
+
+res2 = s2.get_list_display()
+print(res2)  # [3, 11, 22]
+```
+
+- 第四题：
+
+```python
+class StarkConfig(object):
+    list_display = []
+
+    def __init__(self):
+        pass
+
+    def get_list_display(self):
+        self.list_display.insert(0, 3)
+        return self.list_display
+
+
+class RoleConfig(StarkConfig):
+    list_display = [11, 22]
+
+    def __init__(self):
+        pass
+
+
+s1 = RoleConfig()
+s2 = RoleConfig()
+
+res1 = s1.get_list_display()
+print(res1)  # [3, 11, 22]
+
+res2 = s2.get_list_display()
+print(res2)  # [3, 3, 11, 22]
+```
+
+## 3.10 面向对象相关
+
+- `isinstance/issubclass/type`
+- 方法和函数
+- 反射
+
+### 3.10.1 `issubclass`
+
+> [!Caution]
+>
+> 注意，这个子类和父类，求得是子子孙孙的关系，并不只是两个层级的关系，而是跨越多个和继承层级的。
+
+```python
+class Base(object):
+    pass
+
+
+class Foo(Base):
+    pass
+
+
+class Bar(Foo):
+    pass
+
+
+# 检查第一个参数是否是第二个参数的子类
+print(issubclass(Foo, Base))  # True
+print(issubclass(Base, Foo))  # False
+print(issubclass(Bar, Base))  # True
+```
+
+### 3.10.2 `type`
+
+```python
+class Foo(object):
+    pass
+
+
+class Bar(object):
+    pass
+
+
+obj = Foo()
+print(obj, type(obj))  # 获取当前对象是由哪个类创建。
+
+v = type(obj) is Foo
+print(v)
+
+
+obj1 = Foo()
+obj2 = Foo()
+obj3 = Bar()
+
+
+def func(*args):
+    foo_count = 0
+    bar_count = 0
+    for item in args:
+        if type(item) is Foo:
+            foo_count += 1
+        if type(item) is Bar:
+            bar_count += 1
+    return foo_count, bar_count
+
+
+print(func(obj1, obj2, obj3))
+```
+
+### 3.10.3 `isinstance`
+
+判断，是谁创建这个对象，往上找，只要往上找，能找到就返回`True` -- 相比较于`type`，找的范围更大
+
+```python
+class Base(object):
+    pass
+
+
+class Foo(Base):
+    pass
+
+
+class Bar(object):
+    pass
+
+
+obj = Foo()
+print(obj, isinstance(obj, Foo))  # True 检查第一个参数是否是第二个参数(类或者父类)的实例 第一个参数一般是对象 第二个参数一般是类
+print(obj, isinstance(obj, Bar))  # False
+print(obj, isinstance(obj, Base))  # True
+```
+
+**注意：给你一个参数，判断对象是不是某一个指定类 -- `type`**
+
+**给你一个参数，判断对象是不是某一个指定类(或其父类) -- `ininstance`**
+
+### 3.10.4 方法和函数的区分
+
+```python
+def func():
+    pass
+
+
+class Foo(object):
+    def func(self):
+        pass
+
+    @staticmethod
+    def xxx():
+        pass
+
+
+print(func)  # 函数 <function func at 0x0000019B8BA5E0C0>
+print(Foo().func)  # 方法 <bound method Foo.func of <__main__.Foo object at 0x0000019B8BC016D0>>
+print(Foo().xxx)  # 函数 <function Foo.xxx at 0x00000294E219E700>
+print(Foo.xxx)  # 函数 <function Foo.xxx at 0x00000294E219E700>
+```
+
+```python
+class Foo(object):
+    def f1(self):
+        pass
+
+    def f2(self):
+        pass
+
+    def f3(self):
+        pass
+
+    list_display = [f1, f2]
+
+    # def get_list_display(self):
+    #     self.list_display.append(self.f3)
+    #     return self.list_display
+
+    def __init__(self):
+        pass
+
+
+obj = Foo()
+
+for item in Foo.list_display:
+    print(item)  # 都是函数
+    # item(132)
+
+
+# 这里有一点，是否是函数还是方法，不是通过是否写在类里面判断的，而是通过调用这个函数的对象来判断的
+# 如果是通过类名来调用的，那么就是函数--就需要自己传递那个对象  如果是通过对象来调用的，那么就是方法--方法是自动传值的
+```
+
+```python
+class Foo(object):
+    def f1(self):
+        pass
+
+    def f2(self):
+        pass
+
+    def f3(self):
+        pass
+
+    list_display = [f1, f2]
+
+    # def get_list_display(self):
+    #     self.list_display.append(self.f3)
+    #     return self.list_display
+
+    def __init__(self):
+        pass
+
+
+obj = Foo()
+
+Foo.list_display.append(obj.f3)
+
+for item in Foo.list_display:
+    print(item)
+
+
+# 这里有一点，是否是函数还是方法，不是通过是否写在类里面判断的，而是通过调用这个函数的对象来判断的
+# 如果是通过类名来调用的，那么就是函数--就需要自己传递那个对象  如果是通过对象来调用的，那么就是方法--方法是自动传值的
+```
+
+![Clip_2024-04-27_18-27-58](./assets/Clip_2024-04-27_18-27-58.png)
+
+## 3.11 反射
+
+> [!Tip]
+>
+> 问题：我们有十个功能，每个功能对应一个函数，我希望在用户选择的时候能够快速的选择出来需要的功能你会用什么方法？ 
+>
+> - 一大堆if else
+> - 反射
+
+以字符串为参数，去模块中寻找与之同名的函数 -- 反射
+
+### 3.11.1 重点
+
+```python
+# handler.py
+
+def f1():
+    print("f1")
+
+
+def f2():
+    print("f2")
+
+
+def f3():
+    print("f3")
+
+
+def f4():
+    print("f4")
+
+
+def f5():
+    print("f5")	
+```
+
+```python
+# reflect.py
+
+# -*- coding: utf-8 -*-
+# @CreateTime : 2024/4/27 027 18:32
+# @Author : 瑾瑜@20866
+# @IDE : PyCharm
+# @File : studyProject/reflect.py
+# @Description : 
+# @Interpreter : python 3.10
+# @Motto : You must take your place in the circle of life!
+# @Site : https://github.com/wephiles or https://gitee.com/wephiles
+
+import handler
+from types import FunctionType
+
+# handler.f1()
+# handler.f2()
+# handler.f3()
+# handler.f4()
+# handler.f5()
+
+print("""系统支持的函数有:
+    1: f1
+    2: f2
+    3: f3
+    4: f4
+    5: f5
+""", end=" ")
+
+while True:
+    print("请输入要执行的函数. eg: \n>>>f1 \n ===================================")
+    val = input(">>> ")
+    # handler.val()  # 错误的写法 -- 因为这样会去handler里面找val函数！但是handler里面没有这个函数，
+    # 此外，如果有这个函数的话，可能造成巨大的问题！
+
+    # # 下面这样写是正确的，但是不够优雅！！！
+    # if var == "f1":
+    #     handler.f1()
+    # elif var == "f2":
+    #     handler.f2()
+    # elif var == "f3":
+    #     handler.f3()
+    # elif var == "f4":
+    #     handler.f4()
+    # elif var == "f5":
+    #     handler.f5()
+    # else:
+    #     print("输入错误, 请重新输入.")
+
+    # # 怎么办？ -- 使用反射！
+    # # 反射：通过字符串调用函数，而不是直接调用函数。
+    # func = getattr(handler, "f1")  # 直接去handler模块里面找f1函数(通过字符串的形式) -- 返回一个function对象
+    # func()
+    # # 这个函数的作用是通过字符串调用函数，而不是直接调用函数。
+    # # 第一个参数是模块名，第二个参数是函数名(字符串类型)。
+    # # 它会返回一个函数对象，然后就可以调用这个函数对象了。
+    if hasattr(handler, val):
+        func_or_val = getattr(handler, val)
+        if isinstance(func_or_val, FunctionType):
+            func_or_val()
+        else:
+            print(func_or_val)
+    else:
+        print("输入错误, 请重新输入.")
+        break
+
+    # 这样就可以通过字符串调用函数了！
+
+
+# --END--
+
+```
+
+```python
+# 上述表述不够精准，还需修改：
+
+class Foo(object):
+    country = "中国"
+
+    def func(self):
+        pass
+
+
+# v = getattr(Foo, "country")  # 根据字符串，从类实例中寻找
+# print(v)  # 中国
+
+# v = getattr(Foo, "func")  # # 根据字符串，从类中寻找
+# print(v)  # <function Foo.func at 0x0000027D372D8C20>
+
+# obj = Foo()
+#
+# v = getattr(obj, "func")  # 根据字符串，从对象中寻找
+# print(v)  # <bound method Foo.func of <__main__.Foo object at 0x000001EEE8031550>>
+```
+
+> [!Important]
+>
+> 准确的说，`getattr ` -->    根据字符串为参数，去对象中寻找与之同名的成员
+
+```python
+class Account(object):
+    function_list = ['login', 'register', 'logout']
+    def login(self):
+        """
+        登录
+        Returns:
+
+        """
+        print("login")
+
+    def register(self):
+        """
+        注册
+        Returns:
+
+        """
+        print("register")
+
+    def logout(self):
+        """
+        注销
+        Returns:
+
+        """
+        print('logout')
+
+    def run(self):
+        """
+        运行 主代码
+        Returns:
+
+        """
+
+        print("请输入要执行的功能：1、登录 2、注册 3、注销 4、退出")
+        choice = int(input(">>> "))
+        func_name = Account.function_list[choice-1]
+        # func = getattr(Account, func_name)  # 函数
+        # func(self)
+        func = getattr(self, func_name)  # 函数
+        func()
+        pass
+
+
+obj = Account()
+obj.run()
+
+obj1 = Account()
+obj1.run()
+```
+
+- 关于`attr`家族:
+
+    - `getattr`  -- 根据字符串形式，去对象中找成员
+    - `hasattr`  -- 根据字符串形式，判断对象中是否有成员
+    - `setattr`  -- 根据字符串形式，去动态地设置成员(内存)
+    - `delsttr`  -- 根据字符串形式，去动态地删除成员(内存)
+
+    ```python
+    # demo3.py
+    
+    x1 = 123
+    
+    
+    def f1(arg):
+        print(arg, 666)
+    ```
+
+    ```python
+    # practice.py
+    
+    import demo3
+    
+    v1 = (demo3, "x1")
+    v2 = getattr(demo3, "f1")
+    
+    # # getattr
+    # print(v1)  # (<module 'demo3' from 'F:\\CSProjects\\PycharmProjects\\studyProject\\OOP\\demo3.py'>, 'x1')
+    # print(v2)  # <function f1 at 0x000002CCD1998C20>
+    # v2("computer")  # computer 666
+    
+    # hasattr
+    v3 = hasattr(demo3, "x1")
+    v4 = hasattr(demo3, "f1")
+    v5 = hasattr(demo3, "f111")
+    print(v3, v4)  # True True
+    print(v5)  # False
+    
+    # setattr
+    setattr(demo3, 'x2', 999)  # 设置了 但demo3.py中没有x2 -- 在内存中 但是没有写入文件
+    print(getattr(demo3, 'x2'))  # 999
+    
+    setattr(demo3, 'f2', lambda x: x + 1)  # 设置了 但demo3.py中没有x2 -- 在内存中 但是没有写入文件
+    print(getattr(demo3, 'f2'))  # <function <lambda> at 0x000001F6DCCBE0C0>
+    
+    # delattr
+    
+    delattr(demo3, "x1")
+    v9 = getattr(demo3, "x1")  # 报错
+    ```
+
+    ```python
+    class Foo(object):
+        def __init__(self, a1):
+            self.a1 = a1
+    
+    
+    obj = Foo(1)
+    
+    v1 = getattr(obj, "a1")
+    print(v1)
+    
+    # # ！！!注意！:不推荐使用setattr
+    # setattr(obj, "a2", 2)
+    # v2 = getattr(obj, "a2")
+    # print(v2)
+    ```
+
+### 3.11.2 补充
+
+什么后面可以加()? -- 只要可以加括号，就是可被执行/可被调用
+
+- 类()
+- 对象()
+- 函数()
+- 方法()
+
+```python
+def func():
+    pass
+
+
+class Foo(object):
+    pass
+
+    def func(self):
+        pass
+
+
+class Bar(object):
+    def __call__(self, *args, **kwargs):
+        pass
+
+
+data = 123
+
+obj = Foo()
+obj1 = Bar()
+
+print(callable(func))  # True
+print(callable(Foo))  # True
+print(callable(obj))  # False
+print(callable(obj.func))  # True
+print(callable(obj1))  # True
+print(callable(data))  # False
+```
+
+![Clip_2024-04-27_20-24-02](./assets/Clip_2024-04-27_20-24-02.png)
+
+接下来要讲：
+
+- 约束  `***`
+- 自定义异常 `***`
+- `hashlib` `*****`
+- 日志`logging ` `****`
+
+## 3.12 类的约束
+
+### 3.12.1 约束的概念
+
+什么是约束：约束其派生类，保证派生类中必须要编写某一个方法。
+
+如果是约束，这个类必须抛出 `NotImplementedError`
+
+```python
+class BaseMessage(object):
+    """
+    潜规则，以后根据这个基类写的代码都必须要重新send方法，否则会抛出异常
+    """
+    def send(self):
+        """
+        必须要继承BaseMessage的send方法，来完成相关的业务逻辑。
+        Returns:
+
+        """
+        raise NotImplementedError(".send()方法必须被重写。")  # 如果是约束，这个类必须抛出 NotImplementedError
+
+
+class Email(BaseMessage):
+    def send(self):
+        pass
+
+    def f1(self):
+        pass
+
+    def f2(self):
+        pass
+
+
+class Wechat(BaseMessage):
+    def send(self):
+        pass
+
+    def f1(self):
+        pass
+
+    def f2(self):
+        pass
+
+
+class Msg(BaseMessage):
+    def send(self):
+        pass
+
+    def f1(self):
+        pass
+
+    def f2(self):
+        pass
+
+
+def func(arg):
+    """
+    报警通知功能
+    Args:
+        arg ():
+
+    Returns:
+
+    """
+    arg.send()
+
+
+obj = Msg()
+```
+
+看源码：
+
+```python
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.authentication import RemoteUserAuthentication
+from rest_framework.authentication import TokenAuthentication
+```
+
+上述三个类其实都继承了`BaseAuthentication`类。看下面这张图片方框框出的内容，这就是约束。
+
+![Clip_2024-04-28_17-07-18](./assets/Clip_2024-04-28_17-07-18.png)
+
+![Clip_2024-04-28_17-15-42](./assets/Clip_2024-04-28_17-15-42.png)
+
+> [!Caution]
+>
+> 建议使用：
+>
+> ```python
+> def func(arg):
+>     """
+>     报警通知功能
+>     Args:
+>         arg ():
+> 
+>     Returns:
+> 
+>     """
+>     arg.send()
+> 
+> 
+> class BaseMessage(object):
+>     """
+>     潜规则，以后根据这个基类写的代码都必须要重新send方法，否则会抛出异常
+>     """
+> 
+>     def send(self, x1):
+>         """
+>         必须要继承BaseMessage的send方法，来完成相关的业务逻辑。
+>         Returns:
+> 
+>         """
+>         raise NotImplementedError(".send()方法必须被重写！")
+> 
+> 
+> class Wechat(BaseMessage):
+>     def send(self):
+>         pass
+> 
+>     def f1(self):
+>         pass
+> 
+>     def f2(self):
+>         pass
+> 
+> 
+> class Msg(BaseMessage):
+>     def send(self):
+>         pass
+> 
+>     def f1(self):
+>         pass
+> 
+>     def f2(self):
+>         pass
+> 
+> 
+> class Email(BaseMessage):
+>     pass
+> 
+>     def send(self, x1):
+>         pass
+> 
+> 
+> obj = Email()
+> obj.send(123)
+> ```
+
+### 3.12.2 补充
+
+`python`：
+
+- 类
+    ```python
+    class Foo:
+        pass
+    ```
+
+    - 类
+
+    - 抽象类 -- 这个基本没人用 -- 常用人为抛出异常
+        ```python
+        from abc import ABCMeta, abstractmethod
+        
+        
+        class Base(metaclass=ABCMeta):  # 定义了抽象类
+            """
+            抽象类，语法就是这样，记住就行了。
+            """
+        
+            def f1(self):
+                """
+                普通方法
+                Returns:
+        
+                """
+                pass
+        
+            @abstractmethod
+            def f2(self):
+                """
+                抽象方法
+                Returns:
+        
+                """
+                pass
+        
+        
+        class Foo(Base):
+            pass
+        
+        
+        obj = Foo()
+        obj.f1()
+        obj.f2()
+        ```
+
+        ![Clip_2024-04-28_17-36-41](./assets/Clip_2024-04-28_17-36-41.png)
+
+`java、C#`：专业的叫实现一个接口。 -- 可以简单理解为继承
+
+- 接口:接口中不允许在方法内部写代码 -- 只能约束实现(继承)他的类必须**实现(implement)**接口中实现的所有方法
+    ```python
+    接口关键字为interface
+    ```
+
+    `java`允许实现(继承)多个接口。
+
+- 类
+    ```python
+    类关键字为class
+    ```
+
+    - 类
+
+    - 抽象类 -- 里面可以有抽象方法 -- 约束继承他的派生类必须实现他其中的抽象方法。 -- 抽象方法里面不能写代码
+        ```python
+        关键字为 abstract class 类名
+        关键字为 abstract 方法名
+        ```
+
+## 3.13 自定义异常
+
+程序设计的时候，要处理程序中的问题，有以下几种方式：
+
+### 3.13.1 第一种方式：
+
+```python
+import os
+
+
+def func(path, prev):
+    """
+    去path路径的文件中找前缀为prev的数据，并返回
+        1000 成功
+        1001 文件不存在
+        1002 关键字为空
+        1003 未知错误
+        ...
+    Args:
+        path ():
+        prev ():
+
+    Returns:
+
+    """
+    response = {"code": 1000, "data": None}
+
+    try:
+        if not os.path.exists(path):
+            response["code"] = 1001
+            response["data"] = "文件不存在"
+            return response
+        if not prev:
+            response["code"] = 1002
+            response["data"] = "关键字为空"
+            return response
+        pass
+    except Exception as e:
+        response["code"] = 1003
+        response["data"] = "未知错误"
+    return response
+
+
+def show():
+    return 8
+
+
+def run():
+    v1 = func()
+    v2 = show()
+```
+
+### 3.13.2 第二种方式： -- 着重关注下面代码中的`new_func()`函数
+
+```python
+import os
+
+
+class FileExistException(Exception):
+    pass
+
+
+class KeyInvalidError(Exception):
+    pass
+
+def func(path, prev):
+    """
+    去path路径的文件中找前缀为prev的数据，并返回
+        1000 成功
+        1001 文件不存在
+        1002 关键字为空
+        1003 未知错误
+        ...
+    Args:
+        path ():
+        prev ():
+
+    Returns:
+
+    """
+    response = {"code": 1000, "data": None}
+
+    try:
+        if not os.path.exists(path):
+            response["code"] = 1001
+            response["data"] = "文件不存在"
+            return response
+        if not prev:
+            response["code"] = 1002
+            response["data"] = "关键字为空"
+            return response
+        pass
+    except Exception as e:
+        response["code"] = 1003
+        response["data"] = "未知错误"
+    return response
+
+
+def new_func(path, prev):
+    """
+    去path路径的文件中找前缀为prev的数据，并返回
+        1000 成功
+        1001 文件不存在
+        1002 关键字为空
+        1003 未知错误
+        ...
+    Args:
+        path ():
+        prev ():
+
+    Returns:
+
+    """
+    response = {"code": 1000, "data": None}
+
+    try:
+        if not os.path.exists(path):
+            raise FileExistException()
+        if not prev:
+            raise KeyInvalidError()
+        pass
+
+    except FileExistException as e:
+        response["code"] = 1001
+        response["data"] = "文件不存在"
+    except KeyInvalidError as e:
+        response["code"] = 1002
+        response["data"] = "关键字为空"
+    except Exception as e:
+        response["code"] = 1003
+        response["data"] = "未知错误"
+    return response
+
+
+def show():
+    return 8
+
+
+def run():
+    v1 = func()
+    v2 = show()
+```
+
+### 3.13.3 自定义异常类
+
+```python
+class MyException(Exception):
+    """
+    自定义异常类。
+    """
+    def __init__(self, code, message):
+        self.code = code
+        self.message = message
+
+
+try:
+    raise MyException(1000, "自定义异常啦")
+except MyException as e:  # 捕获异常 这个e是一个对象
+    print(e.code, e.message)
+```
+
+![Clip_2024-04-28_19-27-13](./assets/Clip_2024-04-28_19-27-13.png)
+
+```python
+class MyException(Exception):
+    """
+    自定义异常类。
+    """
+    def __init__(self, code, message):
+        self.code = code
+        self.message = message
+
+
+try:
+    raise MyException(1000, "自定义异常啦")
+except MyException as e:  # 捕获异常 这个e是一个对象
+    print(e.code, e.message)
+except Exception as e:  # 捕获异常 这个e是一个对象
+    print(e)
+```
+
+![Clip_2024-04-28_19-28-02](./assets/Clip_2024-04-28_19-28-02.png)
+
+## 3.14 `hashlib`
+
+```python
+import hashlib
+
+SALT = b"daojdjuioaejhwdejas98dfjoiwejf9pweqj9iJCOPIEJWFUOHREIUOFHJ9ERHJGUIEHGUHJDIS9UPHFGOISAJR8T9FHUEWSOUIGHOLIDFSUAH"
+
+obj = hashlib.md5()  # 先实例化一个对象
+obj.update("admin".encode("utf-8"))  # 想对谁加密，就把参数传进去 在python3.5中，这个参数必须是字节
+v = obj.hexdigest()  # 获取密文
+print(v)  # 21232f297a57a5a743894a0e4a801fc3
+
+obj1 = hashlib.md5(SALT)  # 先实例化一个对象 这波加盐 防止撞库被发现密码 传一个盐进去 这个盐必须是字节码
+obj1.update("admin".encode("utf-8"))  # 想对谁加密，就把参数传进去 在python3.5中，这个参数必须是字节码
+v = obj1.hexdigest()  # 获取密文
+print(v)  # 21232f297a57a5a743894a0e4a801fc3
+```
+
+## 3.15 日志 `logging`
+
+为什么要有日志 -- 给开发人员看，用于排查错误
+
+```python
+# 日志级别
+
+CRITICAL = 50
+FATAL = CRITICAL
+ERROR = 40
+WARNING = 30
+WARN = WARNING
+INFO = 20
+DEBUG = 10
+NOTSET = 0
+```
+
+![Clip_2024-04-28_20-50-02](./assets/Clip_2024-04-28_20-50-02.png)
+
+```python
+import logging
+
+logging.basicConfig(
+    filename="log.log",
+    format='%(asctime)s - %(name)s - %(levelname)s - %(module)s: %(message)s',
+    # asctime 什么时候出的错
+    # name 模块名
+    datefmt="%Y-%m-%d %H:%M:%S %p",
+    level=10  # 日志级别 大于等于的时候10
+)
+
+logging.debug("debug")  # 测试时候的日志
+logging.info("info")  # 正常的信息
+logging.warning("warning")  # 警告 能用
+logging.error("error")  # 报错
+logging.critical("critical")  # 非常严重错误
+logging.log(10, "loggg")
+```
+
+```python
+import logging
+
+logging.basicConfig(
+    filename="log.log",
+    format='%(asctime)s - %(name)s - %(levelname)s - %(module)s: %(message)s',
+    # asctime 什么时候出的错
+    # name 模块名
+    datefmt="%Y-%m-%d %H:%M:%S %p",
+    level=10  # 日志级别 大于等于的时候10
+)
+
+
+# logging.debug("debug")  # 测试时候的日志
+# logging.info("info")  # 正常的信息
+# logging.warning("warning")  # 警告 能用
+# logging.error("error")  # 报错
+# logging.critical("critical")  # 非常严重错误
+# logging.log(10, "loggg")
+
+
+def func():
+    try:
+        a = a + 1
+    except Exception as e:
+        logging.error(str(e))
+
+
+func()
+```
+
+![Clip_2024-04-28_21-00-07](./assets/Clip_2024-04-28_21-00-07.png)
+
+牛逼的来啦：
+
+```python
+import logging
+import traceback
+
+logging.basicConfig(
+    filename="log.log",
+    format='%(asctime)s - %(name)s - %(levelname)s - %(module)s: %(message)s',
+    # asctime 什么时候出的错
+    # name 模块名
+    datefmt="%Y-%m-%d %H:%M:%S %p",
+    level=10  # 日志级别 大于等于的时候10
+)
+
+
+# logging.debug("debug")  # 测试时候的日志
+# logging.info("info")  # 正常的信息
+# logging.warning("warning")  # 警告 能用
+# logging.error("error")  # 报错
+# logging.critical("critical")  # 非常严重错误
+# logging.log(10, "loggg")
+
+
+def func():
+    try:
+        a = a + 1
+    except Exception as e:
+        # 获取当前错误的堆栈信息
+        msg = traceback.format_exc()
+        logging.error(msg)
+
+
+func()
+```
+
+![Clip_2024-04-28_21-06-29](./assets/Clip_2024-04-28_21-06-29.png)
+
+关于日志的个数：只能有一个 -- 利用`logging.basicConfig`的时候。
+
+![Clip_2024-04-28_21-12-58](./assets/Clip_2024-04-28_21-12-58.png)
+
+![Clip_2024-04-28_21-13-10](./assets/Clip_2024-04-28_21-13-10.png)
+
+如果要写多个日志：自定义日志
+
+```python
+import logging
+
+file_handler_obj = logging.FileHandler("log1.log", 'a', encoding='utf-8')
+fmt = logging.Formatter(fmt="%(asctime)s - %(name)s - %(levelname)s - %(module)s: %(message)s")
+file_handler_obj.setFormatter(fmt)
+
+logger1 = logging.Logger("s1", level=logging.ERROR)
+logger1.addHandler(file_handler_obj)
+logger1.error("logger1 error")
+
+file_handler_obj = logging.FileHandler("log2.log", 'a', encoding='utf-8')
+fmt = logging.Formatter(fmt="%(asctime)s - %(name)s - %(levelname)s - %(module)s: %(message)s")
+file_handler_obj.setFormatter(fmt)
+
+logger2 = logging.Logger("s1", level=logging.WARNING)
+logger2.addHandler(file_handler_obj)
+logger2.warning("logger2 warning")
+```
+
+![Clip_2024-04-28_21-23-04](./assets/Clip_2024-04-28_21-23-04.png)
+
+下面要讲解：
+
+- 面向对象多继承
+- 网络基础
+- 网络相关的程序
+
+## 3.16 多继承之`c3`算法
 
 
 

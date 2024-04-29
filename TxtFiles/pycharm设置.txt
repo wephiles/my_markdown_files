@@ -27,8 +27,8 @@ pycharm设置.txt
 
 # 翻译API
 有道翻译API：
-20577f2b60f63328    
-0efhd0Xvwe4L32MBekRKuI2nOXfezFrK 
+20577f2b60f63328
+0efhd0Xvwe4L32MBekRKuI2nOXfezFrK
 百度翻译API：
 20220212001081190
 rsUzzB6Q_r5_9yBhfnVs
@@ -57,7 +57,7 @@ $ {MONTH_NAME_FULL}# 一个月的全名
 # @Author : 瑾瑜@${USER}
 # @IDE : ${PRODUCT_NAME}
 # @File : ${PROJECT_NAME}/${NAME}.py
-# @Description : 
+# @Description :
 # @Interpreter : python 3.10
 # @Motto : You must take your place in the circle of life!
 # @Site : https://github.com/JinYu-2023?tab=repositories
@@ -81,21 +81,21 @@ $ {MONTH_NAME_FULL}# 一个月的全名
 # @Software : ${PRODUCT_NAME}
 # @InterpreterLocation : !C:\Windows.old\Users\20866\AppData\Local\Programs\Python\Python310\python.exe
 # @Site : https://gitee.com/qiongjulingjun
- *********************** 以上完全OK 
+ *********************** 以上完全OK
  ***********************************
 ${PROJECT_NAME}
-${NAME} 
-${USER} 
-${DATE}  
-${TIME}  
-${YEAR}   
-${MONTH}  
-${DAY} 
-${HOUR} 
-${MINUTE} 
-${PRODUCT_NAME}   
-${MONTH_NAME_SHORT}   
-${MONTH_NAME_FULL} 
+${NAME}
+${USER}
+${DATE}
+${TIME}
+${YEAR}
+${MONTH}
+${DAY}
+${HOUR}
+${MINUTE}
+${PRODUCT_NAME}
+${MONTH_NAME_SHORT}
+${MONTH_NAME_FULL}
 
 ------------------------------------
 
@@ -150,7 +150,7 @@ $ {MONTH_NAME_FULL}# 一个月的全名
 # @Author : 瑾瑜@${USER}
 # @IDE : ${PRODUCT_NAME}
 # @File : ${PROJECT_NAME}/${NAME}.py
-# @Description : 
+# @Description :
 # @Interpreter : python 3.10
 # @Motto : You must take your place in the circle of life!
 # @Site : https://github.com/wephiles or https://gitee.com/wephiles
@@ -171,10 +171,29 @@ $ {MONTH_NAME_FULL}# 一个月的全名
 11. Translation 翻译插件 极其好用
 12. Statistic  统计你的代码有啥
 
+
+===================================================================
 有道翻译API：
-20577f2b60f63328    
-0efhd0Xvwe4L32MBekRKuI2nOXfezFrK 
+20577f2b60f63328
+0efhd0Xvwe4L32MBekRKuI2nOXfezFrK
 
 百度翻译API：
 20220212001081190
 rsUzzB6Q_r5_9yBhfnVs
+===============================================================================
+下面这个是2024.04.28的
+------------------------------------ * ------------------------------------
+# -*- coding: utf-8 -*-
+# @CreateTime : ${DATE} ${TIME}
+# @Author : wephiles@${USER}
+# @IDE : ${PRODUCT_NAME}
+# @ProjectName : ${PROJECT_NAME}
+# @FileName : ${PROJECT_NAME}/${NAME}.py
+# @Description : This is description of this script.
+# @Interpreter : python 3.10
+# @Motto : You must take your place in the circle of life!
+# @AuthorSite : https://github.com/wephiles or https://gitee.com/wephiles
+------------------------------------ * ------------------------------------
+# --END--
+
+===============================================================================
