@@ -8,13 +8,13 @@
 
 ### 1.2 独有功能
 
--　大写　       upper
--　小写　       lower
--　是否是数字 　isdecimal
--　替换         replace
--　去空白       strip
+-　大写　       `upper`
+-　小写　       `lower`
+-　是否是数字 　`isdecimal`
+-　替换         `replace`
+-　去空白       `strip`
 
--   切割 split 切割后得到的是一个列表
+-   切割 `split` 切割后得到的是一个列表
 
     ```python
     file_name = "hello.py"
@@ -33,7 +33,7 @@
 
 -   字符串拼接
 
-    -   +运算符
+    -   `+`运算符
     -   字符串格式化
     -   列表里面有很多字符串，想让他们按照某个连接符拼接起来
 
@@ -44,7 +44,7 @@
     #　计算机 科学 与 技术
     ```
 
--   字符串转换成字节类型 encode()
+-   字符串转换成字节类型 `encode()`
 
     ```python
     字符串    Unicode
@@ -74,7 +74,7 @@
     #　b'\xe5\x93\x88\xe5\x93\x88' 哈哈
     ```
 
--   长度补足 center ljust rjust 让内容放中间/左边/右边 自己想补啥就补啥
+-   长度补足 `center` `ljust` `rjust` 让内容放中间/左边/右边 自己想补啥就补啥
 
     ```python
     name = "computer"
@@ -98,7 +98,7 @@
     # #####computer
     ```
 
--   长度的补足 只能在左边补0  zfill() 二进制补0用的比较多
+-   长度的补足 只能在左边补`0`  `zfill()` 二进制补0用的比较多
 
     ```python
     name = "computer"
@@ -109,7 +109,7 @@
 
 ### 1.3 公共功能
 
-1.   长度 len
+1.   长度 `len`
 
      ```python
      name = "cs"
@@ -117,7 +117,7 @@
      # 2
      ```
 
-2.   索引 []
+2.   索引 `[]`
 
      ```python
      text = "computer"
@@ -125,7 +125,7 @@
      print(text[-2])  # e
      ```
 
-3.   切片 [::] 字符串是不可变的！ 记住喔
+3.   切片 `[::]` 字符串是不可变的！ 记住喔
 
      ```python
      text = "computer"
@@ -137,7 +137,7 @@
      text[:]    # 全部     computer
      ```
 
-4.   循环 for/while循环
+4.   循环 `for/while` 循环
 
      ```python
      name = "computer science"
@@ -186,7 +186,7 @@ data_list.append(1)
 
 ### 2.2 独有功能
 
-1.   追加 append
+1.   追加 `append`
 
      ```python
      data_list = []
@@ -194,7 +194,7 @@ data_list.append(1)
      data_list.append('计算机')
      ```
 
-2.   插入 insert 插入到具体的位置
+2.   插入 `insert` 插入到具体的位置
 
      ```python
      user_list = ["计算机", "电脑", "计算器"]
@@ -202,7 +202,7 @@ data_list.append(1)
      print(user_list)  # ['计算机', '超级计算机', '电脑', '计算器']
      ```
 
-3.   按值删除 remove **如果有重复的值 只会删除从左到右第一个匹配的值**  **如果没有找到值，则会报错** —— 可以利用in关键字判断是否存在值。
+3.   按值删除 `remove` **如果有重复的值 只会删除从左到右第一个匹配的值**  **如果没有找到值，则会报错** —— 可以利用`in`关键字判断是否存在值。
 
      ```python
      data_list = ['计算机', '超级计算机', '电脑', '计算器']
@@ -215,7 +215,7 @@ data_list.append(1)
      random.choice(data_list)  # 去列表里面随机抽取一个值 不会改变列表的值
      ```
 
-4.   按索引删除 pop 如果pop里面不传参数，那么删除最后一个元素。返回删除的元素值
+4.   按索引删除 `pop` 如果`pop`里面不传参数，那么删除最后一个元素。返回删除的元素值
 
      ```python
      data_list = ['计算机', '超级计算机', '电脑', '计算器', 'computer', 'science']
@@ -228,14 +228,14 @@ data_list.append(1)
      '''
      ```
 
-5.   清空列表 clear
+5.   清空列表 `clear`
 
      ```python
      data_list = ['计算机', '超级计算机', '电脑', '计算器', 'computer', 'science']
      print(data_list.clear())
      ```
 
-6.   列表元素排序 sort
+6.   列表元素排序 `sort`
 
      ```python
      data_list = [10, 2, -1, 92, 10, 25, 65]
@@ -291,7 +291,7 @@ data_list.append(1)
     del user_list[0:2]
     ```
 
--   for循环
+-   `for`循环
 
     ```python
     user_list = [11, 22, 33, 44]
@@ -336,9 +336,9 @@ data_list[-2][2[-2]]
 
 ### 练习题
 
-用户注册，提示用户输入用户名和密码如果输入了Q/q终止。
+用户注册，提示用户输入用户名和密码如果输入了`Q/q`终止。
 
-使用list数据结构
+使用`list`数据结构
 
 ## 3 元组
 
@@ -387,10 +387,10 @@ print(v3)
 
 ### 3.4 公共功能
 
--   长度 len
+-   长度 `len`
 -   索引
 -   切片 注意元组不可变
--   for循环 和列表list一样
+-   `for`循环 和列表`list`一样
 
 ### 3.5 嵌套
 

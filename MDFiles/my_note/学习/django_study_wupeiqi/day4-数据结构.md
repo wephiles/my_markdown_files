@@ -52,7 +52,7 @@ info = {'k1': 111, 'k2':999}
 
     ![image-20240127205500681](assets/image-20240127205500681.png)
 
--   字典：在Python3.6之前无序，在3.6之后无序。
+-   字典：在`Python3.6`之前无序，在`3.6`之后无序。
 
 ### 1.1 定义字典
 
@@ -89,7 +89,7 @@ data = {
 
 ### 1.2 字典独有功能
 
-1.   获取值 字典名.get(“键名”, “查不到后返回的值”)
+1.   获取值 字典名.`get`(“键名”, “查不到后返回的值”)
 
      ```python
      info = {
@@ -133,7 +133,7 @@ data = {
              print('登录失败')
      ```
 
-2.   键 字典名.keys()
+2.   键 字典名`.keys()`
      ```python
      info = {
          'name': 'computer',
@@ -166,7 +166,7 @@ data = {
      # ['name', 'age', 'status', 'hobby']
      ```
 
-3.   获取所有的值 字典名.values()
+3.   获取所有的值 字典名`.values()`
 
      ```python
      info = {
@@ -267,7 +267,7 @@ v1, v2 = (11, 22)
          print('不在')
      ```
 
-3.   for循环
+3.   `for`循环
 
      ```python
      # 循环
@@ -371,24 +371,24 @@ if 44 in v1:
 
 -   字符串
 
-    -   独有 大小写 去除空白（左右两边） 分割 替换 拼接（join） 字符填充 是否是数字
-    -   公共 长度 索引 切片 for循环 in是否包含
+    -   独有 大小写 去除空白（左右两边） 分割 替换 拼接（`join`） 字符填充 是否是数字
+    -   公共 长度 索引 切片 `for`循环 `in`是否包含
 
 -   列表
 
     -   独有 追加 插入 删除（值） 删除（索引） 清空 排序 
-    -   公共 长度 索引（读 删 改） 切片（读 删 改） for循环 in是否包含
+    -   公共 长度 索引（读 删 改） 切片（读 删 改） `for`循环 `in`是否包含
 
 -   元组
 
     -   无独有功能
-    -   公共功能 长度 索引 切片 for循环 in是否包含
+    -   公共功能 长度 索引 切片 `for`循环 `in`是否包含
 
 -   字典
 
-    -   独有 get keys values items
+    -   独有 `get` `keys` `values` `items`
 
-    -   公共 len 索引键（读 删 改 添加） for循环 in是否包含
+    -   公共 `len` 索引键（读 删 改 添加） `for`循环 `in`是否包含
         ```python
         info = {
             "k1": 123,
@@ -450,7 +450,7 @@ v1 = {11, 22, 33, 44, 55}
 
 ### 2.2 独有功能
 
-1.    添加元素 add()
+1.    添加元素 `add()`
 
      ```python
      v1 = {11, 22}
@@ -461,13 +461,13 @@ v1 = {11, 22, 33, 44, 55}
      v1.add(222)
      ```
 
-2.    删除元素 discard() **如果不存咋，不会报错** 与列表的remove不同
+2.    删除元素 `discard()` **如果不存咋，不会报错** 与列表的remove不同
      ```python
      v1 = {11, 22}
      v1.discard(11)
      ```
 
-3.    交集 intersection() — 生成一个不同于任意两个集合的新集合
+3.    交集 `intersection()` — 生成一个不同于任意两个集合的新集合
      ```python
      v1 = {11, 22, 33, 44}
      v2 = {11, 22, 55, 66}
@@ -527,7 +527,8 @@ v1 = {11, 22, 33, 44, 55}
          print(item)
      ```
 
-3.   in是否包含(效率高 速度快 => 字典查询键的速度一样)
+3.   `in`是否包含(效率高 速度快 => 字典查询键的速度一样)
+     
      ```python
      v1 = {11, 22, 33, 44}
      
@@ -545,21 +546,24 @@ v1 = {11, 22, 33, 44, 55}
 
 ## 3. 容器之间的转换
 
--   list
+-   `list`
+    
     ```python
     v1 = [11, 22, 33, 44]
     ```
-
--   tuple
+    
+-   `tuple`
+    
     ```python
     v2 = (11, 22, 33, 44)
     ```
-
--   set
+    
+-   `set`
+    
     ```python
     v3 = {11, 22, 33, 44}
     ```
-
+    
 -   三者之间可以相互转换，转换的原则：想转换谁，就把谁的英文名字包裹一下。
     ```python
     v1 = [11, 22, 33, 44]
@@ -569,9 +573,9 @@ v1 = {11, 22, 33, 44, 55}
 
 -   当元组或者列表转换成集合时，会自动去重。
 
-## 4. None类型
+## 4. `None`类型
 
-None表示空值。
+`None`表示空值。
 
 ```python
 # v1设置为空
@@ -596,11 +600,11 @@ v4 = "computer"
 
 ## 5. 布尔类型
 
-真假 True/False
+真假 `True/False`
 
 其他的很多类型的值会转换为布尔值，有真有假
 
--   转换后为False：
+-   转换后为`False`：
     ```python
     0          ->         False
     ""         ->         False
@@ -611,7 +615,7 @@ v4 = "computer"
     None       ->         False
     ```
 
--   其他的转换为布尔后，都为False
+-   其他的转换为布尔后，都为`False`
 
 -   如果将布尔值放在条件或者循环语句后面：
     ```python
@@ -632,7 +636,7 @@ v4 = "computer"
         pass
     ```
 
-## 6. 浮点型(float)
+## 6. 浮点型(`float`)
 
 浮点型就是我们常说的小数。
 
@@ -661,7 +665,7 @@ print(v1 + v2)
 
 ![image-20240129210626910](assets/image-20240129210626910.png)
 
--   如果要做特别精确的计算的时候，使用Python的decimal模块。
+-   如果要做特别精确的计算的时候，使用`Python`的`decimal`模块。
     ```python
     import decimal
     v1 = decimal.Decimal("0.1")
@@ -669,7 +673,7 @@ print(v1 + v2)
     print(v1 + v2)
     ```
 
-## 7. 字节类型 bytes
+## 7. 字节类型 `bytes`
 
 ```python
 name = "计算机"                #       str字符串，底层是unicode编码
@@ -849,7 +853,7 @@ print(data)  # 计算机
     -   注册：输入用户名和密码
     -   登录：和文件中进行比对，看是否对得上
 
-### with上下文：
+### `with`上下文：
 
 ```python
 # 编写文件的时候，可能会关闭文件，这样会导致一些问题，一定要关闭文件——with上下文管理
@@ -866,40 +870,43 @@ wb 写
 ab 追加
 ```
 
--   wb 写
+-   `wb` 写
+    
     ```python
     with open("file_path", mode="wb") as fp:
        fp.write("写一些东西".encode("utf-8"))  # 手动压缩
     ```
-
--   **w 写**
+    
+-   **`w` 写**
 
     ```python
     with open("file_path", mode="w", encoding="utf-8") as fp:
        fp.write("写一些东西")  # 此时不用再手动编码压缩，内部自动encode压缩
     ```
 
--   ab 追加
+-   `ab` 追加
+    
     ```python
     with open("file_path", mode="ab") as fp:
        fp.write("写一些东西".encode("utf-8"))  # 手动压缩
     ```
-
--   **a 追加**
+    
+-   **`a` 追加**
 
     ```python
     with open("file_path", mode="a", encoding="utf-8") as fp:
        fp.write("写一些东西")
     ```
 
--   rb 读
+-   `rb` 读
+    
     ```python
     with open("file_path", mode="rb") as fp:
         data = fp.read()  # 读取到的文件都是内部原始被压缩的之后的utf-8编码的效果
         data.decode("utf-8")
     ```
-
--   **r 读**
+    
+-   **`r` 读**
 
     ```python
     with open("file_path", mode="r", encoding="utf-8") as fp:
