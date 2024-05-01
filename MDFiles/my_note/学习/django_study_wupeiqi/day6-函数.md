@@ -1,12 +1,12 @@
-# 函数进阶-day6
+# 函数进阶-`day6`
 
 -   今日概要: 
 
     -   函数名就是一个变量(扩展)
 
-    -   匿名函数(lambda表达式)
+    -   匿名函数(`lambda`表达式)
 
-    -   **重点**内置函数——python内置函数
+    -   **重点**内置函数——`python`内置函数
 
     -   推导式(一行代码生成数据)
 
@@ -66,7 +66,7 @@ else:
     func_object()
 ```
 
-## 案例1: 用户管理系统(VVIP版本)
+## 案例1: 用户管理系统(`VVIP`版本)
 
 用户登录系统显示： `1. login 2. register 3. search`
 
@@ -139,7 +139,7 @@ else:
 
 ## 案例2 资源下载管理器
 
--   系统有三大专区，图片 NBA 短视频
+-   系统有三大专区，图片 `NBA` 短视频
 
 -   每个专区定义一个函数
 
@@ -149,13 +149,13 @@ else:
 
     -   选错了/重复选择 错误提示
 
-    -   Q/q 终止
+    -   `Q/q` 终止
 
 -   图片专区
 
     -   罗列图片名称和序号 
     -   让用户选择序号，用户选择哪个图片，我们帮助用户下载
-    -   再次提示用户输入是否继续 如果是n/N返回上一级(让用户重新选择专区)
+    -   再次提示用户输入是否继续 如果是`n/N`返回上一级(让用户重新选择专区)
 
 ```python
 # ************************************* 我自己的 *************************************
@@ -455,7 +455,7 @@ if __name__ == "__main__":
 
 ```
 
-注意: 只根据老师的代码修改了images这个专区的代码，其他的代码逻辑相同，不再浪费时间写了；此外，我加了一行代码`import sys`这里面有一个`sys.stderr`，可以当做参数传到`print`函数里面，这样带有`file=sys.stderr`的print语句所打印出来的语句就是红色的。
+注意: 只根据老师的代码修改了`images`这个专区的代码，其他的代码逻辑相同，不再浪费时间写了；此外，我加了一行代码`import sys`这里面有一个`sys.stderr`，可以当做参数传到`print`函数里面，这样带有`file=sys.stderr`的print语句所打印出来的语句就是红色的。
 
 ## 下载功能的实现
 
@@ -543,7 +543,7 @@ for item in url_list:
 
 好吧，可能是下载视频的格式问题，我的视频下载下来无法播放，下载的时候要注意，看好文件格式是什么。
 
-接下来，把下载的相关代码拼接到相关函数就OK了。参考如下，我只写了下载图片的代码，其他的类似，只要模仿images区域的函数，将`download`函数放置到正确的地方即可。
+接下来，把下载的相关代码拼接到相关函数就`OK`了。参考如下，我只写了下载图片的代码，其他的类似，只要模仿`images`区域的函数，将`download`函数放置到正确的地方即可。
 
 ```python
 print("correct index, downloading image ...")
@@ -739,7 +739,7 @@ if __name__ == "__main__":
 # --END--
 ```
 
-## 2. lambda表达式 —— 匿名函数
+## 2. `lambda`表达式 —— 匿名函数
 
 在特定的情况下让代码更简洁。
 
@@ -781,7 +781,7 @@ def func(data_list):
 func = lambda data_list: data_list[0]
 ```
 
-注意：lambda表达式在内部会自动return，**return后面生成的是什么，就返回什么。**
+注意：`lambda`表达式在内部会自动`return`，**`return`后面生成的是什么，就返回什么。**
 
 ```python
 # 注意：
@@ -849,32 +849,37 @@ python内部为我们写好的函数，拿来用就行。
 
 **注意：自己写函数的时候，不要用这种变量名哦。**
 
--   abs() 绝对值
+-   `abs()` 绝对值
+    
     ```python
     data = abs(-10)
     print(data)  # 10
     ```
-
--   pow() 次方
+    
+-   `pow()` 次方
+    
     ```python
     data = pow(2, 5)
     print(data)  # 32 (2 ** 5)
     ```
-
--   sum() 求和
+    
+-   `sum()` 求和
+    
     ```python
     num_list = [...]
     sum(num_list)
     ```
-
--   divmod() 求除法得到的商和余数
+    
+-   `divmod()` 求除法得到的商和余数
+    
     ```python
     a1, a2 = divmod(92, 10)
     print(a1, a2)
     # 9 2
     ```
-
--   round() 保留小数点后几位 支持四舍五入
+    
+-   `round()` 保留小数点后几位 支持四舍五入
+    
     ```python
     data = round(3.1415926, 2)
     print(data)  # 3.14
@@ -882,40 +887,43 @@ python内部为我们写好的函数，拿来用就行。
 
 ### 4.2 第二组(4)
 
--   min()
+-   `min()`
+    
     ```python
     data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     print(min(data))
     ```
-
--   max()
+    
+-   `max()`
+    
     ```python
     data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     print(max(data))
     ```
-
--   all() 列表是否**所有**元素转换为布尔值都是True
+    
+-   `all()` 列表是否**所有**元素转换为布尔值都是`True`
+    
     ```python
     data = [123, 45, 6, "com"]
     print(all(data))  # True
     ```
-
+    
     ```python
     data = [123, 45, 6, "com", 0]
     print(all(data))  # False
     ```
-
--   any() 只要有转换为True的就为True
+    
+-   `any()` 只要有转换为`True`的就为`True`
 
 ### 4.3 第三组(3)
 
--   bin() 十进制转二进制
--   oct() 十进制转八进制
--   hex() 十进制转十六进制
+-   `bin()` 十进制转二进制
+-   `oct()` 十进制转八进制
+-   `hex()` 十进制转十六进制
 
 ### 练习题
 
-给出一个IP地址，将每一段转换成二进制。
+给出一个`IP`地址，将每一段转换成二进制。
 
 ```
 ip = "192.168.11.23"
@@ -980,19 +988,21 @@ print(num)
 
 ### 4.4 第四组(2)
 
-编码时unicode编码，将文字和二进制做对应。
+编码时`unicode`编码，将文字和二进制做对应。
 
 ```python
 计            10101011110100111101               987
 ```
 
--   ord()
+-   `ord()`
+    
     ```python
     v1 = ord("A")
     print(v1)  # 65
     ```
-
--   chr()
+    
+-   `chr()`
+    
     ```python
     v2 = chr(65)
     print(v2)  # A
@@ -1014,31 +1024,32 @@ print("".join(char_list))
 
 ### 4.5 第五组(9)
 
--   int()
--   str()
--   bool()
--   list()
--   dict()
--   set()
--   tuple()
--   float()
--   bytes()
+-   `int()`
+-   `str()`
+-   `bool()`
+-   `list()`
+-   `dict()`
+-   `set()`
+-   `tuple()`
+-   `float()`
+-   `bytes()`
 
 ### 4.6 第六组(10)
 
--   len()
+-   `len()`
 
--   print()
+-   `print()`
 
--   input()
+-   `input()`
 
--   open()
+-   `open()`
 
--   range()
+-   `range()`
 
--   hash() 字典的键，集合元素都必须是可哈希的
+-   `hash()` 字典的键，集合元素都必须是可哈希的
 
--   type() 查看数据类型
+-   `type()` 查看数据类型
+    
     ```python
     def func():
         if type(data) == str:
@@ -1048,7 +1059,7 @@ print("".join(char_list))
         ...
     func()
     ```
-
+    
     ```python
     # 建议使用以下的方式:
     def func(data):
@@ -1059,8 +1070,9 @@ print("".join(char_list))
         else:
             return
     ```
-
--   callable() 判断是否可执行
+    
+-   `callable()` 判断是否可执行
+    
     ```python
     age = 12
     
@@ -1072,8 +1084,9 @@ print("".join(char_list))
     
     print(v1, v2)
     ```
-
--   enumerate() 在循环过程中，自动自增的一列。
+    
+-   `enumerate()` 在循环过程中，自动自增的一列。
+    
     ```python
     goods = ["computer", "huawei", "xiaomi", "oppo"]
     # 以前
@@ -1086,28 +1099,29 @@ print("".join(char_list))
     for index, item in enumerate(goods, 1):  # 那个1表示起始值
         msg = "{} {}".format(index, item)
     ```
-
--   sorted() 排序 --不修改源数据 会生成一个新列表
+    
+-   `sorted()` 排序 --不修改源数据 会生成一个新列表
+    
     ```python
     # 列表中的sort()排序(对原列表进行排序) —— 会修改原列表
     data_list = [15, 25, 0, 13, 2]
     data_list.sort()
     print(data_list)
     ```
-
+    
     ```python
     data_list = [15, 25, 0, 13, 2]
     new_data = sorted(data_list)
     ```
-
+    
     注意：如果元素是中文，怎么排序？
-
+    
     `````python
     data_list = ["1", "2", "3", "10", "12"]
     new_data = sorted(data_list)
     print(new_data)  # 根据unicode编码排序 -- 因为是字符串！！！
     `````
-
+    
     ![image-20240225210023939](.\assets\image-20240225210023939.png)
     ```python
     data_list = ["1 哈哈好", "2 嗯嗯", "3 哈哈哈", "10 嗯嗯呢", "12 哈哈好"]
@@ -1118,7 +1132,7 @@ print("".join(char_list))
     new_data = sorted(data_list, key=func)
     print(new_data)
     ```
-
+    
     ![image-20240225210924149](.\assets\image-20240225210924149.png)
     ```python
     data_list = ["1 哈哈好", "2 嗯嗯", "3 哈哈哈", "10 嗯嗯呢", "12 哈哈好"]
@@ -1126,12 +1140,12 @@ print("".join(char_list))
     new_data = sorted(data_list, key=func)
     print(new_data)
     ```
-
+    
     ![image-20240225211102702](.\assets\image-20240225211102702.png)
 
 ## 5. 推导式
 
-python提供的简单的语法，一行代码生成列表、字典等多个元素。
+`python`提供的简单的语法，一行代码生成列表、字典等多个元素。
 
 创建一堆数据并存储到列表中
 
@@ -1323,15 +1337,15 @@ print("&".join(data_list))
 -   返回值
 -   作用域
 -   函数名就是一个变量名
--   lambda表达式
+-   `lambda`表达式
 -   内置函数
 -   推导式 —— 与函数无关 简化代码
 
-## 6. 关于pip.exe
+## 6. 关于`pip.exe`
 
 ### 6.1 下载第三方包
 
-pip是一个专门用于帮助我们安装第三方库的工具。
+`pip`是一个专门用于帮助我们安装第三方库的工具。
 
 ```python
 - python安装目录
@@ -1347,7 +1361,7 @@ pip是一个专门用于帮助我们安装第三方库的工具。
 >>> pip install 包名称
 ```
 
-### 6.2 pip常见命令
+### 6.2 `pip`常见命令
 
 -   安装 `pip install 包名称`
 

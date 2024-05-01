@@ -436,9 +436,9 @@ print(sheet_obj.max_row)
 print(sheet_obj.max_column)
 ```
 
-#### 2.3.1.2 Excel案例1
+#### 2.3.1.2 `Excel`案例1
 
-1. 根据excel文档,读取某几列,不要表头
+1. 根据`excel`文档,读取某几列,不要表头
     ```python
     import os
     from openpyxl import load_workbook

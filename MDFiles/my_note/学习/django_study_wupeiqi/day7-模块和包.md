@@ -1,4 +1,4 @@
-# 模块和包-day7
+# 模块和包-`day7`
 
 什么是模块和包？
 
@@ -60,7 +60,7 @@ def f2():
 
 -   上述的例子，模块和包都在我们所运行的文件所在的同级目录，可以【导入成功】。
 
--   在python的内置模块，在python的安装目录下，也可以【导入成功】。
+-   在`python`的内置模块，在python的安装目录下，也可以【导入成功】。
 
 假设我的当前项目在`D:\路径`我想要在另外一个盘，比如`F:\code`下面放上我的模块`utils.py`,默认情况下是导入【**不成功**】的。
 
@@ -99,7 +99,8 @@ print(sys.path)
 
 ### 1.3 关于导入模块和包的方式
 
--   import xxx
+-   `import xxx`
+    
     ```python
     # 导入一个py文件，无法导入py文件里面的某个函数
     import utils
@@ -108,8 +109,9 @@ print(sys.path)
     import commons.paper
     commons.paper.p()
     ```
-
--   from xxx import xxxx
+    
+-   `from xxx import xxxx`
+    
     ```python
     # 能导入到函数级别
     from utils import str_to_int
@@ -128,7 +130,7 @@ print(sys.path)
     p1()
     p2()
     ```
-
+    
     ```python
     from commons.paper import p
     def p():
@@ -136,7 +138,7 @@ print(sys.path)
     
     p()  # 如果是这种情况，那么这个p()是本文件定义的p()，而不是导入的p()
     ```
-
+    
     ```python
     # 这样就可以避免上述问题
     from commons.paper import p as pp
@@ -146,22 +148,22 @@ print(sys.path)
     pp()
     p()  # 如果是这种情况，那么这个p()是本文件定义的p()，而不是导入的p()
     ```
-
+    
     `import xxx` 和 `from xxx import xxxx`，效果是一样的
-
+    
     如果要导入深层次的，用`from`形式，如果是单层/同一目录下的，直接用`import`形式。
 
 ### 小结
 
--   sys.path
+-   `sys.path`
 -   自己的模块名不要和内置的重名
 -   导入方式 -- 两种
 
-## 2 python常见内置模块
+## 2 `python`常见内置模块
 
-python内部提供好的功能。
+`python`内部提供好的功能。
 
-### 2.1 hashlib模块
+### 2.1 `hashlib`模块
 
 数据加密模块。
 
@@ -285,7 +287,7 @@ run()
 
 ![image-20240226113119413](.\assets\image-20240226113119413.png)
 
-### 2.2 random模块
+### 2.2 `random`模块
 
 生成一些随机数据。
 
@@ -403,7 +405,7 @@ for item in data_list:
     input("点击回车继续。")
 ```
 
-### 2.3 json模块
+### 2.3 `json`模块
 
 本质上，`json`是一种数据格式，以字符串的方式进行存储。
 
@@ -471,17 +473,17 @@ res = json.dumps(info, ensure_ascii=False)
 print(res)  # {"name": "计算机", "age": 19}
 ```
 
-#### 2.3.2 JSON中有
+#### 2.3.2 `JSON`中有
 
 -   整数
 -   字符串--双引号
 -   字典
--   真假 true/false
--   列表[]
+-   真假 `true/false`
+-   列表`[]`
 
 #### 2.3.3 序列化
 
-在Python中，只能通过JSON模块序列化一些基本的数据类型。
+在`Python`中，只能通过`JSON`模块序列化一些基本的数据类型。
 
 ```python
 import json
@@ -517,7 +519,7 @@ print(res)
 
 #### 案例1:
 
-基于requests模块向豆瓣发送请求并获取热门电影。
+基于`requests`模块向豆瓣发送请求并获取热门电影。
 
 ```python
 import requests
@@ -585,7 +587,7 @@ if __name__ == "__main__":
 
 ![image-20240226192802403](.\assets\image-20240226192802403.png)
 
-### 2.4 time模块
+### 2.4 `time`模块
 
 ```python
 import time
@@ -613,7 +615,7 @@ while true:
     time.sleep(1)
 ```
 
-### 2.5 datetime模块
+### 2.5 `datetime`模块
 
 ```python
 import datetime
@@ -635,8 +637,8 @@ ctime_string = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 #### 案例
 
 1. 用户注册
-    - while循环，输入：用户名、密码
-    - 密码 -- > md5加密
+    - `while`循环，输入：用户名、密码
+    - 密码 -- > `md5`加密
     - 获取当前时间，用户
     - 写入到db.txt文档中 格式为：用户名 密码 当前时间
 
@@ -740,7 +742,7 @@ run()
 
 
 
-- 字符串 -> datetime类型
+- 字符串 -> `datetime`类型
     ```python
     from datetime import datetime
     test = "2024-02-12"
@@ -748,7 +750,7 @@ run()
     print(res)
     ```
 
-- datetime -> 字符串
+- `datetime `-> 字符串
 
     ```python	
     from datetime import datetime
@@ -757,7 +759,7 @@ run()
     res = dt.strftime("%Y-%m-%d")
     ```
     
-- 时间戳 -> datetime
+- 时间戳 -> `datetime`
     ```python
     import time
     from datetime import datetime
@@ -767,7 +769,8 @@ run()
     print(dt)
     ```
 
-- datetime -> 时间戳
+- `datetime `-> 时间戳
+    
     ```python
     import time
     from datetime import datetime
@@ -777,7 +780,7 @@ run()
     print(ctime)
     ```
 
-#### 2.5.2 datetime类型的意义
+#### 2.5.2 `datetime`类型的意义
 
 很方便地对时间进行操作。
 
@@ -794,7 +797,7 @@ res.strftime("%Y-%m-%d %H:%M:%S")
 print(res)
 ```
 
-### 2.6 os模块
+### 2.6 `os`模块
 
 - 路径拼接
     ```python
@@ -919,7 +922,7 @@ while True:
 
 ​    写文件时，文件所在的目录必须已创建。意思就是在写文件的时候，目录必须是已经存在的目录。
 
-​    如果目录已经存在，那么如果文件不存在的话**python会自动创建文件。**
+​    如果目录已经存在，那么如果文件不存在的话**`python`会自动创建文件。**
 
 ![image-20240324220456034](./assets/image-20240324220456034.png)
 

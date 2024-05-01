@@ -1,4 +1,4 @@
-# Python基础-day1
+# `Python`基础-`day1`
 
 `Python`入门、系统性地学习`Python+HTML+Django`
 
@@ -48,7 +48,7 @@ D:\PythonCompiler\python310
 -   计算机 以二进制存储数据
 
 ```python
-哈哈yyds666   ->    010101000110101010100010
+哈哈yyds666   ->    01010100 01101010 10100010
 ```
 
 -   在计算机中不只有一套编码，有多套编码 比如`UTF-8`

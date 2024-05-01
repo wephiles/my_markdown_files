@@ -6,7 +6,7 @@
 
 ---
 
-# WEB
+# `WEB`
 
 ## 注意：
 
@@ -15,25 +15,25 @@
 
 ## 基础
 
--   ASCII码中一个字节表示一个字符
+-   `ASCII`码中一个字节表示一个字符
 
--   gbk 和 gbk-2312 
+-   `gbk`和 `gbk-2312 `
 
-    -   gbk-2312 国家信息委员会制作 1980
+    -   `gbk-2312` 国家信息委员会制作 `1980`
 
-    -   gbk 包含中日韩等文字
+    -   `gbk` 包含中日韩等文字
 
--   Unicode 万国码
+-   `Unicode` 万国码
 
-    -   utf-8 对unicode压缩存储 用尽可能少的空间存储尽可能多的文字
+    -   `utf-8` 对`unicode`压缩存储 用尽可能少的空间存储尽可能多的文字
 
-    -   utf-8中 一个中文用3个字节表示
+    -   `utf-8`中 一个中文用3个字节表示
 
--   python中 name = 'buweishi'  在内存中使用unicode存储——ucs4
+-   `python`中 `name = 'buweishi'`  在内存中使用`unicode`存储——`ucs4`
 
--   name.encode('utf-8') 将数据压缩成utf-8编码存储 
+-   `name.encode('utf-8')` 将数据压缩成`utf-8`编码存储 
 
--   以后在python开发中 不能用默认编码 一般要压缩成utf-8编码才进行操作
+-   以后在`python`开发中 不能用默认编码 一般要压缩成`utf-8`编码才进行操作
 
 -   文件编码：
 
@@ -52,27 +52,28 @@
 
 ### 数据类型
 
--   布尔类型   bool   True/False
+-   布尔类型   `bool`   `True/False`
 
-    -   0 "" [] () {} set()  --> 都是False
+    -   `0 "" [] () {} set()`  --> 都是`False`
 
--   整型       int    15 23 100
+-   整型       `int`    `15 23 100`
 
--   字符串     str    'buweishi'
-    -   str.upper() 全部变大写
+-   字符串     `str`    `'buweishi'`
+    -   `str.upper()` 全部变大写
 
--   列表       list   [1, 2, 3]
+-   列表       `list`   `[1, 2, 3]`
 
--   元组       tuple  (1, 2, 3) 
+-   元组       `tuple`  `(1, 2, 3)` 
 
--   字典       dict   {'k1': 123, 'k2': 456}
-    -   key必须是可哈希的类型
+-   字典       `dict`   `{'k1': 123, 'k2': 456}`
+    -   `key`必须是可哈希的类型
 
-    -   可哈希的类型 —— int bool str tuple
+    -   可哈希的类型 —— `int bool str tuple`
 
     -   不可哈希 —— 列表 字典
 
-    -   get函数 参数是键值和一个其他值 返回键对应的值 如果不存在那么返回第二个值
+    -   `get`函数 参数是键值和一个其他值 返回键对应的值 如果不存在那么返回第二个值
+      
         ```python
         # 举例子
         info = {
@@ -84,9 +85,9 @@
         >>> info.get('k3', 'xxx')
         	'xxx'
         ```
-
-    -   info.keys() 获取所有键 可以循环 python for item in info.keys:...
-
+        
+    -   `info.keys()` 获取所有键 可以循环 `python` `for item in info.keys:...`
+    
 -   集合
 
 ### 函数
@@ -97,19 +98,19 @@
 -   装饰器
     -   特殊闭包函数
 
-### python代码发邮件
+### `python`代码发邮件
 
-*   注册邮箱 网易126 163邮箱
+*   注册邮箱 网易`126 163`邮箱
 
-*   设置 --> POP3/SMTP --> 开启POP3/SMTP --> 授权码为XXXXXXXXXXXXXX（我的保存在幕布中 输入密码即可获得）
+*   `设置 --> POP3/SMTP --> 开启POP3/SMTP --> 授权码为XXXXXXXXXXXXXX（我的保存在幕布中 输入密码即可获得）`
 
-*   SQWQBNIXGLDDTUXU 和 LFVCWRIDMGLDZNQS
+*   `SQWQBNIXGLDDTUXU 和 LFVCWRIDMGLDZNQS`
 
 *   授权码 —— 目的是为了使用代码发邮件，防止代码丢失 不需要账号密码 只需要授权码和账号就可以发邮箱
 
 *   保存好自己的授权码 不要泄露给别人
 
-*   SMTP服务器 smtp.126.com 要用
+*   `SMTP`服务器 `smtp.126.com` 要用
 
 *   发邮件的流程 
 
@@ -145,18 +146,18 @@
 
 ### 函数参数
 
--   *args ：    --> 表示传入的参数只能是位置参数   传入后都会被打包成元组
+-   `*args` ：    --> 表示传入的参数只能是位置参数   传入后都会被打包成元组
     -   元组
-        -   ([1, 2, 3])/(1)/('a')      分别会被识别成 列表/整数/字符串 
-        -   ([1, 2, 3],)/(1,)/('a',)   会被识别成元组
--   **kwargs ： --> 表示传入的参数只能是关键字参数 传入后都会被打包成字典
+        -   `([1, 2, 3])/(1)/('a')`      分别会被识别成 列表/整数/字符串 
+        -   `([1, 2, 3],)/(1,)/('a',)`   会被识别成元组
+-   `**kwargs` ： --> 表示传入的参数只能是关键字参数 传入后都会被打包成字典
     -   要求：必须用关键字的形式传参
--   顺序必须是 先 *args 再 **kwargs
--   当不传参的时候 args和kwargs都是空的
+-   顺序必须是 先 `*args` 再 `**kwargs`
+-   当不传参的时候 `args`和`kwargs`都是空的
 
 ### 内置函数
 
--   直接拿过来用 python内置的函数
+-   直接拿过来用 `python`内置的函数
 
 -   第一组
 
@@ -273,17 +274,17 @@ None
 
 ### 模块和包
 
--   模块 —— python中的一个.py文件 将某些功能按照某种维度做划分
--   包   —— 一个.py文件不够实现某些复杂的工程 一个文件夹包含很多.py文件 就是包
+-   模块 —— `python`中的一个`.py`文件 将某些功能按照某种维度做划分
+-   包   —— 一个`.py`文件不够实现某些复杂的工程 一个文件夹包含很多`.py`文件 就是包
 -   一般情况下 我们都统称为模块
 
 #### 自定义模块和包
 
 -   模块、包 和 运行文件不在同一个文件夹下：
 
-    -   在python的安装目录下 也是可以导入成功的  但是python目录是不可以动的
+    -   在`python`的安装目录下 也是可以导入成功的  但是`python`目录是不可以动的
 
-    -   如果我想把其他位置的代码 导入到现在运行的文件中： 默认情况下是不能导入成功的 因为 python在寻找目录时  自动会去某些目录寻找 sys.path()可以打印出python默认寻找模块的路径 打印出的前面一个是自己当前工作目录下的路劲
+    -   如果我想把其他位置的代码 导入到现在运行的文件中： 默认情况下是不能导入成功的 因为 `python`在寻找目录时  自动会去某些目录寻找 `sys.path()`可以打印出`python`默认寻找模块的路径 打印出的前面一个是自己当前工作目录下的路劲
         ```python
         import sys
         print(sys.path)
@@ -305,16 +306,16 @@ None
          'D:\\PythonCompiler\\python311\\Lib\\site-packages\\Pythonwin']
         ```
 
--   sys.path 获取到的是一个列表 是有序的 内部在寻找模块的时候 也是有序的 前面找到了 后面就不会再找了
+-   `sys.path` 获取到的是一个列表 是有序的 内部在寻找模块的时候 也是有序的 前面找到了 后面就不会再找了
 
 -   自定义模块的名字不能和内置模块的名字重名
 
 -   导入模块和包的方式：
 
-    -   import xxx   导入一个py文件 没办法导入某个文件中的函数（如果要使用文件里面的函数 要把导入路径写完全）
-    -   from xxx import xxxx, xxxx1, xxxx2   从哪导入一个模块，可以直接导入函数/也可以直接导入.py文件 再利用文件名调用函数 —— 不需要写全部路径
+    -   `import xxx`   导入一个`py`文件 没办法导入某个文件中的函数（如果要使用文件里面的函数 要把导入路径写完全）
+    -   `from xxx import xxxx, xxxx1, xxxx2`   从哪导入一个模块，可以直接导入函数/也可以直接导入`.py`文件 再利用文件名调用函数 —— 不需要写全部路径
 
--   一般情况下 要导入深层次的模块 —— 使用from  如果是一个单级目录则可以用import
+-   一般情况下 要导入深层次的模块 —— 使用`from`  如果是一个单级目录则可以用`import`
 
 #### 内置模块
 
@@ -331,7 +332,7 @@ None
     re       --> 正则
     ```
     
-    -   hashlib MD5 加密
+    -   `hashlib` `MD5` 加密
     
     ```python
     """hashlib MD5 加密"""
@@ -372,25 +373,25 @@ None
     # 6f9c9612974be4b40909d435e59be7f2
     ```
     
-    -   序列化 ： 将数据类型包装成 json 反序列化 ：将json转化成数据类型
-    -   JSON格式：
+    -   序列化 ： 将数据类型包装成 `json` 反序列化 ：将`json`转化成数据类型
+    -   `JSON`格式：
         -   外部整体是个字符串
-        -   JSON字符串的内部有字符串 只能用双引号
+        -   `JSON`字符串的内部有字符串 只能用双引号
         -   """ {"k1":123, "k2":[11, 22, 33]} """
-        -   JSON里面 没有元组这样的格式
-        -   JSON字符串和普通字符串的区别：JSON属于字符串
-        -   JSON 关于中文 —— dumps的时候 会默认将中文转化为unicode格式要想不转换为unicode则 在dumps参数中加入 enure_ascii=False
-        -   在Python中只能序列化python内置的数据类型 只支持最基本的数据类型
-            -   dict
-            -   list
-            -   tuple
-            -   atr
-            -   int
-            -   float
-            -   True
-            -   False
-            -   None
-    -   json格式可以为：
+        -   `JSON`里面 没有元组这样的格式
+        -   `JSON`字符串和普通字符串的区别：`JSON`属于字符串
+        -   `JSON` 关于中文 —— `dumps`的时候 会默认将中文转化为`unicode`格式要想不转换为`unicode`则 在`dumps`参数中加入 `enure_ascii=False`
+        -   在`Python`中只能序列化`python`内置的数据类型 只支持最基本的数据类型
+            -   `dict`
+            -   `list`
+            -   `tuple`
+            -   `atr`
+            -   `int`
+            -   `float`
+            -   `True`
+            -   `False`
+            -   `None`
+    -   `json`格式可以为：
         -   整数
         -   字符串
         -   字典
@@ -407,7 +408,8 @@ None
     json.loads()      --> 将JSON字符串转换成python中的数据类型
     ```
     
-    -   datatime时间戳
+    -   `datatime`时间戳
+      
         ```python
         import datetime
         v1 = datetime.datetime.now()  #时间戳
@@ -415,16 +417,16 @@ None
         string_date = v1.strftime('%Y-%m-%d %H:%M:%S')  # 字符串格式的时间
         print(string_date)
         ```
-    
+        
     -   时间相关格式：
     
-        -   datatime类型
+        -   `datatime`类型
     
         -   字符串类型
     
         -   时间戳类型 获取秒数
     
-        -   另外两种都可以和datatime类型相互转换
+        -   另外两种都可以和`datatime`类型相互转换
     
         -   时间转换
     
@@ -439,7 +441,7 @@ None
             res = dt.strftime('%Y-%m-%d %H-%M-%S')
             ```
     
-        -   datetime可以很方便地实现时间的加减
+        -   `datetime`可以很方便地实现时间的加减
     
             ```python
             from datetime import datetime, timedelta
@@ -449,7 +451,7 @@ None
             res = v1 + timedelta(days=100, hours=100, minutes=10)
             ```
     
-    -   os模块
+    -   `os`模块
     
         -   路径拼接
     
@@ -567,7 +569,7 @@ None
             # __name__ 是python内部创建的一个变量
             ```
     
-        -   shutil模块
+        -   `shutil`模块
     
             ```python
             import shutil
@@ -602,15 +604,15 @@ requests
 bs4
 ```
 
-### python re模块 正则表达式
+### `python re`模块 正则表达式
 
 #### 正则表达式 
 
 什么是正则表达式？—— 默认是贪婪匹配
 
-如果需要非贪婪匹配 则在某一个能匹配多个的正则元素后面加上？，此时？不代表0个或1个 例如：**r"d卜伟\w+" 则会贪婪匹配** 如果写成**r"d卜伟\w+?"**则是非贪婪匹配
+如果需要非贪婪匹配 则在某一个能匹配多个的正则元素后面加上？，此时？不代表0个或1个 例如：**`r"d卜伟\w+"` 则会贪婪匹配** 如果写成**`r"d卜伟\w+?"`**则是非贪婪匹配
 
-如果在re.findall()函数后面加上参数 re.ASCII 那么则匹配的时候不会匹配中文
+如果在`re.findall()`函数后面加上参数 `re.ASCII` 那么则匹配的时候不会匹配中文
 
 ```python 
 text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@163.com，手机号码15345678910'
@@ -630,7 +632,7 @@ text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@16
     print(data_list)
     ```
 
--   匹配字符 [abc]匹配a或者b或者c
+-   匹配字符 `[abc]`匹配`a`或者`b`或者`c`
 
     ```python
     import re
@@ -644,7 +646,7 @@ text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@16
     print(data_list)  # ['ja']
     ```
 
--   字符范围 0 - 9 a - z
+-   字符范围 `0 - 9 a - z`
 
     ```python
     import re
@@ -662,7 +664,7 @@ text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@16
     print(data_list)  # 找 t0 t1 t2 t3 ... t9
     ```
 
--   **\d** 代表一个数字
+-   **`\d`** 代表一个数字
 
     ```python
     import re
@@ -671,7 +673,7 @@ text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@16
     data_list = re.findall(regular, text)
     ```
 
-    -   **+** 代表一个或多个 —— 只代表次数
+    -   **`+`** 代表一个或多个 —— 只代表次数
 
     ```python
     import re
@@ -680,7 +682,7 @@ text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@16
     data_list = re.findall(regular, text)
     ```
 
-    -   *****代表0个或者多个  —— 只代表次数
+    -   **`*`**代表0个或者多个  —— 只代表次数
 
     ```python
     import re
@@ -689,7 +691,7 @@ text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@16
     data_list = re.findall(regular, text)
     ```
 
-    -   ? 代表0个或者一个 —— 只代表次数
+    -   `?` 代表0个或者一个 —— 只代表次数
 
     ```python
     import re
@@ -698,7 +700,7 @@ text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@16
     data_list = re.findall(regular, text)
     ```
 
-    -   {n} 代表n个 —— 只代表次数
+    -   `{n}` 代表n个 —— 只代表次数
 
     ```python
     import re
@@ -707,27 +709,27 @@ text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@16
     data_list = re.findall(regular, text)
     ```
 
-    -   {n,} n个或者n+1, n+2 .... 个（n+个） —— 只代表次数
-    -   {m, n} m 个 到 n个之间 m - n     m <= 个数 <= n  —— 只代表次数
+    -   `{n,}` ` n`个或者`n+1`, `n+2` .... 个（`n+`个） —— 只代表次数
+    -   `{m, n}`  `m` 个 到 `n`个之间` m - n `    `m` <= 个数 <= `n`  —— 只代表次数
 
--   \w  数字 字母 下划线 
+-   `\w`  数字 字母 下划线 
 
--   正则默认是贪婪匹配 在正则表达式中加?则可以实现非贪婪匹配r"d卜伟\w+**?**"
+-   正则默认是贪婪匹配 在正则表达式中加?则可以实现非贪婪匹配`r"d卜伟\w+**?**"`
 
--   .  表示除换行符以外的任意字符（一个）
+-   `.`  表示除换行符以外的任意字符（一个）
 
--   .+ 表示除换行符以外的任意字符（多个） 贪婪匹配 若要变成非贪婪匹配 使用.+？
+-   `.+` 表示除换行符以外的任意字符（多个） 贪婪匹配 若要变成非贪婪匹配 使用`.+？`
 
--   \s 代表任意的空白字符（一个） \S匹配所有非空白符
+-   `\s` 代表任意的空白字符（一个） `\S`匹配所有非空白符
 
 ##### 数量
 
--   \*       --> 代表0个或者n个 （贪婪匹配）
--   \+       --> 代表1个或者n个 （贪婪匹配）
--   ？      -->  代表0个或者1个（贪婪匹配）
--   {n}     -->  固定n个 （贪婪匹配）
--   {n, }   --> n+个 （贪婪匹配）
--   {m, n}  --> n到m个 （贪婪匹配）
+-   `*`       --> 代表0个或者n个 （贪婪匹配）
+-   `+`       --> 代表1个或者n个 （贪婪匹配）
+-   `？`      -->  代表0个或者1个（贪婪匹配）
+-   `{n}`     -->  固定n个 （贪婪匹配）
+-   `{n, }`   --> n+个 （贪婪匹配）
+-   `{m, n}`  --> n到m个 （贪婪匹配）
 -   若要非贪婪匹配 在以上元素后面加上 ？ 即可
 
 ##### 分组
@@ -742,7 +744,7 @@ text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@16
     re.findall(regular, text)
     ```
 
--   还可以加上**或**的条件 以下正则匹配 15345(6\d{5})或15345(r\w+太)
+-   还可以加上**或**的条件 以下正则匹配 `15345(6\d{5})`或`15345(r\w+太)`
 
     ```python
     import re
@@ -777,20 +779,20 @@ text = '哈哈哈哈太牛了 在线想要，2086689759@qq.com 和 ciwhnciuen@16
     [a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+
     ```
 
--   ^ \$ 两个符号里面的文本是匹配的开始和结束
+-   `^` \`$` 两个符号里面的文本是匹配的开始和结束
 
     ```python
     r"^1[3-9]\d{9}$"
     ```
 
-#### python re模块
+#### `python` `re`模块
 
--   re.findall() 获取所有匹配的结果
--   re.match() 从开头匹配 开头没匹配成功那么不再向后匹配 只返回第一个对象
-    -   返回值是一个对象 利用 group()取值
+-   `re.findall()` 获取所有匹配的结果
+-   `re.match()` 从开头匹配 开头没匹配成功那么不再向后匹配 只返回第一个对象
+    -   返回值是一个对象 利用 `group()`取值
     -   应用场景 手机号格式校验
--   re.search() 从整个字符串去匹配 只返回第一个对象
--   re.split() 用匹配到的文本分割
+-   `re.search()` 从整个字符串去匹配 只返回第一个对象
+-   `re.split()` 用匹配到的文本分割
 
 ### 面向对象
 
@@ -829,14 +831,14 @@ msg.send_dingding("x2")
 msg.send_wechat("x3")
 ```
 
-实例化对象(obj = Message()) —— 开辟一个内存 指向Message类
+实例化对象`(obj = Message())` —— 开辟一个内存 指向`Message`类
 
 -   与他的类关联
 -   一块内存 可以存放数据
 
-obj.send_email("x1")
+`obj.send_email("x1")`
 
-obj.send_dingding('x2')
+`obj.send_dingding('x2')`
 
 ```python
 class Message:
@@ -851,7 +853,7 @@ obj.main(someting)
 print(obj.company)  # 是能拿到值的
 ```
 
--   obj.company()的时候 在obj = Message()开辟的内存里面存储了 "company='连通'"
+-   `obj.company()`的时候 在`obj = Message()`开辟的内存里面存储了 `"company='连通'"`
 
 ```python
 class Message:
@@ -887,11 +889,11 @@ new = Message()
     -   归类 将同一类的函数汇总到一个类中
 -   继承
 -   多态
-    -   python中默认支持多态
+    -   `python`中默认支持多态
 
 ## 前端
 
-###  HTML
+###  `HTML`
 
 快速上手
 
@@ -928,7 +930,7 @@ Press CTRL+C to quit
 flask框架警告：WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
 ```
 
-为了能够让我们使用方便 flask支持将字符串写入到文件中
+为了能够让我们使用方便 `flask`支持将字符串写入到文件中
 
 ```python
 # 注意： index.html文件存放在和.py文件同一级的Templates文件下面
@@ -958,19 +960,19 @@ if __name__ == '__main__':
      pip install flask
      ```
 
-2.   编码：\<meta charset="utf-8">
+2.   编码：`<meta charset="utf-8">`
 
 3.   title
 
-4.   标题\<h1> --- \<h6> 块级标签
+4.   标题`<h1> 到 <h6> `块级标签
 
-5.   div 和 span
+5.   `div` 和 `span`
 
-     1.   div 一个人占一行\<div>内容\</div> **块级标签**
-     2.   span 自己多大 占多大  \<span>内容\</span> **行内标签**
+     1.   `div` 一个人占一行`<div>`内容`</div>` **块级标签**
+     2.   `span` 自己多大 占多大  \<span>内容\</span> **行内标签**
      3.   这两个标签很素 可以通过写css文件使它变得很花里胡哨
 
-6.   超链接 a
+6.   超链接 `a`
 
      ```html
      <!-- 跳转到别人的网站 -->
@@ -982,7 +984,7 @@ if __name__ == '__main__':
      target = "_blank" : 在新标签页打开链接
      ```
 
-7.   图片 \<img src="图片地址"> 自闭合标签 
+7.   图片 `<img src="图片地址">` 自闭合标签 
      ```html
      <!-- 别人的图片 可能有防盗链 -->
      <img src="https://pic.netbian.com/uploads/allimg/221216/095854-1671155934fedf.jpg">
@@ -1008,31 +1010,27 @@ if __name__ == '__main__':
 
 9.   列表 —— 块级标签
 
--   2022 Python的web开发（完整版）入门全套教程，零基础入门到项目实战 
+```html
+<!-- 无序列表 -->
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+```
 
--   时间点：P21 day11-1 前端HTML 2:13:42
-
-    ```html
-    <!-- 无序列表 -->
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-    ```
-
-    ```html
-    <!-- 有序列表 -->
-    <ol>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ol>
-    ```
+```html
+<!-- 有序列表 -->
+<ol>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ol>
+```
 
 10.   表格
 
@@ -1049,7 +1047,7 @@ if __name__ == '__main__':
       </table>
       ```
 
-11.   input 系列 —— 行内标签 7个
+11.   `input` 系列 —— 行内标签 7个
 
       ```html
       <input type="text" /> 文本输入框
@@ -1085,9 +1083,6 @@ if __name__ == '__main__':
           <option>深圳</option>
       </select>
       ```
-
-      -   2022 Python的web开发（完整版）入门全套教程，零基础入门到项目实战
-      -   时间点：P21 day11-1 前端HTML 3:06:28
 
 13.   多选下拉框
       ```html
@@ -1170,28 +1165,24 @@ if __name__ == '__main__':
 
 #### 补充
 
-get请求： URL方法 / 表单请求
+`get`请求： `URL`方法 / 表单请求
 
--   get请求
+-   `get`请求
 
 -   跳转
 
--   向后台传入数据时 会拼接到URL上面 会在URL中体现
+-   向后台传入数据时 会拼接到`URL`上面 会在`URL`中体现
     ```python
     https://www.sogou.com/webquery=%E5%AE%89%E5%8D%93&_asf=www.sogou.com&_ast=&w=01019900&p=40040100&ie=utf8&from=index-nologin&s_from=index&sut=636&sst0=1681999875710&lkt=0%2C0%2C0&sugsuv=1681999871894192&sugtime=1681999875710
     ```
 
-post请求：表单提交
+`post`请求：表单提交
 
--   现象：提交数据不在URL中体现，体现在自己的表单中 显示在请求体中
+-   现象：提交数据不在`URL`中体现，体现在自己的表单中 显示在请求体中
 
 #### 案例：用户注册
 
 -   新创建一个项目
-
-```html
-
-```
 
 -   新建Flask代码
     ```html
@@ -1233,13 +1224,13 @@ post请求：表单提交
 
     注意：
 
-    1 form标签要包裹要提交的数据的标签
+    1 `form`标签要包裹要提交的数据的标签
 
-    2 在form标签中定义提交方式method=“get” 提交地址action="提交地址"
+    2 在`form`标签中定义提交方式`method=“get”` 提交地址`action="提交地址"`
 
-    3 还需要一个submit标签
+    3 还需要一个`submit`标签
 
-    4 在form里面的标签： input TextArea select  **<u>一定要记得写name属性</u>**
+    4 在`form`里面的标签： `input TextArea select`  **<u>一定要记得写name属性</u>**
 
     5 这个地址：写到自己的网址
 
@@ -1279,7 +1270,7 @@ if __name__ == '__main__':
 
 `ImmutableMultiDict([('user', 'qwer'), ('pwd', 'qwer')])`
 
-以post请求的方式发送请求：
+以`post`请求的方式发送请求：
 
 ```python
 @app.route('/post/reg', methods=['POST'])
@@ -1397,9 +1388,9 @@ def register():
         return '<h1>提交以后</h1>'
 ```
 
-### CSS
+### `CSS`
 
-css 美化标签 
+`css` 美化标签 
 
 #### 快速了解
 
@@ -1411,7 +1402,7 @@ css 美化标签
 </div>
 ```
 
-#### CSS 应用方式：
+#### `CSS` 应用方式：
 
 1.   直接在标签上应用
 
@@ -1423,7 +1414,7 @@ css 美化标签
 </div>
 ```
 
-2.   在head标签中写style标签
+2.   在`head`标签中写`style`标签
 
 ```html
 <!DOCTYPE html>
@@ -1457,7 +1448,7 @@ css 美化标签
 </html>
 ```
 
-3.   将样式存到一个CSS文件中
+3.   将样式存到一个`CSS`文件中
 
      ```css
      .c1{
@@ -1493,17 +1484,17 @@ css 美化标签
      </html>
      ```
 
-     #### 案例：在flask中的应用
+     #### 案例：在`flask`中的应用
 
-     问题：用Flask框架不太方便 每次都要重启 有些文件必须放在特定的文件夹中
+     问题：用`Flask`框架不太方便 每次都要重启 有些文件必须放在特定的文件夹中
 
-     函数 、 HTML文件
+     函数 、 `HTML`文件
 
-     有没有一种方式快速编写前段代码 并且查看效果  最后再将页面集成到flask中
+     有没有一种方式快速编写前段代码 并且查看效果  最后再将页面集成到`flask`中
 
      —— pycharm 提供了非常便捷的开发前端页面的工具
 
-#### CSS选择器
+#### `CSS`选择器
 
 ```html
 . 表示class选择器
@@ -1511,7 +1502,7 @@ css 美化标签
 li li标签选择器
 ```
 
-1.   ID选择器
+1.   `ID`选择器
 
 2.   类选择器 —— 用的最多
 
@@ -1540,7 +1531,7 @@ li li标签选择器
 
 7.   注意事项：多个样式以及覆盖问题：
 
-     -   和写的顺序无关 而和css样式定义的上下顺序有关系
+     -   和写的顺序无关 而和`css`样式定义的上下顺序有关系
          ```html
          .c1{
              color: yellow;
@@ -1595,7 +1586,8 @@ li li标签选择器
 
 -   行内标签
 
--   css样式：标签 --> `display: inline-block`综合了行内标签和块级标签的特性
+-   `css`样式：标签 --> `display: inline-block`综合了行内标签和块级标签的特性
+  
     ```html
     .c1{
         display: inline-block;
@@ -1607,7 +1599,7 @@ li li标签选择器
     <span class="c1">中国</span>
     <span class="c1">联通</span>
     ```
-
+    
 -   块级标签和行内标签的设置：
     ```html
     <div style="display: inline;">中国</div>
@@ -1638,9 +1630,9 @@ text-align: center; 水平居中
 <span style="float: right;">右边</span>
 ```
 
-div默认是块级标签——霸道
+`div`默认是块级标签——霸道
 
-div浮动起来后 就会变得不一样
+`div`浮动起来后 就会变得不一样
 
 ）
 
@@ -1692,15 +1684,15 @@ div浮动起来后 就会变得不一样
     line-height: 只针对文字 对图片不起作用
     ```
 
-    **a标签是一个行内标签 行内标签默认不能设置高度和边距！！！ 有两种方法：设置块级标签 或者行内标签&块级标签**
+    **`a`标签是一个行内标签 行内标签默认不能设置高度和边距！！！ 有两种方法：设置块级标签 或者行内标签&块级标签**
 
 #### 案例： 小米商城
 
 ##### 总结：
 
-body标签有一个默认的边距 显示出来后 有一个白色的间隙
+`body`标签有一个默认的边距 显示出来后 有一个白色的间隙
 
-直接在页面上给body加样式 
+直接在页面上给`body`加样式 
 
 ```html
 margin: 0;
@@ -1714,9 +1706,9 @@ text-align: center;
 
 区域居中：自己要有宽度 + `margin-left: auto; margin-right: auto;`
 
-父亲如果没有高度和宽度——整体会被子div撑起来
+父亲如果没有高度和宽度——整体会被子`div`撑起来
 
-如果div有浮动 需要加clear: both(需要加入到有浮动的div的同级标签的下一行)
+如果`div`有浮动 需要加`clear: both`(需要加入到有浮动的div的同级标签的下一行)
 
 ```html
 <div class="menu">  /*这个div有浮动*/
@@ -1768,13 +1760,13 @@ text-decoration: none; —— 让超链接的下划线不显示
 
 总结：
 
--   a标签 是行内标签 高度和内外边距设置是不会生效的
+-   `a`标签 是行内标签 高度和内外边距设置是不会生效的
 
--   垂直居中 文本：line-height 图片：通过计算边距实现
+-   垂直居中 文本：`line-height` 图片：通过计算边距实现
 
--   a标签默认有下划线  如果要去掉：text-decoration: none;
+-   `a`标签默认有下划线  如果要去掉：`text-decoration: none;`
 
--   某个标签 的 hover ：鼠标放上去后会应用这个样式
+-   某个标签 的 `hover` ：鼠标放上去后会应用这个样式
     ```html
     .sub-header .menu-list a:hover{
         color: chartreuse;
@@ -2058,11 +2050,11 @@ text-decoration: none; —— 让超链接的下划线不显示
 opacity: 0.7；/* 透明度 */
 ```
 
-实现效果：![实现效果](../../images/小米商城-实现效果.png)
+实现效果：![实现效果](./images/小米商城-实现效果.png)
 
-#### CSS知识点
+#### `CSS`知识点
 
-##### hover（伪类）
+##### `hover`（伪类）
 
 ```html
 <!DOCTYPE html>
@@ -2120,7 +2112,7 @@ opacity: 0.7；/* 透明度 */
 </html>
 ```
 
-##### after（伪类）
+##### `after`（伪类）
 
 ```html
 <!DOCTYPE html>
@@ -2149,7 +2141,7 @@ opacity: 0.7；/* 透明度 */
 
 ![展示效果](../../images/after.png)
 
-★★★注意：当使用after按照以下的样式写的时候，咋不需要写`<div style="clear: both;"></div>`
+★★★注意：当使用`after`按照以下的样式写的时候，咋不需要写`<div style="clear: both;"></div>`
 
 ```html
 <!DOCTYPE html>
@@ -2179,13 +2171,13 @@ opacity: 0.7；/* 透明度 */
 </html>
 ```
 
-##### position
+##### `position`
 
--   fixed
--   relative
--   absolute
+-   `fixed`
+-   `relative`
+-   `absolute`
 
-###### fixed:
+###### `fixed`:
 
 固定在窗口的某个位置
 
@@ -2265,7 +2257,7 @@ opacity: 0.7；/* 透明度 */
 
 上面代码显示的效果：<img src="../../images\image-20230427220244654.png" alt="image-20230427220244654" style="zoom: 33%;" />
 
-###### relative和absolute
+###### `relative`和`absolute`
 
 相对显示和背景色
 
@@ -2292,21 +2284,21 @@ transparent: 透明度 一般和hover结合的时候用
 background-color
 ```
 
-### BootStrap
+### `BootStrap`
 
-别人已经写好的一些css样式
+别人已经写好的一些`css`样式
 
 使用：
 
--   下载BootStrap
+-   下载`BootStrap`
 -   使用
-    -   在页面上引用BootStrap
-    -   变现HTML 按照BootStrap的规定编写 —— 注意无法完全实现功能 + 自定制
--   BootStrap网址：`https://v3.bootcss.com/`
+    -   在页面上引用`BootStrap`
+    -   变现`HTML` 按照`BootStrap`的规定编写 —— 注意无法完全实现功能 + 自定制
+-   `BootStrap`网址：`https://v3.bootcss.com/`
 
-#### 初识BootStrap
+#### 初识`BootStrap`
 
--   下载： 用于生产环境的 Bootstrap
+-   下载： 用于生产环境的 `Bootstrap`
 
     ![image-20230427224345735](../../images\image-20230427224345735.png)
 
@@ -2335,7 +2327,7 @@ background-color
 </html>
 ```
 
-上面HTNL显示结果：<img src="../../images\image-20230428183645898.png" alt="image-20230428183645898" style="zoom: 50%;" />
+上面`HTNL`显示结果：<img src="../../images\image-20230428183645898.png" alt="image-20230428183645898" style="zoom: 50%;" />
 
 ```python
 # TODO: day12-2 18:16
@@ -2366,9 +2358,9 @@ background-color
 
     -   响应式  根据屏幕宽度显示网页
 
-        -   .col-sm-  1170px
-        -   .col-md-  970px
-        -   .col-lg-  750px
+        -   `.col-sm-  1170px`
+        -   `.col-md-  970px`
+        -   `.col-lg-  750px`
 
     -   非响应式 不随着整个页面的大小调整而调整
         ```html
@@ -2384,7 +2376,7 @@ background-color
 </div>
 ```
 
-####  container
+####  `container`
 
 -   ```html
     <div class="container-fluid">
@@ -2974,8 +2966,8 @@ background-color
 
 ####  图标
 
--   bootstrap 提供的图标不多
--   fontawesome组件  `https://fontawesome.dashgame.com/`
+-   `bootstrap `提供的图标不多
+-   `fontawesome`组件  `https://fontawesome.dashgame.com/`
 
 -   下载并引入
 
@@ -2985,60 +2977,61 @@ background-color
 
 ####  依赖
 
-bootstrap依赖JavaScript的类库，JQuery
+`bootstrap`依赖`JavaScript`的类库，`JQuery`
 
--   下载JQuery
--   应用JQuery
--   在页面上应用Bootstrap的JS类库
+-   下载`JQuery`
+-   应用`JQuery`
+-   在页面上应用`Bootstrap`的`JS`类库
 
-###  JavaScript
+###  `JavaScript`
 
 -   编程语言
--   浏览器就是JavaScript的解释器
--   DOM和BOM
+-   浏览器就是`JavaScript`的解释器
+-   `DOM`和`BOM`
+  
     ```html
     相当于js内置的模块、函数
     ```
 -   类库（模块）
--   JQuery是js的一个类库，相当于是js的第三方模块
+-   `JQuery`是`js`的一个类库，相当于是js`的`第三方模块
 
-#### javascript
+#### `javascript`
 
-javascript 是一种编程语言
+`javascript `是一种编程语言
 
 意义：让网站展示动态效果
 
 前端三大组件：
 
--   html
--   CSS
--   javascript
+-   `html`
+-   `CSS`
+-   `javascript`
 
 1.1 存放代码位置：
 
--   head标签里面，css标签下面
--   在body标签的内部，紧邻</body>之前编写 —— 推荐
+-   `head`标签里面，`css`标签下面
+-   在`body`标签的内部，紧邻</body>之前编写 —— 推荐
 
-1.2 js代码的存在形式：
+1.2 `js`代码的存在形式：
 
-写在html文件中
+写在`html`文件中
 
 写在文件中
 
 1.3 注释
 
-html的注释：`<!-- 注释内容 -->`
+`html`的注释：`<!-- 注释内容 -->`
 
-css的注释：`/* 注释内容 */`  `<style>代码块里面`
+`css`的注释：`/* 注释内容 */`  `<style>代码块里面`
 
-javascript的注释：`/**/ 或者 //`  `<script>`代码块里面
+`javascript`的注释：`/**/ 或者 //`  `<script>`代码块里面
 
 ```js
 // 注释内容
 /* 注释内容 */
 ```
 
-##### javascript变量
+##### `javascript`变量
 
 ```html
 <!DOCTYPE html>
@@ -3056,7 +3049,7 @@ javascript的注释：`/**/ 或者 //`  `<script>`代码块里面
 </html>
 ```
 
-通过语句`console.log(name)`在浏览器中打开抓包工具，找console，刷新页面既可在浏览器抓包工具中找变量的值。
+通过语句`console.log(name)`在浏览器中打开抓包工具，找`console`，刷新页面既可在浏览器抓包工具中找变量的值。
 
 #####  字符串类型
 
@@ -3136,9 +3129,9 @@ for (var i=0; i < v1.length; i++) {
 }
 ```
 
-注意：循环中break和continue也有
+注意：循环中`break`和`continue`也有
 
-案例 - 利用js添加标签及文字
+案例 - 利用`js`添加标签及文字
 
 ```html
 <!DOCTYPE html>
@@ -3295,9 +3288,9 @@ function func() {
 func()
 ```
 
-#### DOM
+#### `DOM`
 
-就是一个模块，可以对html中标签进行操作。
+就是一个模块，可以对`html`中标签进行操作。
 
 ```javascript
 // 根据ID获取标签
@@ -3381,16 +3374,16 @@ tag.appendChild(newTag) ;
 </body>
 ```
 
-注意：onclick是鼠标单击触发事件，ondblclick是鼠标双击触发事件。
+注意：`onclick`是鼠标单击触发事件，`ondblclick`是鼠标双击触发事件。
 
-此外，DOM可以实现很多操作，但是很繁琐，很多的工作是JQuery实现的。或者VUE实现的。
+此外，`DOM`可以实现很多操作，但是很繁琐，很多的工作是`JQuery`实现的。或者`VUE`实现的。
 
-#### JQuery
+#### `JQuery`
 
-是一个javascript第三方模块
+是一个`javascript`第三方模块
 
--   基于JQuery，自己开发一些工具/功能
--   现成的工具是依赖JQuery，例如BootStrap动态效果需要使用JQuery。
+-   基于`JQuery`，自己开发一些工具/功能
+-   现成的工具是依赖`JQuery`，例如`BootStrap`动态效果需要使用`JQuery`。
 
 ##### 快速上手
 
@@ -3413,7 +3406,7 @@ tag.appendChild(newTag) ;
 
 ##### 寻找标签(直接寻找)
 
--   id
+-   `id`
 
 ```html
 <h1 id="txt">阿里嘎多</h1>
@@ -3642,9 +3635,9 @@ $("#c1").find("div")  // 所有的子孙里面找div
 
 ##### 操作样式
 
--   addClass()
--   removeClass()
--   hasClass()
+-   `addClass()`
+-   `removeClass()`
+-   `hasClass()`
 
 ##### 值的操作
 
@@ -3845,40 +3838,40 @@ $("#c2").val("hahaha")  // 设置值
 
 前端整合小案例：
 
--   HTML
--   CSS
--   javascript、Jquery
--   BootStrap（动态效果依赖BootStrap）
+-   `HTML`
+-   `CSS`
+-   `javascript`、`Jquery`
+-   `BootStrap`（动态效果依赖`BootStrap`）
 
 案例：添加数据页面
 
 >   人员信息登录功能，需要提供用户信息
 >
 >   -   用户名 年龄 薪资 部门 入职时间（*）
->   -   时间的选择 datatimepicker
+>   -   时间的选择 `datatimepicker`
 >       -   下载插件https://cdnjs.com/libraries/bootstrap-datetimepicker
 >       -   或者https://www.bootcdn.cn/bootstrap-datetimepicker/
 >       -   应用插件 —— 官方文档 https://bootstrap-datepicker.readthedocs.io/en/latest/ 
 >       -   中文文档 https://espespcp.com/docs/bootstrap-datepicker/1/9.html
 
-## web框架
+## `web`框架
 
-### flask框架
+### `flask`框架
 
 ...
 
-### Django框架
+### `Django`框架
 
-#### 初识Django
+#### 初识`Django`
 
--   Python 函数 面向对象
--   前端 css html
--   mysql
--   Python web 框架
-    -   flask框架 小而精 简单页面 + 第三方组件
-    -   Django 内部集成了很多的组件 大型项目+ 第三方组件 【主要】
+-   `Python `函数 面向对象
+-   前端 `css html`
+-   `mysql`
+-   `Python web` 框架
+    -   `flask`框架 小而精 简单页面 + 第三方组件
+    -   `Django `内部集成了很多的组件 大型项目+ 第三方组件 【主要】
 
-1.   安装django
+1.   安装`django`
 
      ```python
      pip install Django
@@ -3935,7 +3928,7 @@ $("#c2").val("hahaha")  // 设置值
      			|- wsgi.py          # 接受网络请求 同步式 不动 
      ```
 
-#### APP
+#### `APP`
 
 ```python
 - 项目
@@ -3980,7 +3973,7 @@ models.py   **重要** 专门用于操作数据库
 
 ##### 快速上手
 
--   确保APP已注册 
+-   确保`APP`已注册 
     ```python
     # 在settings.py里面的INSTALLED_APPS列表中
     INSTALLED_APPS = [
@@ -4012,10 +4005,10 @@ models.py   **重要** 专门用于操作数据库
 
     ![image-20230505213449687](../../images/image-20230505213449687.png)
 
--   编写URL和视图函数的对应关系：urls.py中编写
--   编写views文件里面的对应函数![image-20230505214155712](../../images/image-20230505214155712.png)
+-   编写`URL`和视图函数的对应关系：`urls.py`中编写
+-   编写`views`文件里面的对应函数![image-20230505214155712](../../images/image-20230505214155712.png)
 
--   启动Django项目
+-   启动`Django`项目
     ```python
     # 命令行
     >>> python manage.py runsevere 
@@ -4025,15 +4018,15 @@ models.py   **重要** 专门用于操作数据库
     >>>
     ```
 
--   templates模板
+-   `templates`模板
 
     
   
 -   引入静态文件
 
-    -   在app目录下创建static文件夹，里面存放js css images 和 plugins等文件
-    -   在HTML最顶行加入 {% load static %}
-    -   在引入静态文件时候，使用"{% static '/plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}" 方式引用
+    -   在`app`目录下创建`static`文件夹，里面存放`js css images` 和 `plugins`等文件
+    -   在`HTML`最顶行加入 `{% load static %}`
+    -   在引入静态文件时候，使用`"{% static '/plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}"` 方式引用
 
     ```python
     # 在开发过程中，一般将图片，css，插件当做静态文件处理
@@ -4056,7 +4049,7 @@ models.py   **重要** 专门用于操作数据库
 
 ##### 模板语法
 
-本质上，在HTML中写一些占位符，由数据对这些占位符进行替换和处理。
+本质上，在`HTML`中写一些占位符，由数据对这些占位符进行替换和处理。
 
 ```html
 <!-- tpl.html -->
@@ -4188,17 +4181,17 @@ urlpatterns = [
 
 ![image-20230506195204614](../../images/image-20230506195204614.png)
 
-在提交数据的HTML文档中的表单 form 标签里面的input标签的同一层：加入`{% csrf_token %}`
+在提交数据的`HTML`文档中的表单 `form `标签里面的`input`标签的同一层：加入`{% csrf_token %}`
 
-#### 数据库操作- Django
+#### 数据库操作- `Django`
 
-在Django中，操作数据库更简单，内部提供了ORM框架
+在`Django`中，操作数据库更简单，内部提供了`ORM`框架
 
-ORM：
+`ORM`：
 
--   翻译：翻译models.xxx.all() 成为 `SELECT * FROM xxx`
--   操作数据库的表 —— 不用写sql语句 **但是无法创建数据库**
--   创建 修改 删除 —— 不用亲自写SQL语句
+-   翻译：翻译`models.xxx.all()` 成为 `SELECT * FROM xxx`
+-   操作数据库的表 —— 不用写`sql`语句 **但是无法创建数据库**
+-   创建 修改 删除 —— 不用亲自写`SQL`语句
 
 使用：
 
@@ -4210,11 +4203,11 @@ pip install mysqlclient
 
 ##### 自己创建数据库：
 
-启动mysql服务、创建数据库（只能自己创建数据库）
+启动`mysql`服务、创建数据库（只能自己创建数据库）
 
-##### Django链接数据库
+##### `Django`链接数据库
 
-在settings.py里面配置：
+在`settings.py`里面配置：
 
 ```python
 DATABASES = {
@@ -4230,7 +4223,7 @@ DATABASES = {
 }
 ```
 
-##### django操作表 
+##### `django`操作表 
 
 在`models.py`文件中写
 
@@ -4258,7 +4251,7 @@ DATABASES = {
     """
     ```
 
-    执行下列命令：前提是app已经注册
+    执行下列命令：前提是`app`已经注册
 
     ```text
     >>> python manage.py makemigrations
@@ -4378,23 +4371,23 @@ UserInfo.objects.all().update(password=999)
 
 -   展示用户列表
 
-    -   对于UserInfo这个表
+    -   对于`UserInfo`这个表
         1.   展示列表
-             -   url
+             -   `url`
              -   函数
              -   获取所有信息
-             -   HTML渲染
+             -   `HTML`渲染
 
 -   添加用户：
 
-    -   url
+    -   `url`
     -   函数
-        -   GET看到页面，输入内容
-        -   POST提交数据
+        -   `GET`看到页面，输入内容
+        -   `POST`提交数据
 
 -   删除用户
 
-    -   url
+    -   `url`
     -   函数
 
     ```python
@@ -4408,7 +4401,7 @@ UserInfo.objects.all().update(password=999)
         return Httpreponse("删除成功！！！")
     ```
 
-#### Django开发
+#### `Django`开发
 
 主题：用户管理系统
 
@@ -4434,7 +4427,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-##### 设计表结构 - 利用django
+##### 设计表结构 - 利用`django`
 
 ```python
 # models.py
@@ -4467,9 +4460,9 @@ class UserInfo(models.Model):
 
 还需要在员工表存储员工所属部门。
 
-可以按照ID或者部门名称存。—— 按照数据库范式，**存ID**，但是大厂存**名称**。查询数据的时候，需要和另外一张表联合，比较耗时，为了加快查找，允许有数据冗余。
+可以按照`ID`或者部门名称存。—— 按照数据库范式，**存`ID`**，但是大厂存**名称**。查询数据的时候，需要和另外一张表联合，比较耗时，为了加快查找，允许有数据冗余。
 
-对部门ID有没有约束？ —— 需要有约束，用户表不能随便插入部门ID。 —— 可以加上约束，只能是部门表中已经存在的部门ID。如果只写`BigIntegerField`时不会有约束的，
+对部门`ID`有没有约束？ —— 需要有约束，用户表不能随便插入部门`ID`。 —— 可以加上约束，只能是部门表中已经存在的部门`ID`。如果只写`BigIntegerField`时不会有约束的，
 
 还有个问题：如果删掉部门，用户表中的关联的用户的怎么办？ 
 
@@ -4514,7 +4507,7 @@ DATABASES = {
 
 > 本次体验最原始的方法做
 >
-> Django中提供Form和ModelForm组件实现 —— 很方便
+> `Django`中提供`Form`和`ModelForm`组件实现 —— 很方便
 
 1. 部门列表
 
@@ -4568,7 +4561,7 @@ def depart_edit(request, nid: int, ):
 - 添加部门
 - 编辑部门
 
-创建一个模板，让HTML继承这个模板
+创建一个模板，让`HTML`继承这个模板
 
 - 定义模板
 
@@ -4702,13 +4695,13 @@ def depart_edit(request, nid: int, ):
 # # 总结来首，漏洞百出。
 ```
 
-- Django组件
-  - form组件 —— 小高级 + 代码 才能完全解决原始方式的问题
-  - ModelForm组件 —— 最简便
+- `Django`组件
+  - `form`组件 —— 小高级 + 代码 才能完全解决原始方式的问题
+  - `ModelForm`组件 —— 最简便
 
-#### 初识form组件
+#### 初识`form`组件
 
-1. views.py
+1. `views.py`
 
    ```python
    # views.py
@@ -4724,7 +4717,7 @@ def depart_edit(request, nid: int, ):
            return render(request, 'user_add.html', {'form': form})
    ```
 
-2. user_add.html
+2. `user_add.html`
 
    ```html
    <!-- user_add.html -->
@@ -4751,9 +4744,9 @@ def depart_edit(request, nid: int, ):
    </form>
    ```
 
-3. ModelForm组件
+3. `ModelForm`组件
 
-   1. models.py
+   1. `models.py`
 
       ```python
       class UserInfo(models.Model):
@@ -4775,7 +4768,7 @@ def depart_edit(request, nid: int, ):
           gender = models.SmallIntegerField(verbose_name="性别", choices=gender_choices)
       ```
 
-   2. views.py
+   2. `views.py`
 
       ```python
       # views.py
@@ -4795,7 +4788,7 @@ def depart_edit(request, nid: int, ):
               return render(request, 'user_add.html', {'form': form})
       ```
 
-   3. user_add.html
+   3. `user_add.html`
 
       ```html
       <!-- user_add.html -->
@@ -4822,7 +4815,7 @@ def depart_edit(request, nid: int, ):
       </form>
       ```
 
-   modelform:
+   `modelform`:
 
    ```python
    <form method="post" action="">
@@ -4837,9 +4830,9 @@ def depart_edit(request, nid: int, ):
    </form>
    ```
 
-#### ModelForm
+#### `ModelForm`
 
-1. 首先，在user_list.html文档中：添加下列信息，点击可直达显示页面，测试ModelForm
+1. 首先，在`user_list.html`文档中：添加下列信息，点击可直达显示页面，测试`ModelForm`
 
    ```html
    <a href="/user/model/form/add/">
@@ -4850,7 +4843,7 @@ def depart_edit(request, nid: int, ):
    </a>
    ```
 
-2. 在urls.py文件中，加入一个网址和视图函数的对应关系
+2. 在`urls.py`文件中，加入一个网址和视图函数的对应关系
 
    ```python
    urlpatterns = [
@@ -4858,7 +4851,7 @@ def depart_edit(request, nid: int, ):
    ]
    ```
 
-3. 在views.py文件中，添加下面的一个类和一个函数
+3. 在`views.py`文件中，添加下面的一个类和一个函数
 
    ```python
    class UserModelForm(forms.ModelForm):
@@ -4902,7 +4895,7 @@ def depart_edit(request, nid: int, ):
        return render(request, 'user_model_form_add.html', {'form': form})           
    ```
 
-4. 在user_model_form_add.html
+4. 在`user_model_form_add.html`
 
    ```html
    {% extends 'layout.html' %}
@@ -4950,7 +4943,7 @@ def depart_edit(request, nid: int, ):
    {% endfor %}
    ```
 
-#### Django开发
+#### `Django`开发
 
 -   部门管理
 
@@ -4966,9 +4959,9 @@ def depart_edit(request, nid: int, ):
 
 ##### 编辑用户
 
-点击编辑，跳转到编辑页面，（将编辑的ID携带过去）
+点击编辑，跳转到编辑页面，（将编辑的`ID`携带过去）
 
-编辑页面：默认数据，根据ID获取并设置到页面中
+编辑页面：默认数据，根据`ID`获取并设置到页面中
 
 提交时，做错误提示和数据校验，在数据库中更新。
 
@@ -4976,11 +4969,11 @@ def depart_edit(request, nid: int, ):
 
 -   数据库表结构：
 
-    | ID   | mobile      | 级别（choices） | 状态（1 未占用 2 已占用） | 价格 |
-    | ---- | ----------- | --------------- | ------------------------- | ---- |
-    | 1    | 12222222222 | 1               | 2                         | 100  |
+    | `ID` | `mobile`    | 级别（`choices`） | 状态（1 未占用 2 已占用） | 价格 |
+    | ---- | ----------- | ----------------- | ------------------------- | ---- |
+    | 1    | 12222222222 | 1                 | 2                         | 100  |
 
--   根据表结构的需求，创建models类，在models.py中创建类，由类生成数据库中的表。
+-   根据表结构的需求，创建`models`类，在`models.py`中创建类，由类生成数据库中的表。
 
     -   创建数据库
 
@@ -5046,7 +5039,7 @@ def depart_edit(request, nid: int, ):
         +----+-------------+--------+-------+-------+
         ```
 
--   靓号列表（url 函数{获取所有靓号 结合html和render将靓号罗列出来 ID 号码 价格 级别 状态——都是中文}）
+-   靓号列表（`url `函数{获取所有靓号 结合`html`和`render`将靓号罗列出来 `ID `号码 价格 级别 状态——都是中文}）
 
     ```python
     # urls.py
@@ -5114,9 +5107,9 @@ def depart_edit(request, nid: int, ):
 
     列表点击跳转：`/pretty/number/add/`
 
-    url
+    `url`
 
-    函数（ModelForm类 实例化类对象 通过render将对象传入到HTML中 通过模板的循环展示所有的字段）：
+    函数（`ModelForm`类 实例化类对象 通过`render`将对象传入到`HTML`中 通过模板的循环展示所有的字段）：
 
     ```python
     # views.py
@@ -5284,9 +5277,9 @@ def depart_edit(request, nid: int, ):
     </script>
     ```
     
-    ModelForm和BootStrap：
+    `ModelForm`和`BootStrap`：
     
-    ModelForm可以帮我们生成HTML标签
+    `ModelForm`可以帮我们生成`HTML`标签
     
     ```python
     class UserModelForm(forms.ModelForm):
@@ -5393,11 +5386,11 @@ def depart_edit(request, nid: int, ):
         ...
     ```
     
-    提取公共的BootStrap类，拆分views.py
+    提取公共的`BootStrap`类，拆分`views.py`
     
-    ★★★ 注意：在拆分views.py的过程中，拆完后需要将views.py删除★★★
+    ★★★ 注意：在拆分`views.py`的过程中，拆完后需要将`views.py`删除★★★
     
-    ★★★ 注意：可以拆views.py中定义的类，但是`models.py`一般不能拆！！！★★★
+    ★★★ 注意：可以拆`views.py`中定义的类，但是`models.py`一般不能拆！！！★★★
     
     ![image-20230518211722552](../../images/image-20230518211722552.png)
 
@@ -5445,7 +5438,7 @@ def depart_edit(request, nid: int, ):
 
 
 
-##  MySQL
+##  `MySQL`
 
 ##  数据库
 
@@ -5592,31 +5585,31 @@ if __name__ == "__main__":
 
 目前所知的存储文件方式：
 
--   txt文件
--   Excel文件
+-   `txt`文件
+-   `Excel`文件
 
 上述两个非常繁琐且性能不高
 
 做存储数据的专业软件：数据库管理系统
 
--   mysql 
--   oracle
--   sqlserver
--   DB2
--   Access
+-   `mysql `
+-   `oracle`
+-   `sqlserver`
+-   `DB2`
+-   `Access`
 
-### mysql数据库
+### `mysql`数据库
 
-启动mysql：
+启动`mysql`：
 
--   临时启动，运行了mysqld.exe 如果在cmd运行了这个命令，则代表mysql已经启动了，知道这个cmd黑窗口被关闭，mysql会被关闭
+-   临时启动，运行了`mysqld.exe` 如果在`cmd`运行了这个命令，则代表`mysql`已经启动了，知道这个`cmd`黑窗口被关闭，`mysql`会被关闭
 
 制作服务： 执行命令
 ```txt
 >>> mysqld.exe --install mysql
 ```
 
-其中mysqld.exe代表制作mysql服务
+其中`mysqld.exe`代表制作`mysql`服务
 
 连接测试：
 
@@ -5636,13 +5629,13 @@ show databases;
 
 忘记密码：
 
--   关闭mysql服务
--   修改配置，重新启动mysql —— 无账号模式
+-   关闭`mysql`服务
+-   修改配置，重新启动`mysql `—— 无账号模式
 -   mysql -u root -p
 -   重设密码
 -   退出
--   再重新修改mysql配置文件，重新启动mysql
--   mysql -u root -p 并输入新密码
+-   再重新修改`mysql`配置文件，重新启动`mysql`
+-   `mysql -u root -p` 并输入新密码
 
 ### 数据库管理（文件夹）
 
@@ -5765,7 +5758,7 @@ show databases;
 
 #### 整型
 
-1.   tinyint
+1.   `tinyint`
 
      ```sql 
      有符号，取值范围 -128 ~ 127  有正有负 【默认】
@@ -5788,13 +5781,14 @@ show databases;
      ) default charset=utf8;
      ```
 
-2.   int
+2.   `int`
+     
      ```
      有符号 ...
      无符号 ...
      ```
-
-3.   bigint（有符号 无符号）
+     
+3.   `bigint`（有符号 无符号）
 
 练习
 
@@ -5819,9 +5813,9 @@ select * from mytable_2;
 
 #### 小数
 
-1.   float     不精准
-2.   double    不精准
-3.   decimal   精准
+1.   `float `    不精准
+2.   `double`    不精准
+3.   `decimal`   精准
 
 ```sql
 # 准确的小数值，m是数字总个数（负号不算） d时小数点后面的位数 m的最大值是65 d的最大值是30
@@ -5838,8 +5832,8 @@ insert into mytable_3(salary) values(1.28), (2.2658), (5.289), (5.282);
 
 #### 字符串
 
-1.   char(m) 定长字符串,固定用11个字符存储，哪怕真实没有11个字符，也会存11个字符。 超过长度会报错 —— 只可少，不可多 
-     -- 查询速度快 m最大可容纳255个字符
+1.   `char(m)` 定长字符串,固定用11个字符存储，哪怕真实没有11个字符，也会存11个字符。 超过长度会报错 —— 只可少，不可多 
+     -- 查询速度快 `m`最大可容纳255个字符
 
      ```sql
      create table mytable_4 (
@@ -5850,8 +5844,8 @@ insert into mytable_3(salary) values(1.28), (2.2658), (5.289), (5.282);
      insert into mytable_4 (mobile) values("151"), ("18415584096");
      ```
 
-2.   varchar(m) 变长字符串 真实数据有多长 就存多长，节省空间
-     -- m代表字符长度 看编码而定 最大65535个字节 65535/3 = 存储的汉字个数（一个汉字三个字节）
+2.   `varchar(m)` 变长字符串 真实数据有多长 就存多长，节省空间
+     -- `m`代表字符长度 看编码而定 最大65535个字节 `65535/3 = 存储的汉字个数`（一个汉字三个字节）
 
      ```sql
      create table mytable_4 (
@@ -5862,20 +5856,22 @@ insert into mytable_3(salary) values(1.28), (2.2658), (5.289), (5.282);
      insert into mytable_4 (mobile) values("151"), ("18415584096");
      ```
 
-3.   text 可容纳 65535个字符 新闻 文章会用这个存储
+3.   `text` 可容纳 `65535`个字符 新闻 文章会用这个存储
 
-4.   mediumtext 2 \** 24个字符 16,777,215
+4.   `mediumtext` `2 \** 24`个字符 `16,777,215`
 
-5.   longtext 4GB 2 \** 32 - 1
+5.   `longtext` `4GB` `2 \** 32 - 1`
 
 #### 时间 
 
-1.   datetime
+1.   `datetime`
+     
      ```sql
      YYYY-MM-DD HH:MM:SS (1000-01-01 00:00:00/9999-12-31 23:59:59)
      ```
-
-2.   date 
+     
+2.   `date `
+     
      ```sql
      YYYY-MM-DD (1000-01-01/9999-12-31)
      ```
@@ -5966,9 +5962,9 @@ select name from mytable_5 where id=1;
 
 -   使用内置命令
 
-    -   创建数据库 unicome `create database unicome default charset utf8 collate  utf8_general_ci;`
+    -   创建数据库 `unicome ` `create database unicome default charset utf8 collate  utf8_general_ci;`
 
-    -   创建数据表 admin
+    -   创建数据表 `admin`
 
     -   表里面创建一些列
 
@@ -5981,7 +5977,7 @@ select name from mytable_5 where id=1;
         	mobile 字符串 不为空
         ```
 
-    -   用Python代码实现：
+    -   用`Python`代码实现：
 
         -   添加用户
         -   删除用户
@@ -6004,7 +6000,7 @@ create table admin (
 ) default charset = utf8;
 ```
 
-#### Python操作mysql
+#### `Python`操作`mysql`
 
 #####  插入数据
 
@@ -6134,13 +6130,13 @@ cursor.close()
 conn.close()
 ```
 
-**小提示：在我们进行 增删改的时候，需要conn.commit() 否则修改不会生效。**
+**小提示：在我们进行 增删改的时候，需要`conn.commit()` 否则修改不会生效。**
 
-在查询时候不需要commit ，但是需要执行fetchone或者fetchall
+在查询时候不需要`commit` ，但是需要执行`fetchone`或者`fetchall`
 
-**对于SQL语句，切记不要用Python的格式化语句（format）进行拼接，会被SQL注入，一定要使用sql = "%s"execute(sql, (传入的参数))**
+**对于`SQL`语句，切记不要用`Python`的格式化语句（format）进行拼接，会被SQL注入，一定要使用`sql = "%s"execute(sql, (传入的参数))`**
 
-### 案例：flask + mysql
+### 案例：`flask + mysql`
 
 1.   新增用户
      ```python
