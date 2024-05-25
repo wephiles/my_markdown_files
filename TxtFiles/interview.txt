@@ -1,9 +1,37 @@
-卜伟仕
+from math import inf
+from pprint import pprint
 
-请尝试处理英文字幕数据(文字+视频)。期望得到20秒的输出文件(文本+音频)，即:
-a.多个20秒音频片段，原始数据为视频，请转换为16k单声道音频(wav格式)
-b.文字内容要与音频一致:比如音频内容是:我今天去超市买了很多苹果。所以你得到的剧本也应该是:我今天去超市买了很多苹果;
-c.对于文本文件，可以保留audio_seg_id +“\t”+文本内容。例如:
-[00:0001 .wav]这是一个非常有趣的故事。
-[00:02 . 02]所以我想很多孩子会喜欢它。
-关于字幕文件，你可以参考这个链接:Web Video Text Tracks Format (WebVTT) - Web api | MDN (mozilla.org)
+string_1, string_2 = input().strip().split(" ")
+
+
+def solution(a: str, b: str):
+    if a == b:
+        return len(a)
+    else:
+        len_a = len(a)
+        len_b = len(b)
+        dp = [[inf] * (len_a + 1) for _ in range(len_b + 1)]
+        print(dp)
+        for i in range(len_b + 1):
+            for j in range(len_a + 1):
+                if i == 0 and j == 0:
+                    dp[i][j] = 0
+                elif i != 0:
+                    dp[i][j] = dp[i - 1][j] + 1
+                else:
+                    dp[i][j] = dp[i][j - 1] + 1
+                if 0 < i < len(b) and 0 < j < len(a):
+                    if a[i - 1] != b[j - 1]:
+                        dp[i][j] = min(min(dp[i - 1][j], dp[i][j - 1]) + 1, dp[i - 1][j - 1] + 2)
+                    else:
+                        dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1
+                else:
+                    if i >= len(b) or j >= len(a):
+                        if a[i - 2] != b[j - 2]:
+                            dp[i][j] = min(min(dp[i - 1][j], dp[i][j - 1]) + 1, dp[i - 1][j - 1] + 2)
+                        else:
+                            dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1
+    return dp[len_b][len_a]
+
+
+print(solution(string_1, string_2))

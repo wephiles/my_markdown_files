@@ -1,0 +1,16 @@
+import subprocess
+import os
+
+
+def run_cmd_popen_fileno(cmd_string):
+    """
+    执行cmd命令，并得到执行后的返回值，python调试界面输出返回值
+    :param cmd_string: cmd命令，如：'adb devices'
+    :return:
+    """
+    print(os.getcwd() + '> {}'.format(cmd_string))
+    return subprocess.Popen(cmd_string, shell=True, stdout=subprocess.PIPE, stderr=None, text=True).wait()
+
+
+if __name__ == "__main__":
+    run_cmd_popen_fileno("jupyter notebook")
