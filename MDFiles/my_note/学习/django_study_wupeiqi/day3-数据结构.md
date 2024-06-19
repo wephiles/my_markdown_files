@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # 数据结构-`day3`
 
 ## 1. 字符串类型 `str`
@@ -93,7 +97,7 @@
 
     ```python
     name = "computer"
-    text = name.rjust(13, "#")
+    text = name.ljust(13, "#")
     print(text)
     # #####computer
     ```

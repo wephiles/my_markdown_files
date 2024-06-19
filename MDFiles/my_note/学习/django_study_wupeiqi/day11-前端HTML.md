@@ -1,5 +1,7 @@
 <h1 style="text-align: center;font-size: 40px; font-family: '楷体';">前端开发HTML-day11</h1>
 
+[TOC]
+
 概要：
 
 ```python
@@ -946,11 +948,1000 @@ if __name__ == '__main__':
 
 ```
 
-## 案例:用户登录
+# 3 `CSS`样式
+
+专门用来美化标签。
+
+## 3.1 快速了解
+
+```html
+<img src="..." style="height: 100px"/>
+<div style="color: red">
+    ...
+</div>
+
+style="..."
+```
+
+## 3.2 应用方式
+
+### 3.2.1 在标签上
+
+```html
+<img src="..." style="height: 100px"/>
+<div style="color: red">
+    ...
+</div>
+```
+
+### 3.2.2 在`head`里面写`style`标签
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是title</title>
+    <style>
+        .c1{
+            color: red;
+		}
+    </style>
+</head>
+<body>
+<h1>哈哈哈哈</h1>
+<h2>嘻嘻嘻嘻</h2>
+<div class="c1">abcd</div>
+<div>efgh</div>
+<div>
+
+    <a href="https://www.baidu.com"> 点击跳转 </a> <br>
+    <a href="/get/news"> 点击跳转 </a>
+</div>
+
+<img style="width: 40%" src="/static/a.jpg"/>
+
+</body>
+</html>
+```
+
+![Clip_2024-05-27_09-27-11](./assets/Clip_2024-05-27_09-27-11.png)
+
+### 3.2.3 写到文件中
+
+```css
+.c1{
+    height: 100px;
+}
+
+.c2{
+    color: red;
+}
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是title</title>
+    <link rel="stylesheet" href="common.css"/>
+</head>
+<body>
+<h1>哈哈哈哈</h1>
+<h2>嘻嘻嘻嘻</h2>
+<div class="c1">abcd</div>
+<div class="c2">efgh</div>
+<div>
+
+    <a href="https://www.baidu.com"> 点击跳转 </a> <br>
+    <a href="/get/news"> 点击跳转 </a>
+</div>
+
+<img style="width: 40%" src="/static/a.jpg"/>
+
+</body>
+</html>
+```
+
+与`flask`协同使用`css`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .c1 {
+            color: red;
+        }
+        .c2{
+            height: 60px;
+        }
+    </style>
+    <link rel="stylesheet" href="/static/commons.css"/>
+</head>
+<body>
+<h1 class="c1">用户注册</h1>
+<h1 class="c3">添加用户信息</h1>
+<div>
+    <form method="get" action="/wephiles/index">
+        <div class="c2">
+            用户名 : <input type="text"/>
+        </div>
+
+        <div class="c2">
+            密 码 : <input type="password"/>
+        </div>
+
+        <div class="c4">
+            电话号码 : <input type="text"/>
+        </div>
+
+        <div>
+            <!-- <input type="button" value="提交"> -->
+            <input type="submit" value="submit">
+        </div>
+    </form>
+</div>
+</body>
+</html>
+
+```
+
+```python
+@app.route("/user/register/")
+def register():
+    return render_template("register.html", name="JinYu")
 
 
+if __name__ == '__main__':
+    app.run()
+```
 
+## 有个问题
 
+用`flask`开发很不方便,每次改动都要重启并且每个文件都放在固定的地方.
 
+有没有一种方法,可以让我们快速地编写前端代码并查看效果,最后再将页面集成到`Flask`中?
 
+有! `pycharm`为我们提供了一种非常便捷开发前端的工具.
+
+创建新的普通项目:写一个`html`文档.
+
+![Clip_2024-05-27_09-50-54](./assets/Clip_2024-05-27_09-50-54.png)
+
+## 3.3 `CSS`选择器
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <style>
+        /*类选择器*/
+        .c1 {
+
+            color: red;
+        }
+        /*id选择器*/
+        #x1 {
+            color: cornflowerblue;
+        }
+        /*标签选择器*/
+        li{
+            color: pink;
+        }
+    </style>
+</head>
+<body>
+<h1>欢迎光临!</h1>
+
+<div class="c1">aaa</div>
+<div id="x1">bbb</div>
+<div>ccc</div>
+
+<ul>
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+</ul>
+
+<ol>
+    <li>x</li>
+    <li>y</li>
+    <li>z</li>
+</ol>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_10-03-45](./assets/Clip_2024-05-27_10-03-45.png)
+
+- `id`选择器
+
+- 类选择器(用的最多)
+
+- 标签选择器
+
+- 属性选择器
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>index</title>
+      <style>
+          /*类选择器*/
+          .c1 {
+  
+              color: red;
+          }
+          /*id选择器*/
+          #x1 {
+              color: cornflowerblue;
+          }
+          /*标签选择器*/
+          li{
+              color: pink;
+          }
+          /*属性选择器*/
+          input[type="text"]{
+              border: 2px solid blue;
+          }
+      </style>
+  </head>
+  <body>
+  <h1>欢迎光临!</h1>
+  
+  <div class="c1">aaa</div>
+  <div id="x1">bbb</div>
+  <div>ccc</div>
+  
+  <ul>
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+  </ul>
+  
+  <ol>
+      <li>x</li>
+      <li>y</li>
+      <li>z</li>
+  </ol>
+  username: <input type="text"/>
+  password: <input type="password"/>
+  
+  </body>
+  </html>
+  ```
+
+  ![Clip_2024-05-27_10-08-27](./assets/Clip_2024-05-27_10-08-27.png)
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>index</title>
+      <style>
+          /*类选择器*/
+          .c1 {
+  
+              color: red;
+          }
+          /*id选择器*/
+          #x1 {
+              color: cornflowerblue;
+          }
+          /*标签选择器*/
+          li{
+              color: pink;
+          }
+          /*属性选择器*/
+          input[type="text"]{
+              border: 2px solid blue;
+          }
+          /* ... */
+          .v1[xx="456"]{
+              color: gold;
+          }
+      </style>
+  </head>
+  <body>
+  <h1>欢迎光临!</h1>
+  
+  <div class="c1">aaa</div>
+  <div id="x1">bbb</div>
+  <div>ccc</div>
+  <div class="v1" xx="123">xxx</div>
+  <div class="v1" xx="456">yyy</div>
+  <div class="v1" xx="999">zzz</div>
+  
+  <ul>
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+  </ul>
+  
+  <ol>
+      <li>x</li>
+      <li>y</li>
+      <li>z</li>
+  </ol>
+  username: <input type="text"/>
+  password: <input type="password"/>
+  
+  </body>
+  </html>
+  ```
+
+  ![Clip_2024-05-27_10-12-29](./assets/Clip_2024-05-27_10-12-29.png)
+
+- 后代选择器
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>index</title>
+      <style>
+          /*类选择器*/
+          .c1 {
+  
+              color: red;
+          }
+  
+          /*id选择器*/
+          #x1 {
+              color: cornflowerblue;
+          }
+  
+          /*标签选择器*/
+          li {
+              color: pink;
+          }
+  
+          /*属性选择器*/
+          input[type="text"] {
+              border: 2px solid blue;
+          }
+  
+          .v1[xx="456"] {
+              color: gold;
+          }
+  
+          /* 后代选择器 */
+          .yy li{
+              color: blue;
+          }
+      </style>
+  </head>
+  <body>
+  <h1>欢迎光临!</h1>
+  
+  <div class="c1">aaa</div>
+  <div id="x1">bbb</div>
+  <div>ccc</div>
+  <div class="v1" xx="123">xxx</div>
+  <div class="v1" xx="456">yyy</div>
+  <div class="v1" xx="999">zzz</div>
+  
+  <ul>
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+  </ul>
+  
+  <div class="yy">
+      <ul>
+          <li>001</li>
+          <li>002</li>
+          <li>003</li>
+      </ul>
+  </div>
+  
+  <ol>
+      <li>x</li>
+      <li>y</li>
+      <li>z</li>
+  </ol>
+  username: <input type="text"/>
+  password: <input type="password"/>
+  
+  </body>
+  </html>
+  
+  ```
+
+  ![Clip_2024-05-27_10-16-46](./assets/Clip_2024-05-27_10-16-46.png)
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>index</title>
+      <style>
+          /*类选择器*/
+          .c1 {
+  
+              color: red;
+          }
+  
+          /*id选择器*/
+          #x1 {
+              color: cornflowerblue;
+          }
+  
+          /*标签选择器*/
+          li {
+              color: pink;
+          }
+  
+          /*属性选择器*/
+          input[type="text"] {
+              border: 2px solid blue;
+          }
+  
+          .v1[xx="456"] {
+              color: gold;
+          }
+  
+          /* 后代选择器 */
+          .yy li{
+              color: blue;
+          }
+          /* 会找到.yy下面的所有a标签 */
+          .yy a{
+              color: greenyellow;
+          }
+          /* 只会找.yy的儿子中的a标签 */
+          .yy > a{
+              color: indigo;
+          }
+      </style>
+  </head>
+  <body>
+  <h1>欢迎光临!</h1>
+  
+  <div class="c1">aaa</div>
+  <div id="x1">bbb</div>
+  <div>ccc</div>
+  <div class="v1" xx="123">xxx</div>
+  <div class="v1" xx="456">yyy</div>
+  <div class="v1" xx="999">zzz</div>
+  
+  <ul>
+      <li>a</li>
+      <li>b</li>
+      <li>c</li>
+  </ul>
+  
+  <div class="yy">
+      <a>computer</a>
+      <div>
+          <a>Google</a>
+      </div>
+      <ul>
+          <li>001</li>
+          <li>002</li>
+          <li>003</li>
+      </ul>
+  </div>
+  
+  <ol>
+      <li>x</li>
+      <li>y</li>
+      <li>z</li>
+  </ol>
+  username: <input type="text"/>
+  password: <input type="password"/>
+  
+  </body>
+  </html>
+  
+  ```
+
+  ![Clip_2024-05-27_10-21-34](./assets/Clip_2024-05-27_10-21-34.png)
+
+## 3.4 多个和覆盖
+
+如果内容没重复:就会同时应用.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <style>
+        .c1{
+            /* 文本颜色 */
+            color: red;
+            /* 边框 */
+            border: 1px solid red;
+        }
+
+        .c2{
+            font-size: 28px;
+        }
+    </style>
+</head>
+<body>
+<div class="c1 c2">
+    计算机科学与技术
+</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_10-26-14](./assets/Clip_2024-05-27_10-26-14.png)
+
+如果内容重复了:
+
+下面的会将上面的覆盖掉.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <style>
+        .c1{
+            /* 文本颜色 */
+            color: red;
+            /* 边框 */
+            border: 1px solid red;
+        }
+
+        .c2{
+            font-size: 28px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="c1 c2">
+    计算机科学与技术
+</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_10-27-41](./assets/Clip_2024-05-27_10-27-41.png)
+
+如果重复了,但是不让其进行覆盖:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <style>
+        .c1{
+            /* 文本颜色 */
+            color: red !important;
+            /* 边框 */
+            border: 1px solid red;
+        }
+
+        .c2{
+            font-size: 28px;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="c1 c2">
+    计算机科学与技术
+</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_10-29-51](./assets/Clip_2024-05-27_10-29-51.png)
+
+## 3.5 样式
+
+### 3.5.1 高度和宽度
+
+```html
+.c1{
+    height: 300px;
+    width: 500px;
+}
+```
+
+#### 3.5.1.1 关于宽度
+
+- 宽度还支持**百分比**.但是高度不支持
+- 行内标签设置宽高:默认无效.
+- 块级标签设置宽高:默认有效.
+
+### 3.5.2 块级标签&行内标签
+
+- 块级标签
+- 行内标签
+- `css`样式: 标签 --> `display: inline-block`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .c1{
+            display: inline-block;
+            height: 50px;
+            width: 100px;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="c1">乔拜登</div>
+    <span class="c1">特朗普</span>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_10-43-29](./assets/Clip_2024-05-27_10-43-29.png)
+
+#### 3.5.2.1 块级标签和行内标签的转换
+
+```html
+<div style="display: inline">
+    xxx
+</div>
+
+<span style="display: block">yyy</span>
+```
+
+注意:块级标签用得多 此外还有块级-行内标签用的多
+
+### 3.5.3 字体和颜色
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title><style>
+        .c1{
+            color: red;
+            /*color: #FFFF00;*/
+          font-size: 18px;
+        }
+    </style>
+
+</head>
+<body>
+  <div class="c1">计算机与信息工程学院</div>
+  <div class="c2">计算机科学与技术</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_10-53-35](./assets/Clip_2024-05-27_10-53-35.png)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title><style>
+        .c1{
+            color: red;
+            /*color: #FFFF00;*/
+          font-size: 18px;
+          font-weight: 600;
+          font-family: '楷体', 'Consolas', 'Menlo';
+        }
+    </style>
+
+</head>
+<body>
+  <div class="c1">计算机与信息工程学院</div>
+  <div class="c2">计算机科学与技术</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_10-56-44](./assets/Clip_2024-05-27_10-56-44.png)
+
+### 3.5.4 对齐方式
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title><style>
+        .c1{
+          /*height: 59px;*/
+          width: 300px;
+          border: 2px solid red;
+
+          /*水平居中*/
+          text-align: center;
+
+          /*垂直居中 前提是只有一行*/
+          height: 59px;
+          line-height: 59px;
+        }
+    </style>
+
+</head>
+<body>
+  <div class="c1">计算机与信息工程学院</div>
+  <div class="c2">计算机科学与技术</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_11-01-30](./assets/Clip_2024-05-27_11-01-30.png)
+
+### 3.5.5 浮动
+
+```html
+<div class="c1">
+    <span>计算机与信息工程学院</span>
+    <span style="float: right;">计算机科学与技术</span>
+</div>
+```
+
+![Clip_2024-05-27_11-05-38](./assets/Clip_2024-05-27_11-05-38.png)
+
+`div`默认是块级标签,如果让`div`浮动起来,那么就会变成行内的样式.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item {
+            float: left;
+            height: 300px;
+            width: 300px;
+            border: 2px solid red;
+        }
+    </style>
+
+</head>
+<body>
+<div>
+    <div class="item"> 计算机 </div>
+    <div class="item"> 科学 </div>
+</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_11-09-39](./assets/Clip_2024-05-27_11-09-39.png)
+
+但是这样有个小问题:如果让标签浮动起来,就有可能出现脱离文档流的问题.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item {
+            float: left;
+            height: 300px;
+            width: 300px;
+            border: 2px solid red;
+        }
+    </style>
+
+</head>
+<body>
+<div style="background-color: blue;">
+    <div class="item"> 计算机 </div>
+    <div class="item"> 科学 </div>
+</div>
+</body>
+</html>
+```
+
+我们发现上面的`background-color`没有效果 -- 孩子们没有将外面大的`div`撑起来. --> 可以解决.加一个`<div style="clear: both;"></div>`
+
+![Clip_2024-05-27_11-13-36](./assets/Clip_2024-05-27_11-13-36.png)
+
+解决方法:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .item {
+            float: left;
+            height: 300px;
+            width: 300px;
+            border: 2px solid red;
+        }
+    </style>
+
+</head>
+<body>
+<div style="background-color: blue;">
+    <div class="item"> 计算机 </div>
+    <div class="item"> 科学 </div>
+    <div style="clear: both;"></div>
+</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_11-15-45](./assets/Clip_2024-05-27_11-15-45.png)
+
+### 3.5.6 内边距
+
+给自己的内部设置的边距.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .outer{
+            border: 2px solid black;
+            height: 200px;
+            width: 400px;
+            /* 上 右 下 左 */
+            padding: 20px 10px 10px;
+            /*padding-top: 20px;*/
+            /*padding-left: 10px;*/
+            /*padding-right: 10px;*/
+            /*padding-bottom: 10px;*/
+        }
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div style="background-color: gold;">听妈妈的话</div>
+    <div>要早点回家</div>
+</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_11-27-49](./assets/Clip_2024-05-27_11-27-49.png)
+
+### 3.5.7 外边距
+
+我与别人加点距离.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div style="height: 40px; background-color: #f2f2f2;">计算机技术 Python</div>
+    <div style="height: 40px; background-color: #f2f200; margin-top: 40px;">计算机技术 Java</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_20-47-16](./assets/Clip_2024-05-27_20-47-16.png)
+
+### 3.5.8 案例 -- 小米商城
+
+> [!Caution]
+>
+> 注意：`html`中整个`body`区域都会和浏览器整个页面有个边距，如果不想要有边距，可以在`CSS`中这样写：
+
+```css
+body{
+    margin: 0;
+}
+```
+
+> [!Note]
+>
+> 怎么让**区域(不是文本)**在水平方向居中呢?必须要设置宽度,并且要将`margin`像下面这样设置:
+> ```css
+> div{
+>     width: 180px;
+>     margin: 0 auto;
+> }
+> ```
+>
+> 此外,父亲如果没有高度和宽度,但是儿子/孙子有,那么父亲的大小就会被儿子/孙子的大小撑起来.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小米商城-瑾瑜</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .header {
+            /*height: 40px;*/
+            font-size: 12px;
+            color: #b0b0b0;
+            background: #333;
+        }
+
+        .header a{
+            height: 40px;
+            display: inline-block;
+            /*border-right-style: solid;*/
+            margin-right: 10px;
+        }
+
+        .container{
+            width: 1226px;
+            /*margin-left: auto;*/
+            /*margin-right: auto;*/
+            margin: 0 auto;
+        }
+
+        .header .menu {
+            float: left;
+            /*height: 40px;*/
+            line-height: 40px;
+            font-family: '微软雅黑', '华文细黑', 'Menlo', serif;
+        }
+
+        .header .account {
+            float: right;
+            /*height: 40px;*/
+            line-height: 40px;
+            font-family: '华文细黑', 'Menlo', serif;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="menu">
+            <a>小米商城</a>
+            <a>MIUI</a>
+            <a>IoT</a>
+            <a>云服务</a>
+            <a>天星数科</a>
+            <a>有品</a>
+            <a>小爱开放平台</a>
+            <a>企业团购</a>
+            <a>资质证照</a>
+            <a>协议规则</a>
+            <a>下载App</a>
+            <a>智能生活</a>
+        </div>
+        <div class="account">
+            <a>登录</a>
+            <a>注册</a>
+            <a>消息通知</a>
+            <a>购物车</a></div>
+        <div style="clear: both;"></div>
+    </div>
+</div>
+</body>
+</html>
+```
+
+![Clip_2024-05-27_21-28-46](./assets/Clip_2024-05-27_21-28-46.png)
 

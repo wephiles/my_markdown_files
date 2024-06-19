@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # 数据结构-day4
 
 *   数据类型
@@ -240,7 +244,7 @@ v1, v2 = (11, 22)
      data = info["name"]
      print(data)  # computer
      
-     # 如果写一个不存在的键，那么程序就会报错 和 info.get("xxx")薛薇优点不一样
+     # 如果写一个不存在的键，那么程序就会报错 和 info.get("xxx")薛薇有点不一样
      v2 = info["name"]
      ```
 
@@ -273,7 +277,7 @@ v1, v2 = (11, 22)
      # 循环
      for item in info.keys():
          print(item)
-         
+     
      for item in info.values():
          print(item)
      
@@ -305,8 +309,8 @@ v1, v2 = (11, 22)
          ["李*龙", "上海市,浦东新区","上海市浦东新区xxx"],
          ["卜*瑜", "北京市,顺义区","当代北辰悦moma"],
          ["赵*雪", "江苏省,苏州区", "苏州大学"],
-     """    ['朱*锴'， ‘上海市,浦东新区','川沙新镇华川家园33号楼503' ],
-          ['陈*盼'，'浙江省'，'杭州市'， '闲林街道，西溪华东园，十幢- -单元401。']['司*鹏'，‘河南省，鹤壁市’， '淇滨大道310号鹤壁京立医院' ],
+     """ ['朱*锴'， ‘上海市,浦东新区','川沙新镇华川家园33号楼503' ],
+         ['陈*盼'，'浙江省'，'杭州市'， '闲林街道，西溪华东园，十幢- -单元401。']['司*鹏'，‘河南省，鹤壁市’， '淇滨大道310号鹤壁京立医院' ],
      	['聂*睿', ‘河北省，石家庄市'，，中山路勒泰中心写字楼b座11层']，['张*'， 辽宁省,本溪市'， ，明兴丽城九号楼四单元' ],
      	['冉*晗', '河北省，石家庄市'，，体育南大街385号']，
      	['高*杰', '北京市，朝阳区'，'广渠路42号院3号楼，408']，
@@ -615,7 +619,7 @@ v4 = "computer"
     None       ->         False
     ```
 
--   其他的转换为布尔后，都为`False`
+-   其他的转换为布尔后，都为`True`
 
 -   如果将布尔值放在条件或者循环语句后面：
     ```python
@@ -676,14 +680,14 @@ print(v1 + v2)
 ## 7. 字节类型 `bytes`
 
 ```python
-name = "计算机"                #       str字符串，底层是unicode编码
+name = "计算机"                 #       str字符串，底层是unicode编码
 data = name.encode("utf-8")    #       bytes字节，底层是UTF-8编码
 
 print(data)  # b'\xe8\xae\xa1\xe7\xae\x97\xe6\x9c\xba'
 ```
 
 ```python
-name = "计算机"                #       str字符串，底层是unicode编码
+name = "计算机"                 #       str字符串，底层是unicode编码
 data = name.encode("gbk")      #       bytes字节，底层是gbk编码
 
 print(data)  # b'\xbc\xc6\xcb\xe3\xbb\xfa'
@@ -692,7 +696,7 @@ print(data)  # b'\xbc\xc6\xcb\xe3\xbb\xfa'
 如果以后获得了一个字节，字节.decode转换为字符串.
 
 ```python
-name = "计算机"                #       str字符串，底层是unicode编码
+name = "计算机"                 #       str字符串，底层是unicode编码
 data = name.encode("gbk")      #       bytes字节，底层是gbk编码
 old = data.decode("utf-8")
 print(data)  # 计算机

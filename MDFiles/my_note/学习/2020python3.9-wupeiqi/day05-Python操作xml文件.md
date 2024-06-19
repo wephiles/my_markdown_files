@@ -78,15 +78,171 @@ print(root)  # <Element 'library' at 0x000001757FC06160>
 
 # 2 读取节点数据
 
+```python
+from xml.etree import ElementTree as ET
 
+content = """
+<library>
+    <book id="1">
+        <title>XML Fundamentals</title>
+        <author>John Doe</author>
+        <year>2021</year>
+        <neighbor name="a"/>
+    </book>
+    <book id="2">
+        <title>Learning XML</title>
+        <author>Jane Smith</author>
+        <year>2022</year>
+        <neighbor name="b"/>
+    </book>
+</library>
+"""
 
+# 获取根标签
+root = ET.XML(content)
+print(root)
+print(root.tag)
 
+# 获取根标签的孩子标签
+for child in root:
+    # # 获取标签名
+    # child_tag = child.tag
+    # child_attrib = child.attrib
+    # print(child_tag, child_attrib)
+    for node in child:
+        print(node.tag, node.attrib, node.text)
+```
 
+![Clip_2024-05-26_12-43-50](F:\TextFiles\MDFiles\my_note\学习\2020python3.9-wupeiqi\assets\Clip_2024-05-26_12-43-50.png)
 
+```python
+from xml.etree import ElementTree as ET
 
+content = """
+<library>
+    <book id="1001">
+        <title id="1">XML Fundamentals</title>
+        <author>John Doe</author>
+        <year>2021</year>
+        <neighbor name="a"/>
+    </book>
+    <book id="1002">
+        <title>Learning XML</title>
+        <author>Jane Smith</author>
+        <year>2022</year>
+        <neighbor name="b"/>
+    </book>
+</library>
+"""
 
+# 获取根标签
+root = ET.XML(content)
+# print(root)
+# print(root.tag)
+#
+# # 获取根标签的孩子标签
+# for child in root:
+#     # # 获取标签名
+#     # child_tag = child.tag
+#     # child_attrib = child.attrib
+#     # print(child_tag, child_attrib)
+#     for node in child:
+#         print(node.tag, node.attrib, node.text)
 
+book_obj = root.find("book")
+print(book_obj.tag, book_obj.attrib)  # book {'id': '1'}
+title_obj = book_obj.find("title")
+print(title_obj.tag, title_obj.attrib, title_obj.text)
+```
 
+![Clip_2024-05-26_12-55-29](F:\TextFiles\MDFiles\my_note\学习\2020python3.9-wupeiqi\assets\Clip_2024-05-26_12-55-29.png)
+
+```python
+root = ET.XML(content)
+for child in root.iter("year"):
+    print(child.tag, child.text)
+```
+
+![Clip_2024-05-26_12-57-21](F:\TextFiles\MDFiles\my_note\学习\2020python3.9-wupeiqi\assets\Clip_2024-05-26_12-57-21.png)
+
+# 3 修改、删除
+
+```python
+root = ET.XML(content)
+year_obj = root.find("book").find("year")
+year_obj.text = "2021-01-25"  # 修改 只能是字符串类型
+year_obj.set("update", '2024-02-06')  # 添加属性
+
+# 写入文件保存
+tree = ET.ElementTree(root)
+tree.write("./files/new.xml", encoding="utf-8")
+```
+
+![Clip_2024-05-26_13-06-23](./assets/Clip_2024-05-26_13-06-23.png)
+
+```python
+# 删除节点
+root.remove(root.find("book"))
+```
+
+# 4 构建文档
+
+```python
+from xml.etree import ElementTree as ET
+
+# 创建根标签
+root = ET.Element("home")
+
+# 创建节点大儿子
+son1 = ET.Element("son", attrib={"name": "son1"})
+
+# 创建小儿子
+son2 = ET.Element("son", attrib={"name": "son2"})
+
+# 大儿子中创建两个孙子
+grandson1 = ET.Element("grandson1", attrib={"name": "grandson1"})
+grandson2 = ET.Element("grandson2", attrib={"name": "grandson2"})
+son1.append(grandson1)
+son1.append(grandson2)
+
+# 把大小儿子添加到根节点中
+root.append(son1)
+root.append(son2)
+
+tree = ET.ElementTree(root)
+tree.write("./files/son.xml", encoding="utf-8", xml_declaration=True)
+```
+
+```python
+# 下面这个方法和上面那个方法效果一样
+from xml.etree import ElementTree as ET
+
+# 创建根标签 
+root = ET.Element("family")
+
+son1 = root.makeelement("son1", {"name": "son1"})
+son2 = root.makeelement("son2", {"name": "son2"})
+
+root.append(son1)
+root.append(son2)
+
+tree = ET.ElementTree(root)
+tree.write("./files/son1.xml", encoding="utf-8", xml_declaration=True)
+```
+
+```python
+from xml.etree import ElementTree as ET
+
+# 创建根标签
+root = ET.Element("family")
+
+son1 = ET.SubElement(root, "son1", {"name": "son1"})
+
+grandson = ET.SubElement(son1, "grandson", {"name": "grandson"})
+
+tree = ET.ElementTree(root)
+tree.write("./files/son2.xml", encoding="utf-8", xml_declaration=True)
+```
 
 
 

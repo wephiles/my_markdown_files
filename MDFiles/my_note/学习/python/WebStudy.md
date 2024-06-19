@@ -1,10 +1,7 @@
 <h1 style="font-size: 50px; text-align: center; font-family: '楷体'">
     python Web 学习
 </h1>
-
-
-
----
+[TOC]
 
 # `WEB`
 
@@ -3948,7 +3945,7 @@ $("#c2").val("hahaha")  // 设置值
 
 文件结构是下面这样：
 
-![image-20230505205937091](../../images/image-20230505205937091.png)
+![image-20230505205937091](./images/image-20230505205937091.png)
 
 ```python
 D:.

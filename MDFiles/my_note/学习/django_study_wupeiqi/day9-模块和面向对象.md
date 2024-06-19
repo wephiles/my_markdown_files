@@ -1,5 +1,7 @@
 <h1 style="text-align: center;font-size: 40px; font-family: '楷体';">模块和面向对象-day9</h1>
 
+[TOC]
+
 今日概要
 
 - 模块

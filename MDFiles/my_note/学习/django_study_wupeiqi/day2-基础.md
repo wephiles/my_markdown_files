@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 # Python基础-day2
 
 ## 上节回顾
@@ -306,7 +310,7 @@ print(text)
         v1 = name or 666
         ```
 
-##5. 计算机中的一些基础概念
+## 5. 计算机中的一些基础概念
 
 ### 5.1 进制
 
@@ -405,7 +409,7 @@ d3 = int("0xee", base=16)
 #### 5.3.5 `python`
 
 ```python
-name = "计算机"                 ->     字符串类型 在Python内部 使用unicode编码存储(ucs4)
+name = "计算机"                  ->     字符串类型 在Python内部 使用unicode编码存储(ucs4)
 data = name.encode('utf-8')     ->     字节类型  使用UTF-8编码存储
 ```
 
