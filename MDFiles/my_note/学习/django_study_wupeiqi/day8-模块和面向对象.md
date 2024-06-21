@@ -332,7 +332,7 @@ print(phone_number)  # 18866666666
     print(data_list)  # ['rscience admain ro']
     ```
 
-- `\s` 一个任意空白字符(注意：tab(`\t`)在这里不是空白字符)
+- `\s` 一个任意空白字符(注意：`tab`(`\t`)在这里不是空白字符)
 
     ```python
     import re
@@ -386,6 +386,7 @@ print(phone_number)  # 18866666666
     ```
 
 - 提取数据区域 + 或
+    
     ```python
     import re
     
