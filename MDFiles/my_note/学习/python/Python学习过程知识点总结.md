@@ -115,9 +115,11 @@ Python学习过程知识点总结
 
 # `pickle`模块
 
+- - pickle库是Python中用于序列化和反序列化Python对象结构的模块。"序列化"指的是将Python对象转换为字节流，以便可以将其存储到磁盘上或通过网络传输到远程位置。"反序列化"则是将这些字节流转换回原始Python对象。  这个库对于数据持久化和跨程序共享对象非常有用。例如，你可以使用pickle库将机器学习模型训练后的状态保存下来，然后在另一个程序中加载这个状态，以便进行预测。
+    - pickle.dump(data, file_object)  使用pickle库将数据对象序列化为字节流
+    - pickle.load(file_object)  使用pickle库将字节流反序列化为数据对象
 
-
-#`heapq`模块
+# `heapq`模块
 
 `Python `的 `heapq` 是一个堆队列算法的实现，它提供了一些用于创建和操作堆的函数。堆是一种特殊的树状数据结构，其中每个父节点的值都小于或等于其子节点的值。在 `Python `中，`heapq` 模块通常用于实现优先队列。
 
@@ -232,7 +234,7 @@ print(first_item)  # 输出: 'a'
 
 请注意，`queue` 模块的 `get` 方法会阻塞调用线程，直到队列中至少有一个元素，除非你指定了 `timeout` 参数。此外，`put` 方法也会阻塞，直到队列中有空间可以存放新元素，除非你指定了 `timeout` 参数。
 
-#`sorted()` 
+# `sorted()` 
 
 Python中的`sorted`函数用于对序列进行排序，并返回一个新的排序列表。`sorted`函数可以用于列表、元组以及任何可迭代对象。
 
@@ -287,10 +289,6 @@ print(sorted_list)  # 输出：[9, 6, 5, 5, 4, 3, 2, 1, 1]
 
 `sorted`函数也可以用于排序复杂对象，比如字典列表。
 
-python
-
-复制
-
 ```
 # 根据字典中的键值对列表进行排序
 my_list = [{'name': 'John', 'age': 35}, {'name': 'Doe', 'age': 25}, {'name': 'Jane', 'age': 40}]
@@ -302,10 +300,6 @@ print(sorted_list)
 ### 使用`reverse`和`key`参数
 
 你可以同时使用`reverse`和`key`参数。
-
-python
-
-复制
 
 ```
 # 同时使用key和reverse参数
@@ -347,10 +341,6 @@ print(sorted_list)  # 输出：['apple', 'banana', 'cherry']
 
 #### 对复杂数据结构进行排序
 
-python
-
-复制
-
 ```
 # 对字典列表按照多个键进行排序
 my_list = [{'name': 'John', 'age': 35}, {'name': 'Doe', 'age': 25}, {'name': 'Jane', 'age': 40}]
@@ -361,10 +351,6 @@ print(sorted_list)
 ```
 
 #### 使用自定义类进行排序
-
-python
-
-复制
 
 ```
 # 定义一个类，并编写一个用于排序的key函数
@@ -407,10 +393,6 @@ print(sorted_students_grade)
 - `math.inf`与`math.inf`相除会得到`nan`（not a number，即非数）。
 
 这里有一些简单的使用示例：
-
-python
-
-复制
 
 ```
 import math
@@ -527,3 +509,422 @@ while heap:
 ```
 
 在这个示例中，我们入堆的元素是元组，每个元组包含两个部分：一个数字和一个字符串。出堆的顺序是按照元组中的第一个元素（数字）进行比较的。
+
+# `itemgetter` 
+
+`itemgetter` 函数是 Python 标准库 `operator` 模块中的一个函数，它用于从列表的元素中提取指定的子项，并返回一个函数，这个函数可以接受一个序列（如列表或元组）作为输入，并返回指定的子项。这个功能通常用于排序操作，尤其是当你需要根据列表中的特定元素进行排序时。
+
+`itemgetter` 可以接受一个或多个整数作为参数，这些整数代表了你想要提取的元素的索引位置。例如，如果你有一个包含元组的列表，你可以使用 `itemgetter` 来根据元组中的某个特定元素进行排序。
+
+这里有一个使用 `itemgetter` 进行排序的例子：
+
+```
+复制from operator import itemgetter
+
+# 假设我们有一个包含元组的列表，每个元组代表一个人的名字和年龄
+people = [
+    ('Alice', 30),
+    ('Bob', 25),
+    ('Charlie', 35),
+    ('David', 28)
+]
+
+# 使用 itemgetter 根据年龄排序
+sorted_people = sorted(people, key=itemgetter(1))
+
+print(sorted_people)  # 输出: [('Bob', 25), ('Alice', 30), ('David', 28), ('Charlie', 35)]
+```
+
+在这个例子中，`itemgetter(1)` 创建了一个函数，这个函数接受一个元组并返回元组的第二个元素（索引为 1 的元素，即年龄）。然后，`sorted` 函数使用这个函数作为排序的关键字，从而根据每个人的年龄对列表进行排序。
+
+`itemgetter` 也可以接受多个索引，用于更复杂的排序需求，例如根据多个字段进行排序。这种情况下，`itemgetter` 会返回一个元组，其中包含所有指定的子项。
+
+
+- 当然，让我们更详细地探讨 `itemgetter` 函数的用法和它在排序中的应用。
+
+  `itemgetter` 函数是 `operator` 模块中的一个实用工具，它允许你通过指定索引来创建一个获取元素的函数。这个函数可以用于 `sorted` 函数的 `key` 参数，以便根据列表中元素的特定子项进行排序。这在处理复杂数据结构，如包含多个字段的记录或对象时特别有用。
+
+  **基本用法**
+
+  `itemgetter` 可以接收一个或多个整数参数，这些参数指定了要从序列中提取的元素的索引。例如：
+
+  ```
+  from operator import itemgetter
+  
+  # 创建一个根据索引1（第二个元素）获取元素的函数
+  get_second_item = itemgetter(1)
+  
+  # 使用这个函数获取列表中每个元组的第二个元素
+  result = [get_second_item(item) for item in [('a', 1), ('b', 2), ('c', 3)]]
+  print(result)  # 输出: [1, 2, 3]
+  ```
+
+  **排序**
+
+  在排序中，`itemgetter` 通常用于指定排序的依据。例如，如果你有一个包含多个字段的列表，你可能想要根据某个特定字段进行排序。这时，你可以使用 `itemgetter` 来实现这一点。
+
+  ```
+  from operator import itemgetter
+  
+  # 假设我们有一个包含姓名和年龄的列表
+  people = [
+      ('Alice', 30),
+      ('Bob', 25),
+      ('Charlie', 35),
+      ('David', 28)
+  ]
+  
+  # 使用 itemgetter 根据年龄（索引1）进行降序排序
+  sorted_people = sorted(people, key=itemgetter(1), reverse=True)
+  
+  print(sorted_people)  # 输出: [('Charlie', 35), ('Alice', 30), ('David', 28), ('Bob', 25)]
+  ```
+
+  在这个例子中，`itemgetter(1)` 创建了一个函数，这个函数接受一个元组并返回元组的第二个元素（年龄）。然后，`sorted` 函数使用这个函数作为排序的关键字，并通过设置 `reverse=True` 来实现降序排序。
+
+  **多字段排序**
+
+  `itemgetter` 还可以接受多个索引，允许你根据多个字段进行排序。这在数据库查询或处理多维数据时非常有用。例如，你可能想要先按年龄升序排序，然后在年龄相同的情况下按姓名降序排序。
+
+  ```
+  from operator import itemgetter
+  
+  # 使用 itemgetter 根据年龄升序排序，年龄相同的情况下按姓名降序排序
+  sorted_people = sorted(people, key=itemgetter(1, 0), reverse=[False, True])
+  
+  print(sorted_people)  # 输出: [('Bob', 25), ('Alice', 30), ('David', 28), ('Charlie', 35)]
+  ```
+
+  在这个例子中，`itemgetter(1, 0)` 创建了一个函数，它首先根据年龄（索引1）排序，然后根据姓名（索引0）排序。`reverse` 参数是一个列表，它为每个字段指定了排序的方向。在这个例子中，年龄的排序方向是升序（`False`），而姓名的排序方向是降序（`True`）。
+
+  `itemgetter` 是一个非常灵活的工具，它可以帮助你在处理列表和元组时进行复杂的排序操作。通过合理使用 `itemgetter`，你可以轻松地根据一个或多个字段对数据进行排序。
+
+# `map()`
+
+`Python`的`map()`函数是一个非常有用的工具，它可以对可迭代对象中的每个元素应用一个指定的函数，然后返回一个迭代器，其中包含了所有元素经过函数处理后的结果。 -- 参考 https://blog.csdn.net/wuShiJingZuo/article/details/135620145
+
+
+    - 基本语法：
+        ```python
+        map(function, iterable, ...)
+        ```
+    
+    - 在使用map()函数时，有一些注意事项需要牢记：
+    
+        - map()函数返回的是一个迭代器，如果需要立即获取结果，需要将其转换为列表或其他数据结构。
+        - 传递给map()的函数可以是自定义函数，也可以是内置函数或匿名函数（lambda表达式）。
+        - 如果传递给map()的可迭代对象的长度不一致，map()将在最短的可迭代对象耗尽后停止迭代。
+        - 在Python 3中，map()函数的返回值已经不再是列表，而是迭代器。如果需要列表，必须显式地将其转换为列表。
+
+# fstring format
+
+如果我们要表示一个很大的数：
+```python
+n: int = 100000000
+```
+
+但是像上面这样写出来，貌似很难一下子看出来有多少个0，于是，我们可以这么写：
+```python
+n: int = 1_000_000_000
+print(n)
+```
+当我们执行上面的语句后，输出结果为：
+
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618131146477-865640676.png)
+
+我们也可以用科学计数法写，只不过要注意，这时候这个数是浮点数。
+```python
+n: float = 1e9
+print(n)
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618131352989-50681129.png)
+
+## 1.1 使用fdtring表示整数
+
+```python
+n: int = 1_000_000_000
+print(f'{n:_}')
+print(f'{n:,}')
+```
+上述代码运行结果为：
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618131618722-1660001635.png)
+
+遗憾的是，只支持`_`和`,`两种连接符。
+
+## 1.2 使用fstring表示字符串
+
+```python
+var: str = 'var'
+print(f'{var:>20}')  # 向右对齐 整个打印长度为20（包含打印出的字符）
+print(f'{var:<20}')  # 向左对齐 整个打印长度为20（包含打印出的字符）
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618132156557-1948577458.png)
+
+此外，你也可以让字符串居中：
+```python
+var: str = 'var'
+print(f'{var:^20}')  # 居中 整个打印长度为20（包含打印出的字符）
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618132556829-743113211.png)
+
+如果你觉得对于居左和居右看的不清楚，可以这样做，以清楚地看到效果：
+```python
+var: str = 'var'
+print(f'{var:>20}:')  # 向右对齐 整个打印长度为20（包含打印出的字符）
+print(f'{var:<20}:')  # 向左对齐 整个打印长度为20（包含打印出的字符）
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618132322430-732312458.png)
+
+当然，如果你需要在空白位置补充一些字符，你可以像下面这样：
+```python
+var: str = 'var'
+print(f'{var:_>20}:')
+print(f'{var:#<20}:')
+print(f'{var:|^20}:')
+```
+效果如下：
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618132752828-1445287796.png)
+
+## 1.3 使用fstring表示datetime
+
+```python
+from datetime import datetime
+now: datetime = datetime.now()
+print(now)
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618133019064-729526425.png)
+
+我们可以使用fstring这样做：
+```python
+from datetime import datetime
+now: datetime = datetime.now()
+print(f'{now:%d-%m-%y}')
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618133222926-211364800.png)
+
+我们也可以将时分秒加进去
+```python
+from datetime import datetime
+now: datetime = datetime.now()
+print(f'{now:%d-%m-%y (%H:%M:%S)}')
+```
+
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618133332313-1838817626.png)
+
+我们也可以使用`%c`获取本地日期
+```python
+print(f'{now:%c}')
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618133519667-1876919194.png)
+
+此外还能展示`AM`还是`PM`
+```python
+print(f'{now:%I%p}')
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618133637341-524383776.png)
+
+## 1.4 使用fstring表示小数
+
+```python
+n: float = 1234.5678
+print(n)
+```
+输出：
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618134159246-38177490.png)
+
+```python
+n: float = 1234.5678
+print(f'{n:.2f}')  # 格式化为小数点后两位/四舍五入到小数点后两位
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618134403726-764661642.png)
+
+```python
+n: float = 1234.5678
+print(f'{n:.0f}')  # 格式化为小数点后两位/四舍五入到小数点后两位
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618134456970-2092315445.png)
+
+```python
+n: float = 1234.5678
+print(f'{n:,.3f}')  # 格式化为小数点后两位/四舍五入到小数点后两位
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618134640449-1207822195.png)
+
+## 1.5 
+
+```python
+a: int = 5
+b: int = 10
+
+my_var: str = 'Bob says hi'
+print(f'a + b = {a + b}')
+print(f'{a + b = }')
+```
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618135049072-1915104839.png)
+
+```python
+a: int = 5
+b: int = 10
+
+my_var: str = 'Bob says hi'
+print(f'a + b = {a + b}')
+print(f'{a + b = }')
+print(f'{float(a) = }')
+print(f'{my_var = }')
+```
+
+![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618135258067-25567448.png)
+
+# Python语法糖
+
+## 2.1 交换两个变量的值
+
+```python
+a = 1
+b = 2
+a, b = b, a
+```
+## 2.2 判断变量范围
+```python
+if 90 <= a <= 100:
+	...
+```
+## 2.3 快速构造字符串
+```python
+print('-' * 60)
+```
+## 2.4 列表拼接
+```python
+a = [1, 2, 3, 4]
+b = [4, 5, 6, 7]
+a + b
+```
+
+## 2.5 列表切片
+
+```python
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+a[3:-2]  # [4, 5, 6, 7]
+a[:3]  # [1, 2, 3]
+a[-3:]  # [7, 8, 9]
+```
+
+## 2.6 打包与解包
+
+```python
+a = (1, 2, 3)
+x, y, z = a
+```
+
+```python
+x = 1
+y = 2
+z = 3
+b = (x, y, z)
+```
+
+## 2.7 `with`语句
+
+```python
+with open('', 'r') as fp:
+	fp.read()
+```
+
+## 2.8 列表推导式/解析式 -- 也适用于元组和字典
+
+```python
+a = [1, 2, 3, 4]
+b = [e + 233 for e in a]
+```
+# `typing`
+...
+
+# `gzip`模块实现数据压缩
+
+```python
+import gzip
+import shutil
+
+
+def compress_data(file_path: str, output_path: str):
+    """
+    压缩数据
+    Args:
+        file_path ():
+        output_path ():
+
+    Returns:
+
+    """
+    with open(file_path, 'rb') as fp:
+        with gzip.open(output_path, 'wb') as fp_out:
+            shutil.copyfileobj(fp, fp_out)
+
+
+def decompress_data(file_path: str, output_path):
+    """
+    解压缩数据
+    Args:
+        file_path (): 
+        output_path (): 
+
+    Returns:
+
+    """
+    with gzip.open(file_path, 'rb') as fp:
+        with open(output_path, 'wb') as fp_out:
+            shutil.copyfileobj(fp, fp_out)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
