@@ -910,20 +910,18 @@ selenium使用流程
   browser.find_element(By.XPATH, '//*[@id="kw"]').send_keys('瑾瑜')
   ```
 
-  
-
   - id
 
     ```python
     browser.find_element_by_id('kw')
     ```
-
+  
   - name
 
     ```python
     browser.find_element_by_name('kw')
     ```
-
+  
   - class
 
     ```python
@@ -931,13 +929,13 @@ selenium使用流程
     # 注意 通过class_name定位元素 中间不能有空格
     # 如果class_name中有空格 只能选取其中一个
     ```
-
+  
   - a
 
     ```python
     browser.find_element_by_id('kw')
     ```
-
+  
   - 所有：
 
     ![Clip_2024-06-16_15-50-09](./assets/Clip_2024-06-16_15-50-09.png)
@@ -953,7 +951,7 @@ selenium使用流程
 element.tagname 获取标签名
 element.text 获取标签文本
 element.parent 获取父级标签
-gelement.et_attribute() 获取属性
+element.et_attribute() 获取属性
 element.s_display() 判断元素是否可见
 ```
 

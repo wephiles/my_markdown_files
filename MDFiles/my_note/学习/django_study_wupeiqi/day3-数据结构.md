@@ -51,8 +51,8 @@
 -   字符串转换成字节类型 `encode()`
 
     ```python
-    字符串    Unicode
-    字节      utf-8
+    字符串     Unicode
+    字节       utf-8
     ```
 
     ```python

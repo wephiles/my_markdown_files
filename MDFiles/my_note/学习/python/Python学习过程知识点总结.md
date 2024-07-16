@@ -1,6 +1,10 @@
 <h1 style="text-align: center;font-size: 40px; font-family: '楷体';">
 Python学习过程知识点总结
 </h1>
+[TOC]
+
+
+
 
 # `pandas`模块
 
@@ -639,7 +643,7 @@ print(n)
 ```
 ![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618131352989-50681129.png)
 
-## 1.1 使用fdtring表示整数
+## 使用fdtring表示整数
 
 ```python
 n: int = 1_000_000_000
@@ -651,7 +655,7 @@ print(f'{n:,}')
 
 遗憾的是，只支持`_`和`,`两种连接符。
 
-## 1.2 使用fstring表示字符串
+## 使用fstring表示字符串
 
 ```python
 var: str = 'var'
@@ -685,7 +689,7 @@ print(f'{var:|^20}:')
 效果如下：
 ![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618132752828-1445287796.png)
 
-## 1.3 使用fstring表示datetime
+## 使用fstring表示datetime
 
 ```python
 from datetime import datetime
@@ -723,7 +727,7 @@ print(f'{now:%I%p}')
 ```
 ![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618133637341-524383776.png)
 
-## 1.4 使用fstring表示小数
+## 使用fstring表示小数
 
 ```python
 n: float = 1234.5678
@@ -750,8 +754,6 @@ print(f'{n:,.3f}')  # 格式化为小数点后两位/四舍五入到小数点后
 ```
 ![image](https://img2024.cnblogs.com/blog/3423183/202406/3423183-20240618134640449-1207822195.png)
 
-## 1.5 
-
 ```python
 a: int = 5
 b: int = 10
@@ -777,30 +779,30 @@ print(f'{my_var = }')
 
 # Python语法糖
 
-## 2.1 交换两个变量的值
+## 1 交换两个变量的值
 
 ```python
 a = 1
 b = 2
 a, b = b, a
 ```
-## 2.2 判断变量范围
+## 2 判断变量范围
 ```python
 if 90 <= a <= 100:
 	...
 ```
-## 2.3 快速构造字符串
+## 3 快速构造字符串
 ```python
 print('-' * 60)
 ```
-## 2.4 列表拼接
+## 4 列表拼接
 ```python
 a = [1, 2, 3, 4]
 b = [4, 5, 6, 7]
 a + b
 ```
 
-## 2.5 列表切片
+## 5 列表切片
 
 ```python
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -809,7 +811,7 @@ a[:3]  # [1, 2, 3]
 a[-3:]  # [7, 8, 9]
 ```
 
-## 2.6 打包与解包
+## 6 打包与解包
 
 ```python
 a = (1, 2, 3)
@@ -823,14 +825,14 @@ z = 3
 b = (x, y, z)
 ```
 
-## 2.7 `with`语句
+## 7 `with`语句
 
 ```python
 with open('', 'r') as fp:
 	fp.read()
 ```
 
-## 2.8 列表推导式/解析式 -- 也适用于元组和字典
+## 8 列表推导式/解析式 -- 也适用于元组和字典
 
 ```python
 a = [1, 2, 3, 4]
@@ -875,6 +877,834 @@ def decompress_data(file_path: str, output_path):
         with open(output_path, 'wb') as fp_out:
             shutil.copyfileobj(fp, fp_out)
 ```
+
+# `Python`内置函数
+
+`Python `提供了一系列内置函数，这些函数在编写 `Python `代码时可以直接使用，无需导入任何模块。以下是一些常见的 `Python `内置函数：
+
+1. `abs()` - 返回一个数的绝对值。
+2. `all()` - 如果可迭代对象的所有元素都为真值（或可迭代对象为空），则返回 `True`。
+3. `any()` - 如果可迭代对象中有任何元素为真值，则返回 `True`。
+4. `bool()` - 返回一个布尔值，`True` 或 `False`。
+5. `bytes()` - 返回一个新的字节对象。
+6. `callable()` - 如果提供的参数是可调用的，则返回 `True`。
+7. `chr()` - 返回一个对应的字符，该字符的 `Unicode `码点等于提供的整数。
+8. `ord()` - 对应于 `chr()`，它返回一个整数值，该值对应于提供的单个 `Unicode `字符。
+9. `classmethod()` - 返回一个类方法。
+10. `complex()` - 返回一个复数。
+11. `delattr()` - 删除对象的属性。
+12. `dict()` - 创建一个字典。
+13. `dir()` - 返回一个列表，包含对象的所有属性和方法名称。
+14. `divmod()` - 返回两个数的除法和余数的元组。
+15. `enumerate()` - 返回一个枚举对象。
+16. `eval()` - 执行一个字符串表达式，并返回结果。
+17. `filter()` - 构建一个迭代器，从 `iterable `中筛选出符合条件的元素。
+18. `float()` - 将一个字符串或数字转换为浮点数。
+19. `format()` - 格式化指定值，返回一个字符串。
+20. `frozenset()` - 返回一个冻结的集合，它是不可变的。
+21. `getattr()` - 获取对象的属性。
+22. `globals()` - 返回当前全局符号表的字典。
+23. `hasattr()` - 判断对象是否具有指定的属性。
+24. `hash()` - 返回一个对象的哈希值。
+25. `help()` - 提供交互式帮助。
+26. `hex()` - 将整数转换为十六进制字符串。
+27. `id()` - 返回对象的“identity”。
+28. `input()` - 获取用户输入。
+29. `int()` - 将一个字符串或数字转换为整数。
+30. `isinstance()` - 判断对象是否是某个类的实例。
+31. `issubclass()` - 判断一个类是否是另一个类的子类。
+32. `iter()` - 返回一个迭代器对象。
+33. `len()` - 返回对象的长度（项目数量）。
+34. `list()` - 创建一个列表。
+35. `map()` - 对可迭代对象中的每个项目应用一个函数，并返回一个迭代器。
+36. `max()` - 返回可迭代对象中的最大值。
+37. `min()` - 返回可迭代对象中的最小值。
+38. `next()` - 返回迭代器的下一个项目。
+39. `oct()` - 将整数转换为八进制字符串。
+40. `open()` - 打开一个文件，并返回一个文件对象。
+41. `ord()` - 返回单个字符的 `Unicode `码点。
+42. `pow()` - 返回两个数的幂。
+43. `print()` - 打印输出。
+44. `property()` - 返回一个 `property `属性。
+45. `range()` - 创建一个整数序列。
+46. `repr()` - 返回一个对象的字符串表示。
+47. `reversed()` - 返回一个反转的迭代器。
+48. `round()` - 对一个数进行四舍五入。
+49. `set()` - 创建一个集合。
+50. `setattr()` - 设置对象的属性值。
+51. `slice()` - 返回一个切片对象。
+52. `sorted()` - 对可迭代对象进行排序，并返回一个新的列表。
+53. `staticmethod()` - 返回一个静态方法。
+54. `str()` - 将值转换为字符串。
+55. `sum()` - 对可迭代对象中的元素进行求和。
+56. `super()` - 返回一个代理对象，它委托方法给父类或兄弟类。
+57. `tuple()` - 创建一个元组。
+58. `type()` - 返回对象的类型。
+59. `zip()` - 将两个或多个可迭代对象中的元素配对，并返回一个迭代器。
+
+# 如何把自己的项目上传到`PyPI`
+
+看这篇博文 -- `https://www.cnblogs.com/meet/p/18057112`
+
+## 编写代码
+
+我们有一个函数，可以将一个嵌套了很多层的列表里面的每个元素递归的进行输出：
+
+```python
+def print_list_item(the_list):
+    """
+    将嵌套了很多层列表的列表中的每个元素进行输出
+    如果传入的参数the_list不是列表，那么可以直接输出
+    """
+    for each_item in the_list:
+        if isinstance(each_item, list):
+            print_list_item(each_item)
+        else:
+            print(each_item)
+```
+
+现在，我们将其保存在一个适当命名的文件中
+
+比如我们将文件命名为`buweishi.py`
+
+```python
+# buweishi.py
+
+"""
+这是模块注释。
+这是个模块，只含有一个函数，这个函数用于递归地输出一个嵌套了不知多少层的列表的列表。
+"""
+
+def print_list_item(the_list: list):
+    """
+    这是函数注释。
+    将嵌套了很多层列表的列表中的每个元素进行输出
+    如果传入的参数the_list不是列表，那么可以直接输出
+    """
+    for each_item in the_list:
+        if isinstance(each_item, list):
+            print_list_item(each_item)
+        else:
+            print(each_item)
+```
+
+## 准备发布
+
+创建一个新文件夹，把我们编写的这个文件放进新建的文件夹中，比如我们新创建的文件夹叫`buweishi`
+
+在`buweishi`文件夹下，新创建一个名为`setup.py`的文件，这个文件包含有关发布的元数据。里面写入这些代码：
+
+```python
+from setuptools import setup, find_packages
+
+setup(
+    # name='buweishi',
+    # version='1.0.0',
+    # py_modules=['buweishi'],
+    # author='wephiles',
+    # author_email='wephiles@163.com',
+    # url='https://github.com/wephiles',
+    # description='A sample printer of nested list',
+    name="buweishi",  # 用自己的名替换其中的YOUR_USERNAME_
+    version="0.0.1",  # 包版本号，便于维护版本
+    py_modules=['buweishi'],
+    author="wephiles",  # 作者，可以写自己的姓名
+    author_email="wephiles@163.com",  # 作者联系方式，可写自己的邮箱地址
+    description="A sample of print nested list.",  # 包的简述
+    long_description='test how to share my project.',  # 包的详细介绍，一般在README.md文件内
+    long_description_content_type="text/markdown",
+    url="https://github.com/wephiles",  # 自己项目地址，比如github的项目地址
+    packages=find_packages(),
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: Windows",
+    ],
+    python_requires='>=3.6',  # 对python的最低版本要求
+)
+```
+
+## 构建发布
+
+```python
+# 安装生成setuptools和wheel
+>>>python3 -m pip install  --upgrade setuptools wheel
+```
+
+在我们创建的`buweishi`文件夹下，打开终端，输入：
+
+```python
+>>>python setup.py sdist bdsit_wheel
+```
+
+## 注册一个PyPI账号
+
+```python
+# 创建测试账号的网址：
+https://test.pypi.org/
+
+# 创建正式账号的网址
+https://pypi.org/
+```
+
+```python
+安装twine
+pip install twine
+```
+
+```python
+# 使用twine上传
+python -m twine upload --repository  testpypi dist/*
+```
+
+...
+
+# `typing`
+
+```python
+from typing import TypeAlias, Literal, NewType
+
+# TypeAlias:
+# # 类型定义别名的直接方法
+# my_type = tuple[int, str]
+# var: my_type = (10, 10)
+#
+# print(var)  # (10, 10)
+
+# Strings: TypeAlias = list[str]
+#
+# # people: Strings = ['computer', 'science']
+# people: Strings = [10, 10]
+# print(people)
+
+# Basket: TypeAlias = 'list[Fruit]'
+#
+#
+# class Fruit(object):
+#     def __init__(self, fruit):
+#         self.fruit = fruit
+#
+#     def create_basket(self) -> Basket:
+#         return 3 * [Fruit(self.fruit)]
+#
+#
+# banana: Fruit = Fruit('Banana')
+# basket: Basket = banana.create_basket()
+# print(basket[0].fruit)
+
+# Literal:
+
+# Mode: TypeAlias = Literal['r', 'w', 'a']
+#
+#
+# def open_file(file: str, mode: Mode) -> str:
+#     return f'Reading {file} in "{mode}" mode.'
+#
+#
+# print(open_file('test.txt', 'r'))
+# print(open_file('test.txt', 'a'))
+# print(open_file('test.txt', 'w'))
+
+# NewType
+
+UserId = NewType('UserId', int)
+print(UserId(10))  # 10
+
+
+def find_user(user_id: UserId) -> int:
+    print('Found:', user_id)
+
+
+find_user(UserId(100))
+```
+
+# python函数的六个隐藏特性
+
+第一个：
+
+```python
+def hidden_feature_1(a, b, *args, **kwargs):
+    print('a =', a, ',b =', b, ',args =', args, ',kwargs =', kwargs)
+
+
+hidden_feature_1('12', 22, 'hello', 'world', c=13, d=456, e=[12, 34, 56])
+# a = 12 ,b = 22 ,args = ('hello', 'world') ,kwargs = {'c': 13, 'd': 456, 'e': [12, 34, 56]}
+```
+
+第二个：
+
+```python
+def function_caller(func, *args, **kwargs):
+    return func(*args, **kwargs)
+
+
+def add(a, b):
+    return a + b
+
+
+def pow_cal(base=1, exp=1):
+    return base ** exp
+
+
+res = function_caller(add, 2, 3)
+print(res)
+
+res = function_caller(pow_cal, base=2, exp=3)
+print(res)
+
+funcs = [add, pow_cal, add, add]
+args = [
+    [(1, 2), {}],
+    [(), {"base": 5, "exp": 2}],
+    [(5, 6), {}],
+    [(3, 4), {}]
+]
+
+for func, (args, kwargs) in zip(funcs, args):
+    res = func(*args, **kwargs)
+    print(res)
+```
+
+第三个：
+
+```python
+# 闭包
+def adder(value):
+    def inner(base):
+        return base + value
+
+    return inner
+
+
+add_5 = adder(5)
+add_10 = adder(10)
+
+res = add_5(11)
+res_1 = add_5(-7)
+res_2 = add_10(100)
+
+print(res)
+print(res_1)
+print(res_2)
+```
+
+第四个：
+
+```python
+# 装饰器decorator
+# 装饰器 -- 修改另一个函数的函数
+
+def func_printer(func):
+    def modified_func(*args, **kwargs):
+        print(f'Functions called with {args} and {kwargs}.')
+        result = func(*args, **kwargs)
+        print(f'Result is {result}')
+        return result
+
+    return modified_func
+
+
+@func_printer
+def my_function(list1, list2, mod=1):
+    new_list = []
+
+    for lst in [list1, list2]:
+        for value in lst:
+            if value % mod == 0:
+                new_list.append(value)
+
+    return new_list
+
+
+my_function([1, 2, 3, 4, 5], [6, 7, 8, 9, 10], mod=2)
+
+# # 下面这两行就是装饰器的内在逻辑 等价于在定义函数的时候写上@func_printer,
+# # 再调用函数my_function([1, 2, 3, 4, 5], [6, 7, 8, 9, 10], mod=2)
+#
+# my_function = func_printer(my_function)
+# my_function([1, 2, 3, 4, 5], [6, 7, 8, 9, 10], mod=2)
+```
+
+第五个：
+
+```python
+# 非本地关键字 可以在内部函数中修改外部函数的变量
+# 需要注意的是，nonlocal 关键字只能在嵌套函数中使用，而不能在全局作用域中使用。它用于解决内部函数无法直接访问外部函数的变量的问题。
+# 注意，global只能在函数内申明位于模块的关键字 -- 不在任何函数内的关键字叫位于模块内的关键字（我发明的，不知对不对，但大概就是这个意思）
+# def outer():
+#     x = 10
+#
+#     def inner():
+#         x = 20
+#         print('Inner x:', x)
+#
+#     inner()
+#     print('Outer x:', x)
+#
+#
+# outer()
+# # inner x: 20
+# # Outer x: 10
+
+def outer():
+    x = 10
+
+    def inner():
+        nonlocal x
+        x = 20
+        print('Inner x:', x)
+
+        def inner_2():
+            nonlocal x
+            x = 100
+            print('inner inner:', x)
+
+        inner_2()
+
+    inner()
+    print('Outer x:', x)
+
+
+outer()
+# Inner x: 20
+# inner inner: 100
+# Outer x: 100
+```
+
+第六个：
+
+```python
+from typing import List, Tuple, Optional
+
+
+def greet(name: str) -> str:
+    return f'Hello {name}'
+
+
+def add(x: int, y: int) -> int:
+    return x + y
+
+
+def process_data(data: List[int]) -> Tuple[int, int]:
+    return min(data), max(data)
+
+
+def find_max(data: Optional[List[int]] = None) -> Optional[int]:
+    if data:
+        return max(data)
+
+    return None
+
+
+print(process_data([1, 2, 3]))
+```
+
+# Python使用小技巧
+
+```python
+# python循环小技巧
+import time
+from itertools import cycle
+
+lights = [
+    ("Green", 2),
+    ("Yellow", 0.5),
+    ("Red", 2)
+]
+
+# i = 0
+# while True:
+#     c, s = lights[i]
+#     print(c)
+#     time.sleep(s)
+#     if i == len(lights) - 1:
+#         i = 0
+#     else:
+#         i += 1
+
+colors = cycle(lights)
+while True:
+    c, s = next(colors)
+    print(c)
+    time.sleep(s)
+```
+
+```python
+# 列表解析
+
+names = [
+    'Rick C. Brown',
+    'Rick D. Green',
+    'Rick E. Smith',
+    'Rick F. Davis'
+]
+
+last = [n.split(' ')[-1].strip() for n in names]
+print(last)
+```
+
+```python
+# 解包
+
+inputs = [
+    'John',
+    'Smith',
+    'American',
+    'Blue',
+    'Brown',
+    29
+]
+
+first_name, last_name, *_, age = inputs
+print(first_name, last_name, age)
+```
+
+```python
+# 字典解析
+names = [
+    'Rick C. Brown',
+    'Rick D. Green',
+    'Rick E Smith',
+    'Rick F Davis'
+]
+
+dict_name_len = {name: len(name) for name in names}
+print(dict_name_len)
+
+```
+
+```python
+# lambda 表达式
+
+func = lambda x, y: x + y
+
+x = func(1, 2)
+print(x)
+```
+
+```python
+# balance = 1254.25
+#
+# while True:
+#     try:
+#         num = float(input("Deposit: "))
+#         break
+#     except ValueError:
+#         print("Please input the correct number:")
+# balance += num
+# print(balance)
+
+
+def do_this():
+    print('doing this.')
+
+
+def do_that():
+    print('doing that.')
+
+
+match input('do this or that:'):
+    case 'this':
+        do_this()
+    case 'that':
+        do_that()
+    case _:
+        print('I did not understand')
+```
+
+```python
+# 小白提速
+global_var = 10
+
+
+def func():
+    ans = 0
+    local_var = global_var
+    for i in range(1000):
+        ans += local_var * i
+    return ans
+
+
+x = func()
+print(x)
+```
+
+```python
+a = [1, 2, 3, 3, 4, 5, 6]
+b = [4, 5, 5, 6, 7, 8, 9]
+
+
+# 合并在一起 去除重复项
+
+def merge(list1, list2):
+    return sorted((set(list1 + list2)))
+
+
+x = merge(a, b)
+print(x)
+```
+
+```python
+a = [1, 2, 5, 1, 3, 3, 5, 8]
+new_dict = dict.fromkeys(a)
+print(list(new_dict))
+```
+
+```python
+```
+
+# python编程的好习惯
+
+```python
+import time
+
+
+def connect() -> None:
+    print('Connecting to internet...')
+    time.sleep(1)
+    print('You are connected.')
+
+
+# 总是记得写下面这行语句
+if __name__ == '__main__':
+    connect()
+```
+
+```python
+def greet() -> None:
+    print('Hello, world!')
+
+
+def bye() -> None:
+    print('Bye, world!')
+
+
+def main() -> None:
+    greet()
+    bye()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+```python
+def is_adult(age: int, has_id: bool) -> bool:
+    return age >= 21 and has_id
+
+
+def is_bob(name: str) -> bool:
+    return name.lower() == 'bob'
+
+
+def enter_club(name: str, age: int, has_id: bool) -> None:
+    # if name.lower() == 'bob':
+    #     print('Get out of here Bob, we do not want no trouble.')
+    #     return
+    #
+    # if age > 21 and has_id:
+    #     print('You may enter the club.')
+    # else:
+    #     print('You may not enter the club.')
+
+    # 上述这个实现不好 -- 应该抽象出来一些东西
+    if is_bob(name):
+        print('Get out of here Bob, we do not want no trouble.')
+        return
+
+    if is_adult(age, has_id):
+        print('You may enter the club.')
+    else:
+        print('You may not enter the club.')
+
+
+def main() -> None:
+    enter_club('Bob', 29, has_id=True)
+    enter_club('James', 29, has_id=True)
+    enter_club('Green', 29, has_id=False)
+    enter_club('Mario', 29, has_id=True)
+
+
+if __name__ == '__main__':
+    main()
+```
+
+```python
+number: int = 10
+
+
+def upper_everything(elements: list[str]) -> list[str]:
+    """
+    多余的文档注释是坏事！
+    Args:
+        elements ():
+		
+    Returns:
+		
+    """
+    return [element.upper() for element in elements]
+
+
+loud_list: list[str] = upper_everything(['Computer', 'Science'])
+```
+
+```python
+number: int = 10
+
+
+def upper_everything(elements: list[str]) -> list[str]:
+    """
+    多余的文档注释是坏事！
+    Args:
+        elements ():
+
+    Returns:
+
+    """
+    return [element.upper() for element in elements]
+
+
+loud_list: list[str] = upper_everything(['Computer', 'Science'])
+
+
+# 下面这个明显有错误 但是pycharm竟然不会显示警告信息
+sample: list[int] = ['a', 1, 'b', 2]
+
+# 方法：使用mypy -- pip install mypy
+# 这样类似于上面的代码就会导致pycharm警告产生
+```
+
+```cmd
+>>>mypy main.py  # 检查main.py脚本的任何错误
+```
+
+````python
+# 列表生成式
+
+people: list[str] = ['James', 'Charlotte', 'Stephany', 'Mario', 'Sandra']
+
+# for person in people:
+#     if len(person) > 7:
+#         long_names.append(person)
+# 上面这三行代码可以使用一行代码代替：
+# long_names: list[str] = [item for item in people if len(item) > 7]
+#
+# print(f"Long names: {long_names}")
+
+# 你甚至可以：
+print(f"Long names: {[item for item in people if len(item) > 7]}")
+
+
+# 优化一下 使更好理解
+
+````
+
+# 牛逼的五个装饰器
+
+```python
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

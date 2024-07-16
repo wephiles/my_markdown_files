@@ -56,7 +56,7 @@ info = {'k1': 111, 'k2':999}
 
     ![image-20240127205500681](assets/image-20240127205500681.png)
 
--   字典：在`Python3.6`之前无序，在`3.6`之后无序。
+-   字典：在`Python3.6`之前无序，在`3.6`之后有序。
 
 ### 1.1 定义字典
 
@@ -522,7 +522,7 @@ v1 = {11, 22, 33, 44, 55}
      print(data)  # 4
      ```
 
-2.   for循环
+2.   `for`循环
 
      ```python
      v1 = {11, 22, 33, 44}
@@ -696,10 +696,11 @@ print(data)  # b'\xbc\xc6\xcb\xe3\xbb\xfa'
 如果以后获得了一个字节，字节.decode转换为字符串.
 
 ```python
-name = "计算机"                 #       str字符串，底层是unicode编码
-data = name.encode("gbk")      #       bytes字节，底层是gbk编码
-old = data.decode("utf-8")
-print(data)  # 计算机
+name = "计算机"  # str字符串，底层是unicode编码
+data = name.encode("gbk")  # bytes字节，底层是gbk编码
+old = data.decode('gbk')
+print(data)  # b'\xbc\xc6\xcb\xe3\xbb\xfa'
+print(old) # 计算机
 ```
 
 ## 8. 文件操作
@@ -796,7 +797,7 @@ print(data)  # 计算机
     file_object.close()
     ```
 
-    如果有100G的文件，那么用上述的模式去读，你8G内存的电脑可以读取100G的文件吗？根本不可能！！！所以在读取大文件的时候，需要一行一行去读。
+    如果有`100G`的文件，那么用上述的模式去读，你8G内存的电脑可以读取100G的文件吗？根本不可能！！！所以在读取大文件的时候，需要一行一行去读。
 
     ```python
     # 这种方式无法判断文件在哪结束

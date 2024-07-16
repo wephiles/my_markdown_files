@@ -883,20 +883,19 @@ class UserInfo(models.Model):
 
 ```python
 class MyForm(...Form):
-    user = forms.CharField(widget=forms.Input)  # 帮我们显示乘input框
-    password = forms.CharField(widget=forms.Input)  # 帮我们显示乘input框
+    user = forms.CharField(widget=forms.Input)  # 帮我们显示成input框
+    password = forms.CharField(widget=forms.Input)  # 帮我们显示成input框
     email = forms.CharField(widget=forms.Input)  
     ...
 
 def user_add(request):
-    """添加用户-原始方式。"""
     if request.method == "GET":
         form = MyForm()  # 实例化一个MyForm对象
         return render(request, 'user_add.html', {"form": form})
     ...
 ```
 
-`user_add.html`:
+### 8.1.2 `user_add.html`:
 
 ```html
 <form>
@@ -916,9 +915,266 @@ def user_add(request):
 
 ## 8.2 `ModelForm`
 
+### 8.2.1 `models.py`
+
+```python
+class UserInfo(models.Model):
+    """员工表"""
+    name = models.CharField(verbose_name="员工姓名", max_length=10)
+    password = models.CharField(verbose_name="密码", max_length=64)
+    age = models.IntegerField(verbose_name="年龄")
+
+    # decimal_places=2小数点位数 max_digits=10最大长度
+    salary = models.DecimalField(verbose_name="账户余额", decimal_places=2, max_digits=10, default=0)
+    time = models.DateTimeField(verbose_name="入职时间")
+
+    # 这个是django里面做的约束 和数据库无关 写性别的时候只能写1/2,1代表男 2代表女
+    gender_choices = (
+        (1, '男'),
+        (2, '女'),
+    )
+    gender = models.SmallIntegerField(verbose_name="性别", choices=gender_choices)
+
+    # 外键 所属部门 部门名称/部门ID？ -- 两者都有存
+    # 根据范式，存ID（节省内存开销）
+    # 但是特大企业根据企业要求，存名称，查询次数会很多 会去连表（连表操作会比较耗时），允许数据冗余
+    # 对部门ID，要约束吗？ -- 需要约束(不能乱写)--只能是部门表中已经存在的ID
+
+    # # 这样写没约束：
+    # department_id = models.CharField(verbose_name='这是备注', max_length=20)
+
+    # 你得这样写 to是与哪张表关联 to_field是与哪一列做关联
+    # django自动 -写的是department，但是生成数据的时候 叫department_id
+
+    # # 部门被删除了 -- 直接删除用户（级联删除）
+    # department = models.ForeignKey(to=Department, to_field='id', on_delete=models.CASCADE)
+
+    # 部门被删除了 -- 不删除但是置空
+    department = models.ForeignKey(to=Department, to_field='id', on_delete=models.SET_NULL, null=True, blank=True)
+```
+
+### 8.2.2 `views.py`
+
+```python
+class MyForm(ModelForm):
+    xx = form.CharField("...")
+    class meta():
+        model = UserInfo
+        fields = ["name", "password", "age", "xx"]
+        
+def user_add(request):
+    if request.method == "GET":
+        form = MyForm()  # 实例化一个MyForm对象
+        return render(request, 'user_add.html', {"form": form})
+    ...
+```
+
+### 8.3 新建用户-基于modelform
+
+```python
+# models.py
+class Department(models.Model):
+    """部门表"""
+    # id = models.BigAutoField(verbose_name='ID', primary_key=True, )
+    title = models.CharField(verbose_name="部门标题", max_length=20)
+
+    def __str__(self):
+        return self.title
+    
+# views.py
+class UserModelForm(forms.ModelForm):
+    class Meta:
+        model = my_md.UserInfo
+        fields = ["name", "password", "age", "salary", "time", "gender", "department"]
+
+def user_model_form_add(request):
+    """
+    添加用户-基于ModelForm
+    Args:
+        request ():
+
+    Returns:
+
+    """
+    form = UserModelForm()
+    return render(request,
+                  "user_add_modelform.html",
+                  {"form": form})
+    
+# urls.py
+from django.contrib import admin
+from django.urls import path
+from mysite import views
+
+urlpatterns = [
+    # path("admin/", admin.site.urls),
+    path("user/list/", views.user_list),
+    path("user/add/", views.user_add),
+    path("user/modelform/add/", views.user_model_form_add),
+
+    path("department/list/", views.depart_list),
+    path("create/department/", views.create_department),
+    path("delete/department/", views.delete_department),
+
+    # 如果按照下面这样写 你在发送请求到这个地址的时候
+    # 必须传递这样的url:http://127.0.0.1:8000/edit/1/department/
+    # 必须传递这样的url:http://127.0.0.1:8000/edit/10/department/
+    path("edit/<int:nid>/department/", views.edit_department),
+
+    path("test/templates/", views.test_templates),
+]
+```
+
+```html
+<form action="/user/modelform/add/" method="post">
+    {% csrf_token %}
+    {# form.name.label是name字段对应的verbose_name #}
+    {# 下面这几行这样写有点复杂 #}
+    {#                {{ form.name.label }}: {{ form.name }}#}
+    {#                {{ form.password.label }}: {{ form.password }}#}
+    {#                {{ form.age.label }}: {{ form.age }}#}
+    {# 按照下面的样子 循环写就OK了 #}
+    {% for field in form %}
+        {{ field.label }}: {{ field }}
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+```
+
+美化一下：
+
+```python
+# views.py
+class UserModelForm(forms.ModelForm):
+    class Meta:
+        model = my_md.UserInfo
+        fields = ["name", "password", "age", "salary", "time", "gender", "department"]
+
+        # 可以像下面这样写 但是不建议 太麻烦了
+        # widgets = {
+        #     "name": forms.TextInput(attrs={"class": 'form-control'}),
+        #     "password": forms.PasswordInput(attrs={"class": 'form-control'}),
+        #     "age": forms.PasswordInput(attrs={"class": 'form-control'}),
+        #     "salary": forms.PasswordInput(attrs={"class": 'form-control'}),
+        #     ...
+        # }
+
+    # 这样写
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # 循环找到所有插件 添加样式
+        for name, field in self.fields.items():
+            # # 如果想要跳过某一个input框
+            # if name == "password":
+            #     continue
+            field.widget.attrs = {"class": "form-control"}
+
+# models.py
+class Department(models.Model):
+    """部门表"""
+    # id = models.BigAutoField(verbose_name='ID', primary_key=True, )
+    title = models.CharField(verbose_name="部门标题", max_length=20)
+
+    def __str__(self):
+        return self.title
 
 
+class UserInfo(models.Model):
+    """员工表"""
+    name = models.CharField(verbose_name="员工姓名", max_length=10)
+    password = models.CharField(verbose_name="密码", max_length=64)
+    age = models.IntegerField(verbose_name="年龄")
 
+    # decimal_places=2小数点位数 max_digits=10最大长度
+    salary = models.DecimalField(verbose_name="账户余额", decimal_places=2, max_digits=10, default=0)
+    time = models.DateTimeField(verbose_name="入职时间")
+
+    # 这个是django里面做的约束 和数据库无关 写性别的时候只能写1/2,1代表男 2代表女
+    gender_choices = (
+        (1, '男'),
+        (2, '女'),
+    )
+    gender = models.SmallIntegerField(verbose_name="性别", choices=gender_choices)
+
+    # 外键 所属部门 部门名称/部门ID？ -- 两者都有存
+    # 根据范式，存ID（节省内存开销）
+    # 但是特大企业根据企业要求，存名称，查询次数会很多 会去连表（连表操作会比较耗时），允许数据冗余
+    # 对部门ID，要约束吗？ -- 需要约束(不能乱写)--只能是部门表中已经存在的ID
+
+    # # 这样写没约束：
+    # department_id = models.CharField(verbose_name='这是备注', max_length=20)
+
+    # 你得这样写 to是与哪张表关联 to_field是与哪一列做关联
+    # django自动 -写的是department，但是生成数据的时候 叫department_id
+
+    # # 部门被删除了 -- 直接删除用户（级联删除）
+    # department = models.ForeignKey(to=Department, to_field='id', on_delete=models.CASCADE)
+
+    # 部门被删除了 -- 不删除但是置空
+    department = models.ForeignKey(Department, verbose_name="部门", to_field='id', on_delete=models.SET_NULL, null=True, blank=True)
+
+```
+
+```python
+# urls.py
+from django.contrib import admin
+from django.urls import path
+from mysite import views
+
+urlpatterns = [
+    # path("admin/", admin.site.urls),
+    path("user/list/", views.user_list),
+    path("user/add/", views.user_add),
+    path("user/modelform/add/", views.user_model_form_add),
+
+    path("department/list/", views.depart_list),
+    path("create/department/", views.create_department),
+    path("delete/department/", views.delete_department),
+
+    # 如果按照下面这样写 你在发送请求到这个地址的时候
+    # 必须传递这样的url:http://127.0.0.1:8000/edit/1/department/
+    # 必须传递这样的url:http://127.0.0.1:8000/edit/10/department/
+    path("edit/<int:nid>/department/", views.edit_department),
+
+    path("test/templates/", views.test_templates),
+]
+
+```
+
+```html
+# user_add_modelform.html
+
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">新建用户</div>
+        <div class="panel-body">
+            <form action="/user/add/" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="name">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+```
+
+数据校验、错误提示：
+
+如果想要报错信息用中文显示：在`settings.py`里面：改成这样子。
+
+```python
+# LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "zh-hans"
+```
 
 
 

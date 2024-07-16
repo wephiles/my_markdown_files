@@ -24,13 +24,13 @@ def handler():
       name = "computer"
       def f1():
           print(name, age)
-  	def f2():
+      def f2():
           print(name, age)
       def f3():
           print(name, age)
-      f1()
-      f2()
-      f3()
+  f1()
+  f2()
+  f3()
   func(123)
   ```
 
@@ -503,7 +503,6 @@ def auth(func):
         res = func(*args, **kwargs)
         ...
         return res
-
     return inner
 ```
 
@@ -530,7 +529,7 @@ import os
 print(os.path.abspath(__file__))
 ```
 
-要找到我们当前脚本文件所在的文件夹：
+要找到我们当前脚本文件所在的文件夹：z`
 
 ```python
 print(os.path.dirname(os.path.abspath(__file__)))

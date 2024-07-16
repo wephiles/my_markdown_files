@@ -114,7 +114,7 @@ if __name__ == "__main__":  # 标志这个文件是主文件
 
 ```python
 day01
-	01 fullstack s7 day01 xxx.mp4
+	  01 fullstack s7 day01 xxx.mp4
     02 fullstack s7 day01 xxx.mp4
     03 fullstack s7 day01 xxx.mp4
     04 fullstack s7 day01 xxx.mp4
@@ -234,7 +234,7 @@ print(phone_number)  # 18866666666
     text = """root-ad13main-c4ompu423416ter science-aad234main"""
     
     data_list = re.findall(r"\d+", text)  # + 代表1个或者n个
-    print(data_list)
+    print(data_list)  # ['13', '4', '423416', '234']
     ```
 
     ```python
@@ -243,7 +243,8 @@ print(phone_number)  # 18866666666
     text = """root-ad13main-c4ompu423416ter science-aad234main"""
     
     data_list = re.findall(r"\d*", text)  # * 代表0个或者n个
-    print(data_list)
+    print(data_list)  
+    # ['', '', '', '', '', '', '', '13', '', '', '', '', '', '', '4', '', '', '', '', '423416', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '234', '', '', '', '', '']
     ```
 
     ```python
@@ -252,6 +253,7 @@ print(phone_number)  # 18866666666
     text = """root-ad13main-c4ompu423416ter science-aad234main"""
     
     data_list = re.findall(r"\d?", text)  # ? 代表0个或者1个  意思是只拿0个或1个(不管后面本来有多少个)
+    # ['', '', '', '', '', '', '', '1', '3', '', '', '', '', '', '', '4', '', '', '', '', '4', '2', '3', '4', '1', '6', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2', '3', '4', '', '', '', '', '']
     ```
 
     ```python
@@ -260,6 +262,7 @@ print(phone_number)  # 18866666666
     text = """root-ad13main-c4ompu423416ter science-aad234main"""
     
     data_list = re.findall(r"\d{2}", text)  # {n} 固定n个
+    # ['13', '42', '34', '16', '23']
     ```
 
     ```python
@@ -268,6 +271,7 @@ print(phone_number)  # 18866666666
     text = """root-ad13main-c4ompu423416ter science-aad234main"""
     
     data_list = re.findall(r"\d{2,}", text)  # {n,} 固定n个,或者比n个更多
+    # ['13', '423416', '234']
     ```
 
     ```python
@@ -386,7 +390,7 @@ print(phone_number)  # 18866666666
     ```
 
 - 提取数据区域 + 或
-    
+  
     ```python
     import re
     
