@@ -445,19 +445,268 @@ print(o1.data)  # 报错 AttributeError: 'A' object has no attribute 'data'
 ```
 
 ```python
+class A:
+    def __init__(self):
+        self.data = 'ABC'
+
+    def __dir__(self):
+        lst = super().__dir__()
+        return [el for el in lst if not el.startswith('__')]
+
+
+o = A()
+print(dir(o))  # ['data']
 ```
 
 ```python
-```
+class D:
+    def __get__(self, obj, owner=None):
+        """会在我们尝试读取o.x的时候调用。self是描述对象本身（x），
+        obj，有时候协程instance，对应的是这个o，也就是class A的object，
+        owner是o的class
+        """
+        print(obj, owner)
+        return 0
 
 
+class A:
+    x = D()
 
 
+o = A()
+print(o.x)
+# <__main__.A object at 0x0000023C8F567AA0> <class '__main__.A'>
+# 0
 
-```python
 # --------------------------------------------------------------------------------
 # 分割线
 # --------------------------------------------------------------------------------
+
+class D:
+    """description这种东西是class level的"""
+
+    def __init__(self):
+        self.val = 0
+
+    def __get__(self, obj, owner=None):
+        return self.val
+
+    def __set__(self, obj, value):
+        self.val = value
+
+
+class A:
+    x = D()
+
+
+o = A()
+o2 = A()
+print(o.x)  # 0
+
+o.x = 1
+print(o.x)  # 1
+print(o2.x)  # 1
+```
+
+```python
+class D:
+    """description这种东西是class level的"""
+
+    def __init__(self):
+        self.val = 0
+
+    def __get__(self, obj, owner=None):
+        return self.val
+
+    def __set__(self, obj, value):
+        self.val = value
+
+    def __delete__(self, obj):
+        """当我们del o.x的时候，调用delete函数"""
+        print('delete')
+
+
+class A:
+    x = D()
+
+
+o = A()
+del o.x
+# delete
+```
+
+```python
+class A:
+    __slots__ = ['a', 'b']
+
+
+o = A()
+# o.x = 1  # 报错
+o.a = 1  # 不会报错
+```
+
+```python
+class Base:
+    def __init_subclass__(cls, **kwargs):
+        """需要定义在基类里面，以这个基类定义一个衍生类的时候就调用这个方法。"""
+        print(cls)
+
+
+class A(Base):
+    pass
+# 运行这个脚本，运行结果为：<class '__main__.A'>
+
+# ================================================================================
+# 分割线
+# ================================================================================
+
+class Base:
+    def __init_subclass__(cls, **kwargs):
+        """需要定义在基类里面，以这个基类定义一个衍生类的时候就调用这个方法。
+        参数cls是刚刚建立的衍生类。
+        """
+        cls.x = {}
+
+
+class A(Base):
+    pass
+
+
+print(A.x)  # {}
+
+# ================================================================================
+# 分割线
+# ================================================================================
+
+class Base:
+    def __init_subclass__(cls, name):
+        """需要定义在基类里面，以这个基类定义一个衍生类的时候就调用这个方法。
+        参数cls是刚刚建立的衍生类。
+        """
+        cls.x = {}
+        cls.name = name
+
+
+class A(Base, name='Jack'):
+    pass
+
+
+print(A.x)  # {}
+print(A.name)  # Jack
+```
+
+```python
+class D:
+    def __set_name__(self, owner, name):
+        """更多的是定义在一个descriptor class中。
+        即使这个class不是descriptor class，也依然起作用。
+
+        这个方法相当于一个hook，当你在类定义中去构建一个这个class的instance的时候，
+        这个方法就会被调用。
+
+        owner是A，而name是它复制的这个变量的名字。
+        """
+        print(owner, name)
+
+
+class A:
+    x = D()
+
+# 运行这个脚本，运行结果为：<class '__main__.A'> x
+```
+
+```python
+class A:
+    def __class_getitem__(cls, item):
+        print(item)
+        return 'abc'
+
+
+print(A[0])
+# 0
+# abc
+
+# type hint
+int_arr_type = list[int]  # 这个list[int]就是使用__class_getitem__实现的
+
+list_1: int_arr_type = []
+list_2: int_arr_type = []
+```
+
+```python
+class A:
+    pass
+
+
+class B(A()):
+    pass
+# 报错：TypeError: A() takes no arguments
+
+
+class A:
+    def __mro_entries__(self, bases):
+        print(bases)
+        return ()
+    
+# ================================================================================
+# 分割线
+# ================================================================================
+
+class B(A()):
+    pass
+# (<__main__.A object at 0x00000204309D7B00>,)
+
+
+class A:
+    def __mro_entries__(self, bases):
+        print(bases)
+        return ()
+
+
+class B(A()):
+    pass
+
+
+# (<__main__.A object at 0x00000204309D7B00>,)
+
+print(issubclass(B, A))  # False
+
+# ================================================================================
+# 分割线
+# ================================================================================
+
+class A:
+    def __mro_entries__(self, bases):
+        print(bases)
+        return (A,)
+
+
+class B(A()):
+    pass
+
+
+# (<__main__.A object at 0x0000020F8BE27B30>,)
+
+print(issubclass(B, A))  # True
+```
+
+```python
+
+```
+
+```python
+```
+
+
+
+```python
+
+```
+
+```python
+# ================================================================================
+# 分割线
+# ================================================================================
 ```
 
 

@@ -839,7 +839,141 @@ a = [1, 2, 3, 4]
 b = [e + 233 for e in a]
 ```
 # `typing`
-...
+
+## 概述
+
+在Python中，类型提示（Type Hints）是用来增强代码可读性和可维护性的重要工具。以下是一些常用的类型提示：
+
+1. 基本类型
+    - int: 整数类型
+    - float: 浮点数类型
+    - str: 字符串类型
+    - bool: 布尔类型
+    - None: 表示空值
+2. 容器类型
+    - List[Type]: 列表，例如 `List[int]` 表示一个整数列表
+    - Tuple[type, ...]: 元组，例如 `Tuple[int, str]` 表示一个包含一个整数和一个字符串的元组
+    - Dict[key_type, value_type]: 字典，例如 `Dict[str, int]` 表示一个键为字符串、值为整数的字典
+    - Set[type]: 集合，例如 `Set[int]` 表示一个整数集合
+    - Optional[type]: 可选类型，例如 `Optional[str]` 表示一个可以是字符串或 `None` 的类型 --常用于函数参数可能为 `None` 的情况
+    - `Sequence[T]`: 序列，可以是任何提供序列功能的类型，如`list`、`tuple`等
+    - `Iterable[T]`: 可迭代对象，可以是任何提供迭代功能的类型
+    - `Mapping[K, V]`: 映射，如`dict`
+    - `Callable[[Arg1Type, Arg2Type, ...], ReturnType]`: 表示可调用的对象，如函数，可以指定参数类型和返回类型
+3. 自定义类型
+    - class: 类类型，例如 `User` 表示一个 `User` 类的实例
+    - Callable[[arg_types], return_type]: 可调用对象，例如 `Callable[[int, str], bool]` 表示一个接受一个整数和一个字符串并返回布尔值的函数
+4. 联合类型
+    - Union[type1, type2, ...]: 联合类型，例如 `Union[int, str]` 表示一个可以是整数或字符串的类型
+5. 泛型类型
+    - TypeVar: 类型变量，用于定义泛型类型，例如 `T = TypeVar('T')`
+    - Generic[T]: 泛型类，例如 `class MyClass(Generic[T]):`
+6. 其他类型
+    - Any: 任意类型
+    - Literal[value]: 字面量类型，例如 `Literal[42]` 表示值为42的类型
+    - Final: 表示常量，例如 `Final[int]` 表示一个不可变的整数
+
+> [!Important]
+>
+> 这些类型提示可以帮助你在编写代码时明确变量和函数的类型，从而提高代码的可读性和可维护性。使用类型提示还可以在开发过程中通过工具（如 `mypy`）进行静态类型检查，提前发现潜在的类型错误。
+
+## 使用
+
+在Python中使用类型提示非常简单，你只需要在变量、函数参数和函数返回值后面加上类型注解即可。以下是一些具体的使用示例：
+
+### 基本类型提示
+
+```
+age: int = 25
+height: float = 5.9
+name: str = "Alice"
+is_student: bool = True
+```
+
+### 容器类型提示
+
+```
+from typing import List, Tuple, Dict, Set, Optional
+
+numbers: List[int] = [1, 2, 3, 4, 5]
+person: Tuple[str, int] = ("Alice", 25)
+scores: Dict[str, int] = {"Alice": 95, "Bob": 88}
+unique_numbers: Set[int] = {1, 2, 3, 4, 5}
+maybe_name: Optional[str] = None
+```
+
+### 自定义类型提示
+
+```
+from typing import Callable
+
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
+def apply_function(func: Callable[[int], int], value: int) -> int:
+    return func(value)
+```
+
+### 联合类型提示
+
+```
+from typing import Union
+
+def process_value(value: Union[int, str]) -> None:
+    if isinstance(value, int):
+        print(f"Received an integer: {value}")
+    else:
+        print(f"Received a string: {value}")
+```
+
+### 泛型类型提示
+
+```
+from typing import TypeVar, Generic
+
+T = TypeVar('T')
+
+class Box(Generic[T]):
+    def __init__(self, content: T) -> None:
+        self.content = content
+
+int_box = Box[int](42)
+str_box = Box[str]("Hello")
+```
+
+### 其他类型提示
+
+```
+from typing import Any, Literal, Final
+
+anything: Any = "This can be anything"
+answer: Literal[42] = 42
+PI: Final[float] = 3.14159
+```
+
+### 函数类型提示
+
+```
+def add(a: int, b: int) -> int:
+    return a + b
+
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+```
+
+### 类类型提示
+
+```
+class User:
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+
+def get_user_name(user: User) -> str:
+    return user.name
+```
+
+通过这些示例，你可以看到如何在Python中使用类型提示来明确变量和函数的类型。这些类型提示不仅提高了代码的可读性，还可以通过静态类型检查工具（如 `mypy`）来帮助你发现潜在的类型错误。
 
 # `gzip`模块实现数据压缩
 
@@ -1055,67 +1189,6 @@ pip install twine
 ```python
 # 使用twine上传
 python -m twine upload --repository  testpypi dist/*
-```
-
-...
-
-# `typing`
-
-```python
-from typing import TypeAlias, Literal, NewType
-
-# TypeAlias:
-# # 类型定义别名的直接方法
-# my_type = tuple[int, str]
-# var: my_type = (10, 10)
-#
-# print(var)  # (10, 10)
-
-# Strings: TypeAlias = list[str]
-#
-# # people: Strings = ['computer', 'science']
-# people: Strings = [10, 10]
-# print(people)
-
-# Basket: TypeAlias = 'list[Fruit]'
-#
-#
-# class Fruit(object):
-#     def __init__(self, fruit):
-#         self.fruit = fruit
-#
-#     def create_basket(self) -> Basket:
-#         return 3 * [Fruit(self.fruit)]
-#
-#
-# banana: Fruit = Fruit('Banana')
-# basket: Basket = banana.create_basket()
-# print(basket[0].fruit)
-
-# Literal:
-
-# Mode: TypeAlias = Literal['r', 'w', 'a']
-#
-#
-# def open_file(file: str, mode: Mode) -> str:
-#     return f'Reading {file} in "{mode}" mode.'
-#
-#
-# print(open_file('test.txt', 'r'))
-# print(open_file('test.txt', 'a'))
-# print(open_file('test.txt', 'w'))
-
-# NewType
-
-UserId = NewType('UserId', int)
-print(UserId(10))  # 10
-
-
-def find_user(user_id: UserId) -> int:
-    print('Found:', user_id)
-
-
-find_user(UserId(100))
 ```
 
 # python函数的六个隐藏特性
@@ -1599,10 +1672,739 @@ print(f"Long names: {[item for item in people if len(item) > 7]}")
 
 ````
 
-# 牛逼的五个装饰器
+# 什么是`metaclass`
 
 ```python
 ```
+
+
+
+# `slice`
+
+```python
+text: str = 'I am a robot!'
+text_1: str = 'I am not a robot!'
+
+my_slice = slice(None, 10)  # 相当于切片的[:10]
+
+print(text[:10])
+print(text[::10])  # Io
+print(text[my_slice])
+print(text_1[my_slice])
+
+# 反转字符串
+text_2: str = 'I am your father.'
+my_slice_1 = slice(None, None, -1)  # 等同于切片的 [::-1] -- 也就是反转字符串
+print(text_2[my_slice_1])  # 等同于切片的 [::-1] -- 也就是反转字符串
+```
+
+# `reduce`
+
+```python
+"""
+This file learn how to user reduce! Maybe.
+
+reduce: 将列表或者可迭代元素转换成单个元素。
+"""
+
+from functools import reduce
+
+numbers: list[int] = [1, 2, 3, 4, 5, 6]
+result: float = reduce(lambda a, b: a * b, numbers)
+# arguments :func, sequence and init_value
+print(result)  # 720 = ((((1*2)*3)*4)*5)*6
+
+string: list[str] = ['a1', 'b2', 'c3', 'd4', 'e5', 'f6']
+# Attention: the first argument func can only receive two arguments!
+# About the third argument:
+#   if the sequence list is None, it will print the third argument also!
+# Attention: But if the length of the sequence list equals one,
+# then it will only print the only element of the list,
+# do not print the third argument!!!
+result: str = reduce(lambda a, b: f'{a}-{b}', string, 'Init')
+print(result)  # Init-a1-b2-c3-d4-e5-f6
+```
+
+# `reversed`
+
+```python
+"""
+The purpose of this file is to test the functions called reversed.
+"""
+
+from sys import getsizeof
+from typing import Any
+
+
+def display_info(var: Any):
+    print(f'{var} ({getsizeof(var)} bytes)')
+
+
+text: str = 'Python language'
+coordinates: list[str] = ['a1', 'b2', 'c3', 'd4', 'e5', 'f6']
+
+display_info(text[::-1])
+display_info(coordinates[::-1])
+# egaugnal nohtyP (56 bytes)
+# ['f6', 'e5', 'd4', 'c3', 'b2', 'a1'] (104 bytes)
+
+print(reversed(text))  # <reversed object at 0x000001AF54144280>
+
+reversed_text = reversed(text)
+reversed_coordinates = reversed(coordinates)
+display_info(reversed_text)  # 实际上是生成了一个生成器 -- 节省内存
+display_info(reversed_coordinates)  # 实际上是生成了一个生成器 -- 节省内存
+# <reversed object at 0x000001E6E9074400> (48 bytes)
+# <list_reverseiterator object at 0x000001E6E9075600> (48 bytes)
+
+
+display_info(''.join(reversed_text))  # egaugnal nohtyP (56 bytes)
+
+display_info(list(reversed_coordinates))
+# ['f6', 'e5', 'd4', 'c3', 'b2', 'a1'] (104 bytes)
+```
+
+# `interesting dict`
+
+```python
+"""
+This file show interesting dict.
+"""
+
+values = ('a1', 'b2', 'c3')  # print(dict(values))
+print(dict(values))
+
+values = ('a1', 'b2', 'c')
+# ValueError: dictionary update sequence element #2 has length 1; 2 is required
+print(dict(values))
+```
+
+# `TypeDict`
+
+```python
+"""
+This file shows how to use "TypedDict".
+"""
+
+from typing import TypedDict, NotRequired, Required
+
+
+class Coordinate(TypedDict):
+    x: float
+    y: float
+    label: str
+    category: NotRequired[str]
+
+
+coordinate: Coordinate = {'x': 10, 'y': 10, 'label': 'l', 'category': 'c'}
+# 如果不导入NotRequired的话，IDE会报错 -- 四个值必须全部写全
+# 导入NotRequired后。这样写IDE就不会报错了
+coordinate_1: Coordinate = {'x': 2, 'y': 5, 'label': 'r'}
+
+Vote = TypedDict('Vote', {'for': int, 'against': int}, total=True)
+
+Vote_1 = TypedDict('Vote_1', {'for': int, 'against': Required[int]},
+                   total=True)
+
+vote: Vote = {'for': 100, 'against': 250}
+vote1: Vote_1 = {'for': 100}
+```
+
+# `secrets`
+
+```python
+import secrets
+import string
+
+random = secrets.randbelow(10)  # [0 , 10)
+print(random)
+
+random_choice = secrets.choice([11, 12, 13, 14, 15, 16, 17, 18, 19])
+print(random_choice)
+
+
+def generate_password(length: int):
+    chars: str = string.ascii_letters + string.digits + string.punctuation
+    # 字母 + 数字 + 标点符号
+    password: str = ''.join(secrets.choice(chars) for i in range(length))
+    print(f'Generated password:"{password}"')
+
+
+generate_password(18)
+
+# ============================================================================
+random = secrets.randbits(2)
+print(random)
+
+# ============================================================================
+
+token = secrets.token_bytes(32)
+token_1 = secrets.token_hex(32)
+print(token)
+print(token_1)
+
+# ============================================================================
+token = secrets.token_urlsafe(32)
+print(f'https://www.website.com/authenticate/{token}')
+
+# ============================================================================
+user_input = 'abc123'
+password = 'abc123'
+if secrets.compare_digest(user_input, password):
+    print('Password match!')
+
+# ============================================================================
+
+sr = secrets.SystemRandom()
+# sr.choice()
+# sr.random()
+# ...
+```
+
+# `python schedule`
+
+```python
+import helper
+import time
+import schedule
+from schedule import repeat, every
+
+
+# def task():
+#     print('Doing task ...', helper.get_time())
+#
+#
+# schedule.every(5).seconds.do(task)
+# # schedule.every(5).minutes.do(task)
+# # schedule.every(5).hours.do(task)
+# # schedule.every(5).days.do(task)
+# # schedule.every(5).weeks.do(task)
+# #
+# # schedule.every().minute(':15').do(task)  # 每当到15分钟的时候执行task
+# # schedule.every().hour(':15').do(task)  # 每当到15点的时候执行task
+# # schedule.every(10).minute(':15').do(task)  # 每隔10小时后在15分钟时运行
+#
+# # schedule.every().day.at('15:15:40').do(task)  # 每一天的15:15:40干这个
+# schedule.every().monday.at('15:15:40').do(task)  # 每周一的15:15:40干这个
+#
+# while True:
+#     # 每5秒运行一次task
+#     schedule.run_pending()
+#     time.sleep(1)
+#     break
+#
+#
+# # ===========================================================================
+# @repeat(every(10).seconds)
+# def task_1():
+#     print('Do something: task 1')
+#
+#
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
+
+# ===========================================================================
+
+# def task(arg1, arg2):
+#     print(f'Doing task, arg1={arg1}, arg2={arg2}. At: {helper.get_time()}')
+#
+#
+# schedule.every(2).seconds.do(task, '10', 12)
+#
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
+
+# ===========================================================================
+# @repeat(every(5).seconds, 5, 'OhHou')
+# @repeat(every(6).seconds, 0, 'OhNo')
+# def task(arg1, arg2):
+#     print(f'Doing task, arg1={arg1}, arg2={arg2}. At: {helper.get_time()}')
+#
+#
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
+
+# ===========================================================================
+def task(arg1, arg2):
+    print(f'Doing task, arg1={arg1}, arg2={arg2}. At: {helper.get_time()}')
+    # # 若想只运行一次 那么要return schedule.CancelJob
+    # return schedule.CancelJob
+
+
+schedule.every(2).seconds.do(task, 1, 2).tag('Work', 1)
+schedule.every(2).seconds.do(task, 1, 2).tag('Fun', 1)
+schedule.every(2).seconds.do(task, 1, 2).tag('Work', 1)
+schedule.every(2).seconds.do(task, 1, 2).tag('Fun', 1)
+
+fun = schedule.get_jobs('Fun')
+work = schedule.get_jobs('Work')
+
+print(fun)
+print(work)
+
+# schedule.cancel_job(job)  # 取消task
+# print(schedule.get_jobs())
+
+while True:
+    schedule.run_pending()
+    print('Jobs:', len(schedule.get_jobs()))
+    schedule.clear('Fun')  # 清除有关fun标签的task
+    time.sleep(1)
+    # print('Jobs:', len(schedule.get_jobs()))
+    # schedule.clear()  # 清除所以的job
+# ======================= 使用多线程 =======================
+def task():
+    print('Doing task ...', helper.get_time())
+    time.sleep(5)
+    print('Task done')
+
+
+def start_thread(func):
+    job_one = threading.Thread(target=func)
+    job_one.start()
+
+
+schedule.every(1).seconds.do(start_thread, task)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+```
+
+# `Protocols`
+
+```python
+from typing import Protocol
+
+
+class Printable(Protocol):
+    pages: int
+
+    def print_item(self):
+        pass
+
+    def recycle(self):
+        pass
+
+
+class Book:
+    pages: int
+
+    def __init__(self, title: str):
+        self.title = title
+
+    def print_item(self):
+        print(f'Printing: {self.title}')
+
+    def recycle(self):
+        print(f'Recycling: {self.title}')
+
+
+class Magzaine:
+    def __init__(self, title: str):
+        self.title = title
+
+
+def print_printable(printable: Printable):
+    printable.print_item()
+
+
+book = Book('三国演义')
+print_printable(book)
+
+magazine: Printable = Magzaine('读者')
+print_printable(magazine)  # 报错 除非实现协议类Printable所实现的所有方法和变量
+```
+
+# `Python中的立即执行表达式`
+
+```python
+from datetime import datetime
+
+var: str = 'hello'
+
+
+@lambda _: _()
+def func() -> str:
+    time_text: str = f'Start at {datetime.now():%H:%M:%S}'
+    print(time_text)
+    return time_text
+
+
+# 使函数像变量那样被使用
+x = func
+print(x)
+"""
+Start at 21:50:23
+Start at 21:50:23
+"""
+```
+
+# `datetime的格式化技巧`
+
+```python
+from datetime import datetime
+import time
+
+now = datetime.now()
+print(f'{now:%Y-%m-%d %H:%M:%S}')  # 2024-09-04 21:54:04
+
+print(time.strftime("%X (%d/%m/%Y)"))
+print(type(time.strftime("%X (%d/%m/%Y)")))  # str
+```
+
+# `百分数格式化技巧`
+
+```python
+percent: float = 500.3751
+print(f'{percent:,.2%}')  # 50,037.51%
+```
+
+# `dict的.get和.setdefault`
+
+```python
+people: dict = {'mario': 1, 'james': 2}
+print(people.get('mario111'))  # None
+print(people)  # {'mario': 1, 'james': 2}
+
+print(people.setdefault('asd', 0))  # 0
+print(people)  # {'mario': 1, 'james': 2, 'asd': 0}
+```
+
+# `海象运算符`
+
+```python
+# python 3.8+
+
+def analyse_text(text: str) -> dict:
+    details: dict = {
+        'words': (words := text.split()),
+        'amounts': len(words),
+        'chars': len(''.join(words)),
+        'reversed': words[::-1]
+    }
+    return details
+
+
+print(analyse_text('Hello world'))
+
+user_input: str = 'hell'
+
+if (text := len(user_input)) > 5:
+    print(text, '👍')
+else:
+    print(text, '👎')
+```
+
+# `__new__ and __init__`
+
+```python
+class Connection:
+    __instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls.__instance is None:
+            print('Connecting internet ...')
+            cls.__instance = super().__new__(cls)
+            # 必须要有返回值
+            return cls.__instance
+        else:
+            print('Warning: There is already an instance of connection!')
+            return cls.__instance
+
+    def __init__(self):
+        print('Connected to the internet.')
+
+
+connection = Connection()
+connection1 = Connection()
+
+print(connection == connection1)  # True 
+
+# ==========================================================================
+class Vehicle:
+
+    def __new__(cls, wheels: int):
+        if wheels == 2:
+            return MotorBike()
+        elif wheels == 4:
+            return Car()
+        else:
+            return super().__new__(cls)
+
+    def __init__(self, wheels: int):
+        self.wheels = wheels
+        print(f'Initializing vehicle with {wheels} wheels.')
+
+
+class MotorBike:
+    def __init__(self):
+        print('Initializing motorbike.')
+
+
+class Car:
+    def __init__(self):
+        print('Initializing car.')
+
+
+B = Vehicle(2)
+C = Vehicle(4)
+bus = Vehicle(20)
+"""Result:
+Initializing motorbike.
+Initializing car.
+Initializing vehicle with 20 wheels.
+"""
+```
+
+# `http状态码处理`
+
+```python
+from enum import Enum
+from http import HTTPStatus
+
+
+class Status(Enum):
+    OK = 200
+    BAD_GATEWAY = 502
+    FORBIDDEN = 403
+
+
+status = Status.FORBIDDEN
+
+# if status == Status.FORBIDDEN:
+#     print('Forbidden')
+
+# 上述实现有点慢 下面看快的
+
+# from http import HTTPStatus
+
+print(HTTPStatus.OK)
+print(HTTPStatus.OK.phrase)
+print(HTTPStatus.OK.description)
+"""Result:
+HTTPStatus.OK
+OK
+Request fulfilled, document follows
+"""
+
+print(HTTPStatus.TOO_MANY_REQUESTS)
+print(HTTPStatus.TOO_MANY_REQUESTS.phrase)
+print(HTTPStatus.TOO_MANY_REQUESTS.description)
+"""Result:
+HTTPStatus.TOO_MANY_REQUESTS
+Too Many Requests
+The user has sent too many requests in a given amount of time ("rate limiting")
+"""
+
+print(HTTPStatus.IM_A_TEAPOT)
+print(HTTPStatus.IM_A_TEAPOT.phrase)
+print(HTTPStatus.IM_A_TEAPOT.description)
+"""Result:
+HTTPStatus.IM_A_TEAPOT
+I'm a Teapot
+Server refuses to brew coffee because it is a teapot.
+"""
+```
+
+# `eval and exec`
+
+```python
+source: str = 'str(10 * 10 + 2) + "hello"'
+
+res: str = eval(source)
+print(res)  # 102hello
+
+# ============================================
+source: str = '''
+print("exec():")
+x = 10
+y = 11
+
+for i in range(3):
+    print(x + y, i, sep='-')
+'''
+
+exec(source)
+"""Result:
+exec():
+21-0
+21-1
+21-2
+"""
+```
+
+# `简化函数`
+
+```python
+def multiply_setup(a: float):
+    def multiply(b: float):
+        return a * b
+
+    return multiply
+
+
+res = multiply_setup(2)(3)
+print(res)  # 6
+
+# ===============================================================
+def multiply_setup(a: float):
+    def multiply(b: float):
+        return a * b
+
+    return multiply
+
+
+double = multiply_setup(2)
+triple = multiply_setup(3)
+
+print(double(10))  # 20
+print(triple(5))  # 15
+
+# ===============================================================
+from functools import partial
+
+
+def multiply(a: float, b: float, name: str | None = None) -> float:
+    if name:
+        print(f'{name} (a: {a}, b: {b})')
+    return a * b
+
+double = partial(multiply, 2, name='double')
+triple = partial(multiply, b=3, name='triple')
+print(double(10))  # 20
+print(triple(10))  # 30
+
+"""Result:
+double (a: 2, b: 10)
+20
+triple (a: 10, b: 3)
+30
+"""
+```
+
+# `Python的彩蛋`
+
+```python
+import antigravity
+# 运行脚本后，打开一个网址 --> https://xkcd.com/353/
+```
+
+# `分割指定大小的list`
+
+```python
+def chunks(lst: list, n: int):
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
+
+
+x = chunks(['a', 'b', 'c', 'd', 'e', 'f', 'g'], 2)  # 注意，这里的第二个参数 无论多大都不会报错！！！
+for item in x:
+    print(item)
+```
+
+# `下划线用法`
+
+![image-20240905222338849](./assets/image-20240905222338849.png)
+
+```python
+from uuid import uuid4
+
+
+class User:
+    def __init__(self):
+        self._uid = uuid4()
+
+    def _get_id(self):
+        return self._uid
+
+
+user = User()
+id_ = user._get_id()  # 报警告 但是可以获取值
+print(id_)  # 838ef4e4-d1ce-4eec-877e-7574972c74f1
+```
+
+![image-20240905222258075](./assets/image-20240905222258075.png)
+
+# `yaml`
+
+```python
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
