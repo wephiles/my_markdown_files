@@ -28,7 +28,7 @@
 ```python
 # 配置local_settings.py
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     pass
 
@@ -36,7 +36,7 @@ except ImportError:
 SMS = 0
 ```
 
-## 3.2 创建我们自己的`local_settings.py`文件
+## 3.2 创建我们自己的`local_settings.py`文件 -- `local_settings.py`放在和`setting.py`同一个目录
 
 配置我们自己的设置信息。
 
@@ -100,7 +100,53 @@ SMS = 666
 
 ## 6.1 腾讯云发送短信
 
+-   注册
+-   用户登录
 
+```python
+# settings.py
+# ==========================================================
+# ====================== 必须的配置信息 ======================
+# ==========================================================
+
+# 这里提示公司的测试人员需要哪些配置信息
+APP_ID = 666666
+APP_KEY = '6666666666666666'
+SMS_SIGN = 'SIGN'
+
+TENCENT_CLOUD_SMS_TEMPLATE = {
+    'register': 666666,
+    'login': 666666,
+}
+
+# ==========================================================
+# ======================== 本地配置 =========================
+# ==========================================================
+try:
+    from .local_settings import *
+except:
+    ...
+
+```
+
+```python
+# local_settings.py
+# 腾讯云短信相关配置 -- 这里是真正的配置
+APP_ID = 123456
+APP_KEY = 'dsjnf16aih5ews4dhund8d9'
+SMS_SIGN = '瑾瑜'
+
+TENCENT_CLOUD_SMS_TEMPLATE = {
+    'register': 123456,
+    'login': 123456,
+}
+```
+
+```python
+注意:真正发送短信的东西自己去腾讯云去看怎么发送短信。
+```
+
+## 6.2 通过`Python`代码实现将一个文件上传到腾讯对象存储中
 
 
 

@@ -932,7 +932,7 @@ def add_user():
     conn = pymysql.connect(
         host="localhost",
         user="root",
-        password="637847",
+        password="******",
         port=3306,
         db="unicom",
         charset="utf8"
@@ -993,7 +993,7 @@ def add_user():
     conn = pymysql.connect(
         host="localhost",
         user="root",
-        password="637847",
+        password="******",
         port=3306,
         db="unicom",
         charset="utf8"
@@ -1017,7 +1017,7 @@ def show_user():
     conn = pymysql.connect(
         host="localhost",
         user="root",
-        password="637847",
+        password="******",
         port=3306,
         db="unicom",
         charset="utf8"

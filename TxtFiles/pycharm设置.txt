@@ -229,3 +229,22 @@ rsUzzB6Q_r5_9yBhfnVs
 public class ${NAME} {
 }
 ==============================================================================================================================================================
+
+*********************************************************************************************
+# 下面是Python的配置 -- 2024.09.21
+*********************************************************************************************
+#!/user/bin/enc python
+# -*- coding: utf-8 -*-
+# @CreateTime : ${YEAR}/${MONTH}/${DAY} ${TIME}
+# @Author     : wephiles@${USER}
+# @IDE        : ${PRODUCT_NAME}
+# @ProjectName: ${PROJECT_NAME}
+# @FileName   : ${PROJECT_NAME}/${NAME}.py
+# @Description: This is description of this script.
+# @Interpreter: python 3.0+
+# @Motto      : You must take your place in the circle of life!
+# @AuthorSite : https://github.com/wephiles or https://gitee.com/wephiles
+
+# --END--
+
+*********************************************************************************************
